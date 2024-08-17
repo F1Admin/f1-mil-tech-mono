@@ -1,5 +1,4 @@
-import siteSettings from "./siteSettings";
+import militaryLandingPage from './militaryLandingPage';
+import siteSettings from './siteSettings';
 
-export const schemaTypes = [
-  siteSettings
-]
+export const schemaTypes = [siteSettings, militaryLandingPage];

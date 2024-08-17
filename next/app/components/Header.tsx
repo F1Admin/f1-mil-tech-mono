@@ -29,7 +29,7 @@ const Header = () => {
             <Link
               key={index}
               href={link.path}
-              className="text-gray-500 hover:text-gray-90 text-xs uppercase"
+              className="text-gray-500 hover:text-gray-900 text-xs uppercase"
             >
               {link.label}
             </Link>
@@ -37,7 +37,7 @@ const Header = () => {
         </nav>
       </div>
       <div>
-        <nav className="hidden bg-slate-800 lg:flex px-10 py-3 space-x-8">
+        <nav className="hidden bg-slate-800 lg:flex px-12 py-3 space-x-8">
           {baseLinks.map((link, index) => (
             <Link
               key={index}
