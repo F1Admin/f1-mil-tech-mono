@@ -32,6 +32,14 @@ export default defineConfig({
                   .documentId('militaryLandingPage')
                   .title('Military Landing Page')
               ),
+            S.listItem()
+              .title('Military About Page')
+              .child(
+                S.document()
+                  .schemaType('militaryAboutPage')
+                  .documentId('militaryAboutPage')
+                  .title('Military About Page')
+              ),
           ]),
     }),
     visionTool(),
