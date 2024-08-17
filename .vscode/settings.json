@@ -1,0 +1,28 @@
+{
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+
+  "[typescriptreact]": {
+    "editor.formatOnSave": true
+  },
+  "[typescript]": {
+    "editor.formatOnSave": true
+  },
+  // Set the default
+  "editor.formatOnSave": false,
+  "eslint.workingDirectories": ["./next", "./sanity"],
+  // Enable per-language
+  "[javascript]": {
+    "editor.formatOnSave": true
+  },
+
+  // The number of spaces a tab is equal to. This setting is overridden
+  // based on the file contents when `editor.detectIndentation` is true.
+  "editor.tabSize": 2,
+
+  // Insert spaces when pressing Tab. This setting is overriden
+  // based on the file contents when `editor.detectIndentation` is true.
+  "editor.insertSpaces": true,
+
+  "editor.detectIndentation": false
+}

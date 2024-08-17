@@ -1,9 +1,18 @@
-import Image from "next/image";
+import React from 'react';
+import Link from 'next/link';
 
-export default function Home() {
+const LandingPage: React.FC = () => {
   return (
-    <div>
-      <h1>Military and Tech Project</h1>
+    // to buttons with links the /military and /tech
+    <div className="flex flex-col p-5 gap-3">
+      <Link href={'/military'} className="text-center border">
+        Military
+      </Link>
+      <Link href={'/tech'} className="text-center border">
+        Tech
+      </Link>
     </div>
   );
-}
+};
+
+export default LandingPage;
