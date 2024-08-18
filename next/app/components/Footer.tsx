@@ -6,8 +6,8 @@ import Image from 'next/image';
 const Footer: React.FC = () => {
   return (
     <footer>
-      <div className="mx-auto py-10 px-10 text-gray-500">
-        <hr className="border-t-2 border-gray-500 mb-10" />
+      <div className="mx-auto py-10 px-10 text-zinc-400">
+        <hr className="border-t-2 border-zinc-400 mb-10" />
         <div className="grid grid-cols-5 px-10 mb-20">
           <div className="flex flex-col gap-10">
             <div className="">FLIGHT-1 MILITARY</div>
@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
                   <Link
                     key={index}
                     href={link.path}
-                    className="text-gray-500 hover:text-gray-900 font-thin text-s capitalize"
+                    className=" hover:text-white font-thin text-s capitalize"
                   >
                     {link.label}
                   </Link>
@@ -38,7 +38,7 @@ const Footer: React.FC = () => {
             />
           </div>
         </div>
-        <hr className="border-t-2 border-gray-500 mb-5" />
+        <hr className="border-t-2 border-zinc-400 mb-5" />
       </div>
     </footer>
   );

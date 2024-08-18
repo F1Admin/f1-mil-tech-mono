@@ -1,7 +1,7 @@
 import { client } from '../utils/sanity/client';
 import imageUrlBuilder from '@sanity/image-url';
 
-export default async function militaryLandingPage() {
+export default async function MilitaryLandingPage() {
   // build military landing page
   // fetch different sections from sanity
   // build page to display the sections

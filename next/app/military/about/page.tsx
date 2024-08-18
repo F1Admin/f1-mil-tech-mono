@@ -3,7 +3,7 @@ import imageUrlBuilder from '@sanity/image-url';
 
 const builder = imageUrlBuilder(client);
 
-export default async function militaryAboutPage() {
+export default async function MilitaryAboutPage() {
   const query = `*[_type == "militaryAboutPage"]`;
   const data = await client.fetch(query);
   const {
@@ -53,10 +53,10 @@ export default async function militaryAboutPage() {
         }}
       >
         <div className="absolute flex flex-col bottom-14 left-28 w-96 gap-4">
-          <div className="text-slate-800 text-xl font-bold uppercase">
+          <div className="text-zinc-800 text-xl font-bold uppercase">
             {image3_title}
           </div>
-          <div className="text-slate-800">{image3_subTitle}</div>
+          <div className="text-zinc-800">{image3_subTitle}</div>
         </div>
       </div>
       <div className="grid grid-cols-2 pl-28 py-20 pr-10 gap-3">

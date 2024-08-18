@@ -11,7 +11,7 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="bg-black shadow-md">
+    <header className="bg-black shadow-md text-zinc-400">
       <div className="mx-auto py-5 px-10 flex justify-between items-center">
         {/* Logo */}
         <Link href="/">
@@ -29,7 +29,7 @@ const Header = () => {
             <Link
               key={index}
               href={link.path}
-              className="text-gray-500 hover:text-gray-900 text-xs uppercase"
+              className="hover:text-white text-xs uppercase"
             >
               {link.label}
             </Link>
@@ -37,13 +37,9 @@ const Header = () => {
         </nav>
       </div>
       <div>
-        <nav className="hidden bg-slate-800 lg:flex px-12 py-3 space-x-8">
+        <nav className="hidden bg-zinc-900 lg:flex px-12 py-3 space-x-8">
           {baseLinks.map((link, index) => (
-            <Link
-              key={index}
-              href="/"
-              className="text-gray-400 hover:text-white text-xs"
-            >
+            <Link key={index} href="/" className="hover:text-white text-xs">
               {link.label}
             </Link>
           ))}
@@ -53,7 +49,7 @@ const Header = () => {
       <div className="lg:hidden flex items-center">
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="text-gray-700 hover:text-gray-900 focus:outline-none"
+          className="text-zinc-700 hover:text-zinc-900 focus:outline-none"
         >
           <ChevronDown
             transform={menuOpen ? 'rotate(-180deg)' : 'rotate(0deg)'}
@@ -68,7 +64,7 @@ const Header = () => {
               <Link
                 key={index}
                 href="/"
-                className="text-gray-400 hover:text-white"
+                className="text-zinc-400 hover:text-white"
               >
                 {link.label}
               </Link>

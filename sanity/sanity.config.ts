@@ -14,7 +14,7 @@ export default defineConfig({
     structureTool({
       structure: (S) =>
         S.list()
-          .title('Base')
+          .title('Content')
           .items([
             S.listItem()
               .title('Site Settings')
@@ -39,6 +39,24 @@ export default defineConfig({
                   .schemaType('militaryAboutPage')
                   .documentId('militaryAboutPage')
                   .title('Military About Page')
+              ),
+            S.listItem()
+              .title('Military Courses Page')
+              .child(
+                S.document()
+                  .schemaType('militaryCoursesPage')
+                  .documentId('militaryCoursesPage')
+                  .title('Military Courses Page')
+              ),
+            S.listItem()
+              .title('Military Course')
+              .child(
+                S.documentList()
+                  .title('Military Courses')
+                  .filter('_type == "militaryCourse"')
+                  .defaultOrdering([
+                    { field: 'courseNumber', direction: 'asc' },
+                  ])
               ),
           ]),
     }),
