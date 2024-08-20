@@ -1,9 +1,12 @@
-'use client';
 import Link from 'next/link';
 import militaryLinks from '../data/militaryLinks';
 import Image from 'next/image';
+import { getCourses, getSupportingCourses } from '@/sanity/sanity-utils';
 
-const Footer: React.FC = () => {
+export default async function Footer() {
+  const courses = await getCourses();
+  const supportingCourses = await getSupportingCourses();
+
   return (
     <footer>
       <div className="mx-auto py-10 px-10 text-zinc-400">
@@ -25,8 +28,36 @@ const Footer: React.FC = () => {
                 ))}
             </div>
           </div>
-          <div>COURSES</div>
-          <div>FLIGHT-1 SUPPORTING COURSES</div>
+          <div className="flex flex-col gap-10">
+            <div>COURSES</div>
+            <ul className="flex flex-col gap-2">
+              {courses.map((course) => (
+                <Link
+                  key={course._id}
+                  href={`/military/courses/${course.slug?.current}`}
+                  className=" hover:text-white font-thin text-s capitalize"
+                >
+                  {course.courseNumber
+                    ? `${course.courseNumber}M ${course.courseTitle}`
+                    : course.courseTitle}
+                </Link>
+              ))}
+            </ul>
+          </div>
+          <div className="flex flex-col gap-10">
+            <div>FLIGHT-1 SUPPORTING COURSES</div>
+            <ul className="flex flex-col gap-2">
+              {supportingCourses.map((course) => (
+                <Link
+                  key={course._id}
+                  href={`/military/courses/${course.slug?.current}`}
+                  className=" hover:text-white font-thin text-s capitalize"
+                >
+                  {course.courseTitle}
+                </Link>
+              ))}
+            </ul>
+          </div>
           <div className="flex col-end-6 justify-end">
             <Image
               src="/assets/images/skull.png"
@@ -42,6 +73,4 @@ const Footer: React.FC = () => {
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}

@@ -1,39 +1,27 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { client } from '@/app/utils/sanity/client';
-import imageUrlBuilder from '@sanity/image-url';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
-
-interface MilitaryCourseData {
-  heroImage: any;
-  courseNumber: string;
-  courseTitle: string;
-  courseDescription: string;
-  courseSeriesImage: string;
-  courseFooterImage: string;
-  courseRequirements: string;
-  courseFooterText: string;
-}
+import { getCourse } from '@/sanity/sanity-utils';
+import { Course, GetCourseQueryResult } from '@/sanity/types';
 
 export default function MilitaryCourse() {
-  const [course, setCourse] = useState<MilitaryCourseData | null>();
+  const [course, setCourse] = useState<GetCourseQueryResult>();
   const [loading, setLoading] = useState(true);
   const pathname = usePathname();
-  const builder = imageUrlBuilder(client);
+  const slug = pathname.split('/').pop() || '';
 
   useEffect(() => {
     async function fetchData() {
-      const query = `*[_type == "militaryCoursesPage"]{courses}`;
-      const params = { courseNumber: pathname };
-      const result = await client.fetch(query, params);
-      console.log(result[0].courses[0]);
-      setCourse(result[0].courses[0]);
+      console.log('slug', slug);
+      const data = await getCourse(slug);
+      console.log(data);
+      setCourse(data);
       setLoading(false);
     }
     fetchData();
-  }, [pathname]); // Add pathname as a dependency
+  }, [slug]); // Add pathname as a dependency
 
   if (loading) {
     return <div>Loading...</div>;
@@ -44,22 +32,18 @@ export default function MilitaryCourse() {
     return <div>No data available</div>;
   }
   //slice the front course number from any letters and save as seperate variables
-  const courseNumber = course.courseNumber.slice(0, 3);
-  const courseLetter = course.courseNumber.slice(3);
-
-  const seriesImage = builder.image(course.courseSeriesImage).url();
   return (
     <section>
       <div
         className="relative h-[400px] bg-center bg-cover"
         style={{
-          backgroundImage: `url(${builder.image(course.heroImage).url()})`,
+          backgroundImage: `url(${course.heroImage})`,
         }}
       >
         <div className="absolute bottom-14 left-14 ">
           <div className="flex items-center">
-            <span className="text-6xl font-bold">{courseNumber}</span>
-            <span className="text-6xl font-thin">{courseLetter}</span>
+            <span className="text-6xl font-bold">{course.courseNumber}</span>
+            <span className="text-6xl font-thin">M</span>
             <div className="relative mx-5">
               <div
                 className="w-px h-full bg-zinc-400 absolute bottom-[-3em]"
@@ -73,12 +57,14 @@ export default function MilitaryCourse() {
         </div>
       </div>
       <div className="grid grid-cols-2 p-20 items-center gap-5">
-        <Image
-          src={seriesImage}
-          alt={course.courseTitle}
-          width={500}
-          height={200}
-        />
+        {course.courseSeriesImage && course.courseTitle && (
+          <Image
+            src={course.courseSeriesImage}
+            alt={course.courseTitle}
+            width={500}
+            height={200}
+          />
+        )}
         <div className="flex flex-col gap-20 text-lg text-zinc-100">
           <div>{course.courseDescription}</div>
           <div className="flex gap-5 items-center">
@@ -90,7 +76,7 @@ export default function MilitaryCourse() {
       <div
         className="relative h-[400px] bg-cover bg-center"
         style={{
-          backgroundImage: `url(${builder.image(course.courseFooterImage).url()})`,
+          backgroundImage: `url(${course.courseFooterImage})`,
         }}
       >
         <div className="absolute bottom-14 left-14">

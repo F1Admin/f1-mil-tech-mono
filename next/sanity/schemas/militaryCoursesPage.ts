@@ -2,7 +2,7 @@ import { defineType, defineField } from 'sanity';
 
 export default defineType({
   name: 'militaryCoursesPage',
-  title: 'Military Courses Page',
+  title: 'Courses Page',
   type: 'document',
   fields: [
     defineField({
@@ -20,18 +20,6 @@ export default defineType({
       title: 'Page Subtitle',
       type: 'text',
       rows: 3,
-    }),
-    defineField({
-      name: 'courses',
-      title: 'Courses',
-      type: 'array',
-      of: [{ type: 'militaryCourse' }],
-    }),
-    defineField({
-      name: 'supportingCourses',
-      title: 'Supporting Courses',
-      type: 'array',
-      of: [{ type: 'militaryCourse' }],
     }),
     defineField({
       name: 'footerImage',

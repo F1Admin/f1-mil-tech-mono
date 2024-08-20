@@ -1,14 +1,14 @@
 import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { visionTool } from '@sanity/vision';
-import { schemaTypes } from './schemaTypes';
+import { schemaTypes } from './sanity/schemas';
 
 export default defineConfig({
-  name: 'default',
+  name: 'cms-military',
   title: 'Military-Tech CMS',
-
   projectId: 'gdj0rx5v',
   dataset: 'production',
+  basePath: '/cms-military',
 
   plugins: [
     structureTool({
@@ -24,39 +24,54 @@ export default defineConfig({
                   .documentId('siteSettings')
                   .title('Site Settings')
               ),
+            S.divider(),
             S.listItem()
-              .title('Military Landing Page')
+              .title('Landing Page')
               .child(
                 S.document()
                   .schemaType('militaryLandingPage')
                   .documentId('militaryLandingPage')
-                  .title('Military Landing Page')
+                  .title('Landing Page')
               ),
             S.listItem()
-              .title('Military About Page')
+              .title('About Page')
               .child(
                 S.document()
                   .schemaType('militaryAboutPage')
                   .documentId('militaryAboutPage')
-                  .title('Military About Page')
+                  .title('About Page')
               ),
             S.listItem()
-              .title('Military Courses Page')
+              .title('Courses Page')
               .child(
                 S.document()
                   .schemaType('militaryCoursesPage')
                   .documentId('militaryCoursesPage')
-                  .title('Military Courses Page')
+                  .title('Courses Page')
               ),
             S.listItem()
-              .title('Military Course')
+              .title('Courses')
               .child(
                 S.documentList()
-                  .title('Military Courses')
-                  .filter('_type == "militaryCourse"')
-                  .defaultOrdering([
-                    { field: 'courseNumber', direction: 'asc' },
-                  ])
+                  .title('Courses')
+                  .filter('_type == "course"')
+                  .defaultOrdering([{ field: 'order', direction: 'asc' }])
+              ),
+            S.listItem()
+              .title('Supporting Courses')
+              .child(
+                S.documentList()
+                  .title('Supporting Courses')
+                  .filter('_type == "supportingCourse"')
+                  .defaultOrdering([{ field: 'order', direction: 'asc' }])
+              ),
+            S.listItem()
+              .title('Instructors')
+              .child(
+                S.documentList()
+                  .title('Instructors')
+                  .filter('_type == "instructor"')
+                  .defaultOrdering([{ field: 'name', direction: 'asc' }])
               ),
           ]),
     }),

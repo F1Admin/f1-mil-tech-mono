@@ -4,12 +4,12 @@ const baseLinks = [
     label: 'SPORT',
   },
   {
-    path: '/military',
-    label: 'MILTARY',
-  },
-  {
     path: '/tech',
     label: 'TECH',
+  },
+  {
+    path: '/military',
+    label: 'MILTARY',
   },
   {
     path: 'https://www.pdfactory.com/',

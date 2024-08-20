@@ -1,13 +1,6 @@
-import { client } from '../utils/sanity/client';
-import imageUrlBuilder from '@sanity/image-url';
+import { getLandingPage } from '@/sanity/sanity-utils';
 
 export default async function MilitaryLandingPage() {
-  // build military landing page
-  // fetch different sections from sanity
-  // build page to display the sections
-
-  const query = `*[_type == "militaryLandingPage"]`;
-  const data = await client.fetch(query);
   const {
     image1,
     image1_title,
@@ -15,16 +8,14 @@ export default async function MilitaryLandingPage() {
     image2_title,
     image2_subTitle,
     image3,
-  } = data[0];
-
-  const builder = imageUrlBuilder(client);
+  } = await getLandingPage();
 
   return (
     <section>
       <div
         className="relative h-[400px] bg-cover bg-center"
         style={{
-          backgroundImage: `url(${builder.image(image1).url()})`,
+          backgroundImage: `url(${image1})`,
         }}
       >
         <div className="absolute bottom-14 left-14">
@@ -34,7 +25,7 @@ export default async function MilitaryLandingPage() {
       <div
         className="relative h-[400px] bg-cover bg-bottom"
         style={{
-          backgroundImage: `url(${builder.image(image2).url()})`,
+          backgroundImage: `url(${image2})`,
         }}
       >
         <div className="absolute flex flex-col gap-2 bottom-14 left-14">
@@ -45,7 +36,7 @@ export default async function MilitaryLandingPage() {
       <div
         className="relative h-[400px] bg-cover bg-center"
         style={{
-          backgroundImage: `url(${builder.image(image3).url()})`,
+          backgroundImage: `url(${image3})`,
         }}
       ></div>
     </section>

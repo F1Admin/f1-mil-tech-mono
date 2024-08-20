@@ -1,11 +1,6 @@
-import { client } from '@/app/utils/sanity/client';
-import imageUrlBuilder from '@sanity/image-url';
-
-const builder = imageUrlBuilder(client);
+import { getAboutPage } from '@/sanity/sanity-utils';
 
 export default async function MilitaryAboutPage() {
-  const query = `*[_type == "militaryAboutPage"]`;
-  const data = await client.fetch(query);
   const {
     image1,
     image1_title,
@@ -17,14 +12,14 @@ export default async function MilitaryAboutPage() {
     image3,
     image3_title,
     image3_subTitle,
-  } = data[0];
+  } = await getAboutPage();
 
   return (
     <section>
       <div
         className="relative h-[400px] bg-cover bg-center"
         style={{
-          backgroundImage: `url(${builder.image(image1).url()})`,
+          backgroundImage: `url(${image1})`,
         }}
       >
         <div className="absolute bottom-14 left-14">
@@ -37,7 +32,7 @@ export default async function MilitaryAboutPage() {
       <div
         className="relative h-[400px] bg-cover bg-bottom"
         style={{
-          backgroundImage: `url(${builder.image(image2).url()})`,
+          backgroundImage: `url(${image2})`,
         }}
       >
         <div className="absolute flex flex-col bottom-14 left-28 w-96 gap-4">
@@ -49,7 +44,7 @@ export default async function MilitaryAboutPage() {
       <div
         className="relative h-[400px] bg-cover bg-bottom"
         style={{
-          backgroundImage: `url(${builder.image(image3).url()})`,
+          backgroundImage: `url(${image3})`,
         }}
       >
         <div className="absolute flex flex-col bottom-14 left-28 w-96 gap-4">
@@ -96,5 +91,4 @@ export default async function MilitaryAboutPage() {
       </div>
     </section>
   );
-  // build about page
 }

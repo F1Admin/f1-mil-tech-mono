@@ -1,24 +1,36 @@
 import { defineType, defineField } from 'sanity';
 
 export default defineType({
-  name: 'militaryCourse',
-  title: 'Military Course',
+  name: 'supportingCourse',
+  title: 'Supporting Course',
   type: 'document',
   fields: [
-    defineField({
-      name: 'heroImage',
-      title: 'Hero Image',
-      type: 'image',
-    }),
-    defineField({
-      name: 'courseNumber',
-      title: 'Course Number',
-      type: 'string',
-    }),
     defineField({
       name: 'courseTitle',
       title: 'Course Title',
       type: 'string',
+    }),
+    defineField({
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {
+        maxLength: 96,
+      },
+    }),
+    defineField({
+      name: 'heroImage',
+      title: 'Hero Image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+    }),
+    defineField({
+      name: 'order',
+      title: 'Order',
+      type: 'number',
+      description: 'Order of the course in the list',
     }),
     defineField({
       name: 'courseSeriesImage',
@@ -29,12 +41,13 @@ export default defineType({
       name: 'courseDescription',
       title: 'Course Description',
       type: 'text',
-      rows: 3,
+      rows: 5,
     }),
     defineField({
       name: 'courseRequirements',
       title: 'Course Requirements',
       type: 'text',
+      rows: 3,
     }),
     defineField({
       name: 'courseCarousel',
