@@ -6,9 +6,14 @@ import { useState } from 'react';
 import ChevronDown from './Icons/ChevronDown';
 import militaryLinks from '../data/militaryLinks';
 import baseLinks from '../data/baseLinks';
+import { usePathname } from 'next/navigation';
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  // military subMenu highlighting
+  const isCurrent = (path: string) => pathname.includes(path);
 
   return (
     <header className="bg-black shadow-md text-zinc-400">
@@ -29,7 +34,7 @@ const Header = () => {
             <Link
               key={index}
               href={link.path}
-              className="hover:text-white text-xs uppercase"
+              className={`hover:text-white text-xs uppercase ${isCurrent(link.path) && 'text-white'}`}
             >
               {link.label}
             </Link>
@@ -38,9 +43,13 @@ const Header = () => {
       </div>
       <div>
         <nav className="hidden bg-zinc-900 lg:flex px-10 py-4 space-x-8">
-          {baseLinks.map((link, index) => (
-            <Link key={index} href="/" className="hover:text-white text-xs">
-              {link.label}
+          {baseLinks.map(({ path, label }) => (
+            <Link
+              key={path}
+              href={path}
+              className={`hover:text-white text-xs ${pathname.includes(path) && path != '/' ? 'text-white' : ''}`}
+            >
+              {label}
             </Link>
           ))}
         </nav>
