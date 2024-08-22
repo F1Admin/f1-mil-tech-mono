@@ -8,6 +8,7 @@ import {
   GetSupportingCourseQuery,
 } from '@/sanity/sanity-utils';
 import Hero from '@/app/components/Hero';
+import Slider from '@/app/components/Slider/Slider';
 
 export default function MilitaryCourse() {
   const [course, setCourse] = useState<GetSupportingCourseQuery>();
@@ -55,6 +56,7 @@ export default function MilitaryCourse() {
           </div>
         </div>
       </div>
+      <Slider images={course.courseCarousel} />
       <div
         className="relative h-[400px] bg-cover bg-center"
         style={{

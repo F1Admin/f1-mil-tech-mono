@@ -146,9 +146,7 @@ export type GetCourseQuery = {
   courseRequirements: string;
   courseFooterImage: string;
   courseFooterText: string;
-  courseCarousel: {
-    image: string;
-  }[];
+  courseCarousel: CourseCarousel[];
 };
 
 export type CourseCarousel = {
@@ -169,6 +167,9 @@ const getSupportingCourseQuery = groq`*[_type == "supportingCourse" && slug.curr
   "courseSeriesImage": courseSeriesImage.asset->url,
   "courseFooterImage": courseFooterImage.asset->url,
   courseFooterText,
+  "courseCarousel": courseCarousel[]{
+    "image": image.asset->url,
+  },
 }`;
 
 export type GetSupportingCourseQuery = {
@@ -181,6 +182,7 @@ export type GetSupportingCourseQuery = {
   courseSeriesImage: string;
   courseFooterImage: string;
   courseFooterText: string;
+  courseCarousel: CourseCarousel[];
 };
 
 export async function getSupportingCourse(
