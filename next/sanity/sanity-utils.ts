@@ -12,7 +12,7 @@ const landingPageQuery = groq`*[_type == "militaryLandingPage"][0]{
   "image3": image3.asset->url,
 }`;
 
-type LandingPageQuery = {
+export type LandingPageQuery = {
   _id: string;
   _createdAt: Date;
   image1: string;
@@ -42,7 +42,7 @@ const aboutPageQuery = groq`*[_type == "militaryAboutPage"][0]{
   image3_subTitle,
 }`;
 
-type AboutPageQuery = {
+export type AboutPageQuery = {
   _id: string;
   _createdAt: Date;
   image1: string;
@@ -70,7 +70,7 @@ const militaryCoursesPageQuery = groq`*[_type == "militaryCoursesPage"][0]{
   "footerImage": footerImage.asset->url,
 }`;
 
-type MilitaryCoursesPageQuery = {
+export type MilitaryCoursesPageQuery = {
   _id: string;
   _createdAt: Date;
   heroImage: string;
@@ -87,10 +87,10 @@ export const getCoursesQuery = groq`*[_type == "course"] | order(order asc){
   _id,
   courseNumber,
   courseTitle,
-  slug,
+  "slug": slug.current,
 }`;
 
-type Course = {
+export type Course = {
   _id: string;
   courseNumber: string;
   courseTitle: string;
@@ -105,10 +105,10 @@ const getSupporingCoursesQuery = groq`*[_type == "supportingCourse"] | order(ord
   _id,
   courseNumber,
   courseTitle,
-  slug,
+  "slug": slug.current,
 }`;
 
-type SupportingCourse = {
+export type SupportingCourse = {
   _id: string;
   courseNumber: string;
   courseTitle: string;
@@ -124,7 +124,7 @@ const getCourseQuery = groq`*[_type == "course" && slug.current == $slug][0]{
   "heroImage": heroImage.asset->url,
   courseNumber,
   courseTitle,
-  slug,
+  "slug": slug.current,
   "courseSeriesImage": courseSeriesImage.asset->url,
   courseDescription,
   courseRequirements,
@@ -132,7 +132,7 @@ const getCourseQuery = groq`*[_type == "course" && slug.current == $slug][0]{
   courseFooterText,
 }`;
 
-type CourseQuery = {
+export type GetCourseQuery = {
   _id: string;
   heroImage: string;
   courseNumber: string;
@@ -145,16 +145,16 @@ type CourseQuery = {
   courseFooterText: string;
 };
 
-export async function getCourse(slug: string): Promise<CourseQuery> {
+export async function getCourse(slug: string): Promise<GetCourseQuery> {
   return createClient(config).fetch(getCourseQuery, { slug });
 }
 
-const getSupportingCourseQuery = groq`*[_type == "supportingCourses" && slug.current == $slug][0]{
+const getSupportingCourseQuery = groq`*[_type == "supportingCourse" && slug.current == $slug][0]{
   _id,
   "heroImage": heroImage.asset->url,
   courseNumber,
   courseTitle,
-  slug,
+  "slug": slug.current,
   courseDescription,
   courseRequirements,
   "courseSeriesImage": courseSeriesImage.asset->url,
@@ -162,7 +162,7 @@ const getSupportingCourseQuery = groq`*[_type == "supportingCourses" && slug.cur
   courseFooterText,
 }`;
 
-type SupportingCourseQuery = {
+export type GetSupportingCourseQuery = {
   _id: string;
   heroImage: string;
   courseNumber: string;
@@ -177,7 +177,7 @@ type SupportingCourseQuery = {
 
 export async function getSupportingCourse(
   slug: string
-): Promise<SupportingCourseQuery> {
+): Promise<GetSupportingCourseQuery> {
   return createClient(config).fetch(getSupportingCourseQuery, {
     slug,
   });

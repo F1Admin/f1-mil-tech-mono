@@ -3,11 +3,14 @@
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
-import { getCourse } from '@/sanity/sanity-utils';
-import { Course, GetCourseQueryResult } from '@/sanity/types';
+import {
+  getSupportingCourse,
+  GetSupportingCourseQuery,
+} from '@/sanity/sanity-utils';
+import Hero from '@/app/components/Hero';
 
 export default function MilitaryCourse() {
-  const [course, setCourse] = useState<GetCourseQueryResult>();
+  const [course, setCourse] = useState<GetSupportingCourseQuery>();
   const [loading, setLoading] = useState(true);
   const pathname = usePathname();
   const slug = pathname.split('/').pop() || '';
@@ -15,7 +18,7 @@ export default function MilitaryCourse() {
   useEffect(() => {
     async function fetchData() {
       console.log('slug', slug);
-      const data = await getCourse(slug);
+      const data = await getSupportingCourse(slug);
       console.log(data);
       setCourse(data);
       setLoading(false);
@@ -34,28 +37,7 @@ export default function MilitaryCourse() {
   //slice the front course number from any letters and save as seperate variables
   return (
     <section>
-      <div
-        className="relative h-[400px] bg-center bg-cover"
-        style={{
-          backgroundImage: `url(${course.heroImage})`,
-        }}
-      >
-        <div className="absolute bottom-14 left-14 ">
-          <div className="flex items-center">
-            <span className="text-6xl font-bold">{course.courseNumber}</span>
-            <span className="text-6xl font-thin">M</span>
-            <div className="relative mx-5">
-              <div
-                className="w-px h-full bg-zinc-400 absolute bottom-[-3em]"
-                style={{ height: '6em' }}
-              ></div>
-            </div>
-            <span className="font-semibold uppercase text-2xl">
-              {course.courseTitle}
-            </span>
-          </div>
-        </div>
-      </div>
+      <Hero image1={course.heroImage} />
       <div className="grid grid-cols-2 p-20 items-center gap-5">
         {course.courseSeriesImage && course.courseTitle && (
           <Image
