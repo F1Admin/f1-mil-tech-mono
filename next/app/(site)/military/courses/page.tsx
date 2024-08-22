@@ -1,3 +1,4 @@
+import Hero from '@/app/components/Hero';
 import {
   getCourses,
   getMilitaryCoursesPage,
@@ -14,19 +15,11 @@ export default async function MilitaryCoursesPage() {
 
   return (
     <section>
-      <div
-        className="relative h-[400px] bg-cover bg-center"
-        style={{
-          backgroundImage: `url(${heroImage})`,
-        }}
-      >
-        <div className="absolute bottom-14 left-14">
-          <div className="text-neutral-900 text-6xl font-bold tracking-tighter">
-            {title}
-          </div>
-          <div className="text-neutral-900 text-2xl">{subtitle}</div>
-        </div>
-      </div>
+      <Hero
+        image1={heroImage}
+        image1_title={title}
+        image1_subTitle={subtitle}
+      />
       <div className="grid grid-cols-2 h-[400px] pl-80 py-10 pr-10 text-zinc-400">
         <div className="flex flex-col gap-5">
           <h1 className="text-2xl">SELECT A COURSE</h1>
@@ -34,7 +27,7 @@ export default async function MilitaryCoursesPage() {
             {courses.map((course) => (
               <Link
                 key={course._id}
-                href={`/military/courses/${course.slug?.current}`}
+                href={`/military/courses/${course.slug}`}
                 className="text-xl font-thin hover:text-white hover:font-normal transition"
               >
                 {course.courseNumber
@@ -50,7 +43,7 @@ export default async function MilitaryCoursesPage() {
             {supportingCourses.map((course) => (
               <Link
                 key={course._id}
-                href={`/military/courses/${course.slug?.current}`}
+                href={`/military/courses/supporting-courses/${course.slug}`}
                 className="text-xl font-thin hover:text-white hover:font-normal transition"
               >
                 {course.courseTitle}

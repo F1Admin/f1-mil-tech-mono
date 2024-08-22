@@ -3,11 +3,10 @@
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
-import { getCourse } from '@/sanity/sanity-utils';
-import { Course, GetCourseQueryResult } from '@/sanity/types';
+import { getCourse, GetCourseQuery } from '@/sanity/sanity-utils';
 
 export default function MilitaryCourse() {
-  const [course, setCourse] = useState<GetCourseQueryResult>();
+  const [course, setCourse] = useState<GetCourseQuery>();
   const [loading, setLoading] = useState(true);
   const pathname = usePathname();
   const slug = pathname.split('/').pop() || '';
@@ -42,7 +41,9 @@ export default function MilitaryCourse() {
       >
         <div className="absolute bottom-14 left-14 ">
           <div className="flex items-center">
-            <span className="text-6xl font-bold">{course.courseNumber}</span>
+            <span className="text-6xl tracking-tighter font-bold">
+              {course.courseNumber}
+            </span>
             <span className="text-6xl font-thin">M</span>
             <div className="relative mx-5">
               <div
