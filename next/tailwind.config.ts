@@ -6,7 +6,13 @@ const config: Config = {
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  theme: {},
+  theme: {
+    extend: {
+      fontFamily: {
+        din: ['din-2014', 'sans-serif'], // Use the correct font-family name from Adobe Fonts
+      },
+    },
+  },
   plugins: [],
 };
 export default config;

@@ -20,7 +20,7 @@ export default async function MilitaryCoursesPage() {
           backgroundImage: `url(${heroImage})`,
         }}
       >
-        <div className="absolute bottom-14 left-14">
+        <div className="absolute bottom-10 left-14">
           <div className="text-neutral-900 text-6xl font-bold tracking-tighter">
             {title}
           </div>

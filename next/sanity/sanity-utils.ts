@@ -1,12 +1,5 @@
 import { createClient, groq } from 'next-sanity';
 import config from './config/client-config';
-import {
-  Course,
-  GetCourseQueryResult,
-  MilitaryLandingPage,
-  SupportingCourse,
-} from './types';
-import { defineQuery } from 'groq';
 
 const landingPageQuery = groq`*[_type == "militaryLandingPage"][0]{
   _id,
@@ -19,7 +12,18 @@ const landingPageQuery = groq`*[_type == "militaryLandingPage"][0]{
   "image3": image3.asset->url,
 }`;
 
-export async function getLandingPage(): Promise<MilitaryLandingPage> {
+type LandingPageQuery = {
+  _id: string;
+  _createdAt: Date;
+  image1: string;
+  image1_title: string;
+  image2: string;
+  image2_title: string;
+  image2_subTitle: string;
+  image3: string;
+};
+
+export async function getLandingPage(): Promise<LandingPageQuery> {
   return createClient(config).fetch(landingPageQuery);
 }
 
@@ -38,7 +42,22 @@ const aboutPageQuery = groq`*[_type == "militaryAboutPage"][0]{
   image3_subTitle,
 }`;
 
-export async function getAboutPage(): Promise<any> {
+type AboutPageQuery = {
+  _id: string;
+  _createdAt: Date;
+  image1: string;
+  image1_title: string;
+  image1_subTitle: string;
+  image2: string;
+  image2_title: string;
+  image2_subTitle1: string;
+  image2_subTitle2: string;
+  image3: string;
+  image3_title: string;
+  image3_subTitle: string;
+};
+
+export async function getAboutPage(): Promise<AboutPageQuery> {
   return createClient(config).fetch(aboutPageQuery);
 }
 
@@ -51,17 +70,32 @@ const militaryCoursesPageQuery = groq`*[_type == "militaryCoursesPage"][0]{
   "footerImage": footerImage.asset->url,
 }`;
 
-export async function getMilitaryCoursesPage(): Promise<any> {
+type MilitaryCoursesPageQuery = {
+  _id: string;
+  _createdAt: Date;
+  heroImage: string;
+  title: string;
+  subtitle: string;
+  footerImage: string;
+};
+
+export async function getMilitaryCoursesPage(): Promise<MilitaryCoursesPageQuery> {
   return createClient(config).fetch(militaryCoursesPageQuery);
 }
 
-export const getCoursesQuery =
-  defineQuery(`*[_type == "course"] | order(order asc){
+export const getCoursesQuery = groq`*[_type == "course"] | order(order asc){
   _id,
   courseNumber,
   courseTitle,
   slug,
-}`);
+}`;
+
+type Course = {
+  _id: string;
+  courseNumber: string;
+  courseTitle: string;
+  slug: string;
+};
 
 export async function getCourses(): Promise<Course[]> {
   return createClient(config).fetch(getCoursesQuery);
@@ -74,12 +108,18 @@ const getSupporingCoursesQuery = groq`*[_type == "supportingCourse"] | order(ord
   slug,
 }`;
 
+type SupportingCourse = {
+  _id: string;
+  courseNumber: string;
+  courseTitle: string;
+  slug: string;
+};
+
 export async function getSupportingCourses(): Promise<SupportingCourse[]> {
   return createClient(config).fetch(getSupporingCoursesQuery);
 }
 
-const getCourseQuery =
-  defineQuery(`*[_type == "course" && slug.current == $slug][0]{
+const getCourseQuery = groq`*[_type == "course" && slug.current == $slug][0]{
   _id,
   "heroImage": heroImage.asset->url,
   courseNumber,
@@ -90,9 +130,22 @@ const getCourseQuery =
   courseRequirements,
   "courseFooterImage": courseFooterImage.asset->url,
   courseFooterText,
-}`);
+}`;
 
-export async function getCourse(slug: string): Promise<any> {
+type CourseQuery = {
+  _id: string;
+  heroImage: string;
+  courseNumber: string;
+  courseTitle: string;
+  slug: string;
+  courseSeriesImage: string;
+  courseDescription: string;
+  courseRequirements: string;
+  courseFooterImage: string;
+  courseFooterText: string;
+};
+
+export async function getCourse(slug: string): Promise<CourseQuery> {
   return createClient(config).fetch(getCourseQuery, { slug });
 }
 
@@ -109,7 +162,22 @@ const getSupportingCourseQuery = groq`*[_type == "supportingCourses" && slug.cur
   courseFooterText,
 }`;
 
-export async function getSupportingCourse(slug: string): Promise<any> {
+type SupportingCourseQuery = {
+  _id: string;
+  heroImage: string;
+  courseNumber: string;
+  courseTitle: string;
+  slug: string;
+  courseDescription: string;
+  courseRequirements: string;
+  courseSeriesImage: string;
+  courseFooterImage: string;
+  courseFooterText: string;
+};
+
+export async function getSupportingCourse(
+  slug: string
+): Promise<SupportingCourseQuery> {
   return createClient(config).fetch(getSupportingCourseQuery, {
     slug,
   });

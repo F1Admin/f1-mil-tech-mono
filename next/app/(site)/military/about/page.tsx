@@ -1,4 +1,6 @@
 import { getAboutPage } from '@/sanity/sanity-utils';
+import Hero from '@/app/components/Hero';
+import AboutPicture from '@/app/components/AboutPIcture';
 
 export default async function MilitaryAboutPage() {
   const {
@@ -16,44 +18,22 @@ export default async function MilitaryAboutPage() {
 
   return (
     <section>
-      <div
-        className="relative h-[400px] bg-cover bg-center"
-        style={{
-          backgroundImage: `url(${image1})`,
-        }}
-      >
-        <div className="absolute bottom-14 left-14">
-          <h1 className="text-white text-6xl font-bold">{image1_title}</h1>
-          <h5 className="text-white font-extralight text-xl">
-            {image1_subTitle}
-          </h5>
-        </div>
-      </div>
-      <div
-        className="relative h-[400px] bg-cover bg-bottom"
-        style={{
-          backgroundImage: `url(${image2})`,
-        }}
-      >
-        <div className="absolute flex flex-col bottom-14 left-28 w-96 gap-4">
-          <div className="text-xl font-bold uppercase">{image2_title}</div>
-          <div className="font-thin">{image2_subTitle1}</div>
-          <div className="font-thin">{image2_subTitle2}</div>
-        </div>
-      </div>
-      <div
-        className="relative h-[400px] bg-cover bg-bottom"
-        style={{
-          backgroundImage: `url(${image3})`,
-        }}
-      >
-        <div className="absolute flex flex-col bottom-14 left-28 w-96 gap-4">
-          <div className="text-zinc-800 text-xl font-bold uppercase">
-            {image3_title}
-          </div>
-          <div className="text-zinc-800">{image3_subTitle}</div>
-        </div>
-      </div>
+      <Hero
+        image1={image1}
+        image1_title={image1_title}
+        image1_subTitle={image1_subTitle}
+      />
+      <AboutPicture
+        image={image2}
+        title={image2_title}
+        subTitle1={image2_subTitle1}
+        subTitle2={image2_subTitle2}
+      />
+      <AboutPicture
+        image={image3}
+        title={image3_title}
+        subTitle1={image3_subTitle}
+      />
       <div className="grid grid-cols-2 pl-28 py-20 pr-10 gap-3">
         <div className="flex flex-col gap-4">
           <div className="text-xl font-bold uppercase">Our Facilities</div>
@@ -69,7 +49,7 @@ export default async function MilitaryAboutPage() {
         </div>
         <div className="flex flex-col gap-4">
           <div className="text-xl font-bold uppercase">
-            SELECTION AND TRAINING OF FLIGHT-1 CADRE
+            Selection and Training of Flight-1 Cadre
           </div>
           <div className="font-thin">
             Flight-1 has not only pioneered the standard for canopy control
