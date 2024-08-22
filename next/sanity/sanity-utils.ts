@@ -130,6 +130,9 @@ const getCourseQuery = groq`*[_type == "course" && slug.current == $slug][0]{
   courseRequirements,
   "courseFooterImage": courseFooterImage.asset->url,
   courseFooterText,
+  "courseCarousel": courseCarousel[]{
+    "image": image.asset->url,
+  },
 }`;
 
 export type GetCourseQuery = {
@@ -143,6 +146,13 @@ export type GetCourseQuery = {
   courseRequirements: string;
   courseFooterImage: string;
   courseFooterText: string;
+  courseCarousel: {
+    image: string;
+  }[];
+};
+
+export type CourseCarousel = {
+  image: string;
 };
 
 export async function getCourse(slug: string): Promise<GetCourseQuery> {

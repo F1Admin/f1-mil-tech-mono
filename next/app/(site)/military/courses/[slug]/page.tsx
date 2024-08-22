@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { getCourse, GetCourseQuery } from '@/sanity/sanity-utils';
+import Slider from '@/app/components/Slider/Slider';
 
 export default function MilitaryCourse() {
   const [course, setCourse] = useState<GetCourseQuery>();
@@ -13,9 +14,7 @@ export default function MilitaryCourse() {
 
   useEffect(() => {
     async function fetchData() {
-      console.log('slug', slug);
       const data = await getCourse(slug);
-      console.log(data);
       setCourse(data);
       setLoading(false);
     }
@@ -30,6 +29,7 @@ export default function MilitaryCourse() {
   if (!course) {
     return <div>No data available</div>;
   }
+
   //slice the front course number from any letters and save as seperate variables
   return (
     <section>
@@ -74,6 +74,7 @@ export default function MilitaryCourse() {
           </div>
         </div>
       </div>
+      <Slider images={course.courseCarousel} />
       <div
         className="relative h-[400px] bg-cover bg-center"
         style={{
