@@ -37,7 +37,7 @@ export default function MilitaryCourse() {
   //slice the front course number from any letters and save as seperate variables
   return (
     <section>
-      <Hero image1={course.heroImage} />
+      <Hero image1={course.heroImage} image1_title={course.courseTitle} />
       <div className="grid grid-cols-2 p-20 items-center gap-5">
         {course.courseSeriesImage && course.courseTitle && (
           <Image

@@ -34,7 +34,7 @@ export default async function Footer() {
               {courses.map((course) => (
                 <Link
                   key={course._id}
-                  href={`/military/courses/${course.slug?.current}`}
+                  href={`/military/courses/${course.slug}`}
                   className=" hover:text-white font-thin text-s capitalize"
                 >
                   {course.courseNumber
@@ -50,7 +50,7 @@ export default async function Footer() {
               {supportingCourses.map((course) => (
                 <Link
                   key={course._id}
-                  href={`/military/courses/${course.slug?.current}`}
+                  href={`/military/courses/supporting-courses/${course.slug}`}
                   className=" hover:text-white font-thin text-s capitalize"
                 >
                   {course.courseTitle}

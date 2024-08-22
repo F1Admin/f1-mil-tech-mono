@@ -152,7 +152,6 @@ export async function getCourse(slug: string): Promise<GetCourseQuery> {
 const getSupportingCourseQuery = groq`*[_type == "supportingCourse" && slug.current == $slug][0]{
   _id,
   "heroImage": heroImage.asset->url,
-  courseNumber,
   courseTitle,
   "slug": slug.current,
   courseDescription,
@@ -165,7 +164,6 @@ const getSupportingCourseQuery = groq`*[_type == "supportingCourse" && slug.curr
 export type GetSupportingCourseQuery = {
   _id: string;
   heroImage: string;
-  courseNumber: string;
   courseTitle: string;
   slug: string;
   courseDescription: string;
