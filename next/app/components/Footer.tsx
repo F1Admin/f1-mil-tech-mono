@@ -60,7 +60,7 @@ export default async function Footer() {
           </div>
           <div className="flex col-end-6 justify-end">
             <Image
-              src="/assets/images/skull.png"
+              src="/assets/images/Skull.png"
               alt="Flight 1 Skull"
               width={200}
               height={1000}
