@@ -13,13 +13,9 @@ export default async function MilitaryLandingPage() {
 
   return (
     <section>
-      <Hero image1={image1} image1_title={image1_title} />
-      <Hero
-        image1={image2}
-        image1_title={image2_title}
-        image1_subTitle={image2_subTitle}
-      />
-      <Hero image1={image3} />
+      <Hero image={image1} title={image1_title} />
+      <Hero image={image2} title={image2_title} subTitle={image2_subTitle} />
+      <Hero image={image3} />
     </section>
   );
 }

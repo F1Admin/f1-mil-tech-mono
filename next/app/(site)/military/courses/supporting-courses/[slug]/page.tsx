@@ -18,9 +18,7 @@ export default function MilitaryCourse() {
 
   useEffect(() => {
     async function fetchData() {
-      console.log('slug', slug);
       const data = await getSupportingCourse(slug);
-      console.log(data);
       setCourse(data);
       setLoading(false);
     }
@@ -38,7 +36,7 @@ export default function MilitaryCourse() {
   //slice the front course number from any letters and save as seperate variables
   return (
     <section>
-      <Hero image1={course.heroImage} image1_title={course.courseTitle} />
+      <Hero image={course.heroImage} title={course.courseTitle} />
       <div className="grid grid-cols-2 p-20 items-center gap-5">
         {course.courseSeriesImage && course.courseTitle && (
           <Image
@@ -57,18 +55,7 @@ export default function MilitaryCourse() {
         </div>
       </div>
       <Slider images={course.courseCarousel} />
-      <div
-        className="relative h-[400px] bg-cover bg-center"
-        style={{
-          backgroundImage: `url(${course.courseFooterImage})`,
-        }}
-      >
-        <div className="absolute bottom-14 left-14">
-          <div className="text-6xl tracking-tighter font-medium">
-            {course.courseFooterText}
-          </div>
-        </div>
-      </div>
+      <Hero image={course.courseFooterImage} title={course.courseFooterText} />
     </section>
   );
 }

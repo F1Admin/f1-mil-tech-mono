@@ -9,11 +9,7 @@ export default async function PartnersPage() {
   const partners = await getPartners();
   return (
     <section>
-      <Hero
-        image1={heroImage}
-        image1_title={heroTitle}
-        image1_subTitle={heroSubtitle}
-      />
+      <Hero image={heroImage} title={heroTitle} subTitle={heroSubtitle} />
       <div className="grid grid-cols-3 gap-5 gap-y-20 p-20 min-h-[400px]">
         {partners.map((partner) => (
           <Link
@@ -39,7 +35,7 @@ export default async function PartnersPage() {
           </Link>
         ))}
       </div>
-      <Hero image1={footerImage} image1_title={footerText} />
+      <Hero image={footerImage} title={footerText} />
     </section>
   );
 }

@@ -15,11 +15,7 @@ export default async function MilitaryCoursesPage() {
 
   return (
     <section>
-      <Hero
-        image1={heroImage}
-        image1_title={title}
-        image1_subTitle={subtitle}
-      />
+      <Hero image={heroImage} title={title} subTitle={subtitle} />
       <div className="grid grid-cols-2 h-[400px] pl-80 py-10 pr-10 text-zinc-400">
         <div className="flex flex-col gap-5">
           <h1 className="text-2xl">SELECT A COURSE</h1>

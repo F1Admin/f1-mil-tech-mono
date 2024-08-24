@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { getCourse, GetCourseQuery } from '@/sanity/sanity-utils';
 import Slider from '@/app/components/Slider/Slider';
+import Hero from '@/app/components/Hero';
 
 export default function MilitaryCourse() {
   const [course, setCourse] = useState<GetCourseQuery>();
@@ -33,30 +34,11 @@ export default function MilitaryCourse() {
   //slice the front course number from any letters and save as seperate variables
   return (
     <section>
-      <div
-        className="relative h-[400px] bg-center bg-cover"
-        style={{
-          backgroundImage: `url(${course.heroImage})`,
-        }}
-      >
-        <div className="absolute bottom-14 left-14 ">
-          <div className="flex items-center">
-            <span className="text-6xl tracking-tighter font-bold">
-              {course.courseNumber}
-            </span>
-            <span className="text-6xl font-thin">M</span>
-            <div className="relative mx-5">
-              <div
-                className="w-px h-full bg-zinc-400 absolute bottom-[-3em]"
-                style={{ height: '6em' }}
-              ></div>
-            </div>
-            <span className="font-semibold uppercase text-2xl">
-              {course.courseTitle}
-            </span>
-          </div>
-        </div>
-      </div>
+      <Hero
+        image={course.heroImage}
+        courseNumber={course.courseNumber}
+        courseTitle={course.courseTitle}
+      />
       <div className="grid grid-cols-2 p-20 items-center gap-5">
         {course.courseSeriesImage && course.courseTitle && (
           <Image
@@ -75,18 +57,7 @@ export default function MilitaryCourse() {
         </div>
       </div>
       <Slider images={course.courseCarousel} />
-      <div
-        className="relative h-[400px] bg-cover bg-center"
-        style={{
-          backgroundImage: `url(${course.courseFooterImage})`,
-        }}
-      >
-        <div className="absolute bottom-14 left-14">
-          <div className="text-6xl tracking-tighter font-medium">
-            {course.courseFooterText}
-          </div>
-        </div>
-      </div>
+      <Hero image={course.courseFooterImage} title={course.courseFooterText} />
     </section>
   );
 }

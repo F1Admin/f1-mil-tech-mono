@@ -18,11 +18,7 @@ export default async function MilitaryAboutPage() {
 
   return (
     <section>
-      <Hero
-        image1={image1}
-        image1_title={image1_title}
-        image1_subTitle={image1_subTitle}
-      />
+      <Hero image={image1} title={image1_title} subTitle={image1_subTitle} />
       <AboutPicture
         image={image2}
         title={image2_title}
