@@ -18,15 +18,11 @@ import LoadingImage from '../LoadingImage/LoadingImage';
 //import {IImageSlider} from "../../../../typesSection";
 
 const ImageSlider = ({ images }: { images: CourseCarousel[] }) => {
-  //const {site, lang, section, title} = param;
-  const isAccessories = false;
-  // location.pathname.indexOf('accessories') > -1 ? true : false;
-  console.log('imagesSlider', images);
   let settings = {
     className: 'slider variable-width custom-slider',
     infinite: true,
     centerMode: true,
-    // centerPadding: '20px',
+    centerPadding: '20px',
     slidesToShow: 1,
     slidesToScroll: 1,
     variableWidth: true,

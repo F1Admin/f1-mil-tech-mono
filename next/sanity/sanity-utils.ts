@@ -192,3 +192,45 @@ export async function getSupportingCourse(
     slug,
   });
 }
+
+const getParnersPageQuery = groq`*[_type == "militaryPartnerPage"][0]{
+  _id,
+  _createdAt,
+  "heroImage": heroImage.asset->url,
+  heroTitle,
+  heroSubtitle,
+  "footerImage": footerImage.asset->url,
+  footerText,
+}`;
+
+export type PartnerPageQuery = {
+  _id: string;
+  _createdAt: Date;
+  heroImage: string;
+  heroTitle: string;
+  heroSubtitle: string;
+  footerImage: string;
+  footerText: string;
+};
+
+export async function getPartnersPage(): Promise<PartnerPageQuery> {
+  return createClient(config).fetch(getParnersPageQuery);
+}
+
+const getPartnersQuery = groq`*[_type == "partner"]{
+  _id,
+  partnerName,
+  "partnerLogo": partnerLogo.asset->url,
+  partnerUrl,
+}`;
+
+export type Partner = {
+  _id: string;
+  partnerName: string;
+  partnerLogo: string;
+  partnerUrl: string;
+};
+
+export async function getPartners(): Promise<Partner[]> {
+  return createClient(config).fetch(getPartnersQuery);
+}

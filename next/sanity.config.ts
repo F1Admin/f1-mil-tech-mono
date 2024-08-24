@@ -53,6 +53,7 @@ export default defineConfig({
               .title('Courses')
               .child(
                 S.documentList()
+                  .id('courses')
                   .title('Courses')
                   .filter('_type == "course"')
                   .defaultOrdering([{ field: 'order', direction: 'asc' }])
@@ -72,6 +73,22 @@ export default defineConfig({
                   .title('Instructors')
                   .filter('_type == "instructor"')
                   .defaultOrdering([{ field: 'name', direction: 'asc' }])
+              ),
+            S.listItem()
+              .title('Partners Page')
+              .child(
+                S.document()
+                  .schemaType('militaryPartnerPage')
+                  .documentId('militaryPartnerPage')
+                  .title('Partners Page')
+              ),
+            S.listItem()
+              .title('Partners')
+              .child(
+                S.documentList()
+                  .title('Partners')
+                  .filter('_type == "partner"')
+                  .defaultOrdering([{ field: 'partnerName', direction: 'asc' }])
               ),
           ]),
     }),

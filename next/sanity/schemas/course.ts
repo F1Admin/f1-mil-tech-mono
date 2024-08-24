@@ -27,7 +27,8 @@ export default defineType({
       name: 'courseNumber',
       title: 'Course Number',
       type: 'string',
-      validation: (Rule) => Rule.required(),
+      description:
+        'Course number (e.g. 101, 201, 301). Leave blank if not applicable.',
     }),
     defineField({
       name: 'courseTitle',
@@ -81,4 +82,20 @@ export default defineType({
       type: 'string',
     }),
   ],
+  preview: {
+    select: {
+      title: 'courseTitle',
+      courseNumber: 'courseNumber',
+    },
+    prepare({ title, courseNumber }) {
+      if (!courseNumber) {
+        return {
+          title,
+        };
+      }
+      return {
+        title: `${courseNumber} - ${title}`,
+      };
+    },
+  },
 });
