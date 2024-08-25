@@ -234,3 +234,45 @@ export type Partner = {
 export async function getPartners(): Promise<Partner[]> {
   return createClient(config).fetch(getPartnersQuery);
 }
+
+const getContactPageQuery = groq`*[_type == "militaryContactPage"][0]{
+  _id,
+  _createdAt,
+  "heroImage": heroImage.asset->url,
+  heroTitle,
+  heroSubtitle,
+  contactName,
+  "contactImage": contactImage.asset->url,
+  contactTitle,
+  phone,
+  email,
+  mailingAddress,
+  physicalAddress,
+  dunsNumber,
+  cageCode,
+  "footerImage": footerImage.asset->url,
+  footerText,
+}`;
+
+export type ContactPageQuery = {
+  _id: string;
+  _createdAt: Date;
+  heroImage: string;
+  heroTitle: string;
+  heroSubtitle: string;
+  contactName: string;
+  contactImage: string;
+  contactTitle: string;
+  phone: string;
+  email: string;
+  mailingAddress: string;
+  physicalAddress: string;
+  dunsNumber: string;
+  cageCode: string;
+  footerImage: string;
+  footerText: string;
+};
+
+export async function getContactPage(): Promise<ContactPageQuery> {
+  return createClient(config).fetch(getContactPageQuery);
+}

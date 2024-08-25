@@ -90,6 +90,14 @@ export default defineConfig({
                   .filter('_type == "partner"')
                   .defaultOrdering([{ field: 'partnerName', direction: 'asc' }])
               ),
+            S.listItem()
+              .title('Contact Page')
+              .child(
+                S.document()
+                  .schemaType('militaryContactPage')
+                  .documentId('militaryContactPage')
+                  .title('Contact Page')
+              ),
           ]),
     }),
     visionTool(),

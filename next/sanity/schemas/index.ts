@@ -8,6 +8,7 @@ import supportingCourse from './supportingCourse';
 import instructor from './instructor';
 import partner from './partner';
 import militaryPartnerPage from './militaryPartnerPage';
+import militaryContactPage from './militaryContactPage';
 
 export const schemaTypes = [
   siteSettings,
@@ -20,4 +21,5 @@ export const schemaTypes = [
   supportingCourse,
   instructor,
   partner,
+  militaryContactPage,
 ];
