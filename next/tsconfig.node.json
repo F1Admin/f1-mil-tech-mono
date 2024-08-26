@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "rootDir": ".", // Ensures the directory structure is preserved
+    "noEmit": false
+  },
+  "include": ["./app/data/migration/**/*.ts"]
+}

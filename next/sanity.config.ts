@@ -67,12 +67,20 @@ export default defineConfig({
                   .defaultOrdering([{ field: 'order', direction: 'asc' }])
               ),
             S.listItem()
+              .title('Cadre Page')
+              .child(
+                S.document()
+                  .schemaType('militaryCadrePage')
+                  .documentId('militaryCadrePage')
+                  .title('Cadre Page')
+              ),
+            S.listItem()
               .title('Instructors')
               .child(
                 S.documentList()
                   .title('Instructors')
                   .filter('_type == "instructor"')
-                  .defaultOrdering([{ field: 'name', direction: 'asc' }])
+                  .defaultOrdering([{ field: 'email', direction: 'asc' }])
               ),
             S.listItem()
               .title('Partners Page')

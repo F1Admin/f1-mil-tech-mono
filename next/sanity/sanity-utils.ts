@@ -276,3 +276,57 @@ export type ContactPageQuery = {
 export async function getContactPage(): Promise<ContactPageQuery> {
   return createClient(config).fetch(getContactPageQuery);
 }
+
+const getInstructorsQuery = groq`*[_type == "instructor"]{
+  _id,
+  email,
+  firstName,
+  lastName,
+  title,
+  "profileImage": profileImage.asset->url,
+  "alt": profileImage.alt,
+  numberOfJumps,
+  yearsInSport,
+  yearsWithFlight1,
+}`;
+
+export type Instructor = {
+  _id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  title: string;
+  profileImage: string;
+  alt: string;
+  numberOfJumps: number;
+  yearsInSport: number;
+  yearsWithFlight1: number;
+};
+
+export async function getInstructors(): Promise<Instructor[]> {
+  return createClient(config).fetch(getInstructorsQuery);
+}
+
+const getCadrePageQuery = groq`*[_type == "militaryCadrePage"][0]{
+  _id,
+  _createdAt,
+  "heroImage": heroImage.asset->url,
+  heroTitle,
+  heroSubtitle,
+  "footerImage": footerImage.asset->url,
+  footerText,
+}`;
+
+export type CadrePageQuery = {
+  _id: string;
+  _createdAt: Date;
+  heroImage: string;
+  heroTitle: string;
+  heroSubtitle: string;
+  footerImage: string;
+  footerText: string;
+};
+
+export async function getCadrePage(): Promise<CadrePageQuery> {
+  return createClient(config).fetch(getCadrePageQuery);
+}

@@ -1,0 +1,28 @@
+const militaryInstructors = [
+  'ianbobo+instructor@gmail.com',
+  'jc@flight-1.com',
+  'tommy@flight-1.com',
+  'cam@flight-1.com',
+  'martin@flight-1.com',
+  'travis@flight-1.com',
+  'jay@flight-1.com',
+  'shannon@flight-1.com',
+  'jay@flight-1.com',
+  'brian@flight-1.com',
+  'stu@flight-1.com',
+  'pete@flight-1.com',
+  'marco@flight-1.com',
+  'jim@flight-1.com',
+  'pablete@skydivelillo.com',
+  'ben@flight-1.com',
+  'john@flight-1.com',
+  'pbpangburn@gmail.com',
+  'justinp@flight-1.com',
+  'kaz@flight-1.com',
+  'aaron@flight-1.com',
+  'justin@flight-1.com',
+  'jimmy@flight-1.com',
+  'wez@flight-1.com',
+];
+
+export default militaryInstructors;

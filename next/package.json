@@ -2,17 +2,21 @@
   "name": "next",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate": "sanity schema extract && sanity typegen generate"
+    "generate": "sanity schema extract && sanity typegen generate",
+    "build:migrate": "tsc --project ./tsconfig.node.json",
+    "migrate": "npm run build:migrate && node ./dist/app/data/migration/migrateInstructors.js"
   },
   "dependencies": {
     "@sanity/client": "^6.21.3",
     "@sanity/image-url": "^1.0.2",
     "@sanity/vision": "^3.54.0",
+    "dotenv": "^16.4.5",
     "next": "14.2.5",
     "next-sanity": "^9.4.5",
     "prettier": "^3.3.3",
@@ -31,8 +35,10 @@
     "@types/react-slick": "^0.23.13",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
+    "fs": "^0.0.1-security",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }
