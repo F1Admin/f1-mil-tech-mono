@@ -17,11 +17,13 @@ export default async function Cadre() {
               <Image
                 src={instructor.profileImage}
                 alt={instructor.alt}
-                layout="fill"
-                objectFit="cover"
                 className="rounded"
-                objectPosition="top"
-                style={{ filter: 'grayscale(100%)' }}
+                fill
+                style={{
+                  filter: 'grayscale(100%)',
+                  objectFit: 'cover',
+                  objectPosition: 'top',
+                }}
               />
             </div>
             <div className="flex flex-col">

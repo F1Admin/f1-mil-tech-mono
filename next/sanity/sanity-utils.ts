@@ -277,7 +277,7 @@ export async function getContactPage(): Promise<ContactPageQuery> {
   return createClient(config).fetch(getContactPageQuery);
 }
 
-const getInstructorsQuery = groq`*[_type == "instructor"]{
+const getInstructorsQuery = groq`*[_type == "instructor"] | order(yearWithFlight1 desc){
   _id,
   email,
   firstName,
