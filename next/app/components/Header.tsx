@@ -8,7 +8,6 @@ import militaryLinks from '../data/militaryLinks';
 import baseLinks from '../data/baseLinks';
 import { usePathname } from 'next/navigation';
 import { getSiteSettings } from '@/sanity/sanity-utils';
-import path from 'path';
 
 const Header = () => {
   const [logo, setLogo] = useState('');
@@ -23,25 +22,27 @@ const Header = () => {
   useEffect(() => {
     const fetchData = async () => {
       const logo = await getSiteSettings();
-      setLogo(logo.militaryLogo);
+      setLogo(logo.militaryLogo || ''); // Ensure logo is a string
       setLoading(false);
     };
     fetchData();
-  });
+  }, []);
 
   return (
     <header className="bg-black shadow-md text-zinc-400">
       <div className="mx-auto px-4 py-[22px] lg:px-11 flex justify-between items-center">
         {/* Logo */}
         <Link href="/military">
-          <Image
-            src={logo}
-            alt="Flight 1 Logo"
-            width={225} // Adjust size as needed
-            height={100}
-            className="object-contain"
-            priority
-          />
+          {logo && (
+            <Image
+              src={logo}
+              alt="Flight 1 Logo"
+              width={225} // Adjust size as needed
+              height={100}
+              className="object-contain"
+              priority
+            />
+          )}
         </Link>
         <nav className="hidden lg:flex space-x-8">
           {militaryLinks.map((link, index) => (

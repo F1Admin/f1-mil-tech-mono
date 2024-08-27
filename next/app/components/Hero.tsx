@@ -40,7 +40,7 @@ export default function Hero({
         )}
         {(title || courseTitle) && (
           <div className="text-white text-6xl tracking-tighter font-bold">
-            {title}
+            {title || courseTitle}
           </div>
         )}
         {subTitle && (
