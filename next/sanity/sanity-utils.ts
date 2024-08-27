@@ -1,6 +1,22 @@
 import { createClient, groq } from 'next-sanity';
 import config from './config/client-config';
 
+const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
+  _id,
+  "militaryLogo": militaryLogo.asset->url,
+  "footerLogo": footerLogo.asset->url,
+}`;
+
+export type SiteSettingsQuery = {
+  _id: string;
+  militaryLogo: string;
+  footerLogo: string;
+};
+
+export async function getSiteSettings(): Promise<SiteSettingsQuery> {
+  return createClient(config).fetch(siteSettingsQuery);
+}
+
 const landingPageQuery = groq`*[_type == "militaryLandingPage"][0]{
   _id,
   _createdAt,
