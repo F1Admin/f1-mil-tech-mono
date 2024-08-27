@@ -1,41 +1,41 @@
 const militaryLinks = [
   {
-    path: "/military/courses",
-    label: "Courses",
+    path: '/military/courses',
+    label: 'Courses',
     childrens: [
       {
-        path: "/military/courses",
-        label: "Overview",
+        path: '/military/courses',
+        label: 'Overview',
       },
       {
-        path: "/military/supporting-courses",
-        label: "Supporting Courses",
+        path: '/military/supporting-courses',
+        label: 'Supporting Courses',
       },
       {
-        path: "/military/custom-courses",
-        label: "Custom Courses",
+        path: '/military/custom-courses',
+        label: 'Custom Courses',
       },
     ],
   },
   {
-    path: "/military/about",
-    label: "About",
+    path: '/military/about',
+    label: 'About',
   },
   {
-    path: "/military/cadre",
-    label: "Cadre",
+    path: '/military/cadre',
+    label: 'Cadre',
   },
   {
-    path: "/military/partners",
-    label: "Partners",
+    path: '/military/partners',
+    label: 'Partners',
   },
   {
-    path: "/military/contact",
-    label: "Contact",
+    path: '/military/contact',
+    label: 'Contact',
   },
   {
-    path: "/store",
-    label: "Store",
+    path: '/military/store',
+    label: 'Store',
   },
 ];
 
