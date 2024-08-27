@@ -2,26 +2,38 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ChevronDown from './Icons/ChevronDown';
 import militaryLinks from '../data/militaryLinks';
 import baseLinks from '../data/baseLinks';
 import { usePathname } from 'next/navigation';
+import { getSiteSettings } from '@/sanity/sanity-utils';
 
 const Header = () => {
+  const [logo, setLogo] = useState('');
+  const [loading, setLoading] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
 
   // military subMenu highlighting
   const isCurrent = (path: string) => pathname.includes(path);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const logo = await getSiteSettings();
+      setLogo(logo.militaryLogo);
+      setLoading(false);
+    };
+    fetchData();
+  });
+
   return (
     <header className="bg-black shadow-md text-zinc-400">
       <div className="mx-auto py-[22px] px-11 flex justify-between items-center">
         {/* Logo */}
-        <Link href="/">
+        <Link href="/military">
           <Image
-            src="/assets/images/Military_Logo.png"
+            src={logo}
             alt="Flight 1 Logo"
             width={225} // Adjust size as needed
             height={100}

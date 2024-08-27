@@ -6,18 +6,8 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
-      name: 'favicon',
-      title: 'Site Favicon',
-      type: 'image',
-    }),
-    defineField({
       name: 'militaryLogo',
       title: 'Military Logo',
-      type: 'image',
-    }),
-    defineField({
-      name: 'techLogo',
-      title: 'Tech Logo',
       type: 'image',
     }),
     defineField({

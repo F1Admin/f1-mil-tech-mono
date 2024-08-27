@@ -1,11 +1,16 @@
 import Link from 'next/link';
 import militaryLinks from '../data/militaryLinks';
 import Image from 'next/image';
-import { getCourses, getSupportingCourses } from '@/sanity/sanity-utils';
+import {
+  getCourses,
+  getSiteSettings,
+  getSupportingCourses,
+} from '@/sanity/sanity-utils';
 
 export default async function Footer() {
   const courses = await getCourses();
   const supportingCourses = await getSupportingCourses();
+  const logo = await getSiteSettings();
 
   return (
     <footer>
@@ -60,7 +65,7 @@ export default async function Footer() {
           </div>
           <div className="flex col-end-6 justify-end">
             <Image
-              src="/assets/images/Skull.png"
+              src={logo.footerLogo}
               alt="Flight 1 Skull"
               width={200}
               height={1000}
