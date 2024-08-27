@@ -19,6 +19,7 @@ export default async function Cadre() {
                 alt={instructor.alt}
                 className="rounded"
                 fill
+                sizes="(min-width: 1024px) 208px, 192px"
                 style={{
                   filter: 'grayscale(100%)',
                   objectFit: 'cover',
