@@ -1,6 +1,6 @@
 const baseLinks = [
   {
-    path: '/',
+    path: 'https://www.flight-1.com/',
     label: 'SPORT',
   },
   {
@@ -9,11 +9,11 @@ const baseLinks = [
   },
   {
     path: '/military',
-    label: 'MILTARY',
+    label: 'MILITARY',
   },
   {
-    path: 'https://www.pdfactory.com/',
-    label: 'PD FACTORY',
+    path: 'https://www.pdfactoryteam.com/',
+    label: 'PD FACTORY TEAM',
   },
 ];
 
