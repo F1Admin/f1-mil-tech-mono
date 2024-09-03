@@ -6,12 +6,15 @@ import FooterHero from '@/app/components/FooterHero';
 export default async function Cadre() {
   const {
     heroImage,
+    heroImage_hotspot,
     heroTitle,
     heroSubtitle,
     footerImage,
+    footerImage_hotspot,
     footerQuote,
     footerAuthor,
   } = await getCadrePage();
+
   const instructors = await getInstructors();
   const foundingMember = instructors
     .filter((instructor) => instructor.yearsWithFlight1 === 'Founding Member')
@@ -22,7 +25,12 @@ export default async function Cadre() {
 
   return (
     <section>
-      <Hero image={heroImage} title={heroTitle} subTitle={heroSubtitle} />
+      <Hero
+        image={heroImage}
+        hotspot={heroImage_hotspot}
+        title={heroTitle}
+        subTitle={heroSubtitle}
+      />
       <div className="flex flex-wrap justify-center gap-7 px-4 py-10 text-zinc-400 md:gap-10 md:p-11 lg:p-20">
         {foundingMember.map((instructor) => (
           <InstructorCard key={instructor._id} instructor={instructor} />
@@ -33,6 +41,7 @@ export default async function Cadre() {
       </div>
       <FooterHero
         image={footerImage}
+        hotspot={footerImage_hotspot}
         quote={footerQuote}
         author={footerAuthor}
       />

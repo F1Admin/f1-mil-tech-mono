@@ -75,6 +75,9 @@ export default defineType({
       title: 'Course Footer Image',
       type: 'image',
       validation: (Rule) => Rule.required(),
+      options: {
+        hotspot: true,
+      },
     }),
     defineField({
       name: 'courseFooterText',

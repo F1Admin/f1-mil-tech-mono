@@ -1,11 +1,13 @@
 import ContactDetails from '@/app/components/ContactDetails';
 import ContactForm from '@/app/components/ContactForm';
+import FooterHero from '@/app/components/FooterHero';
 import Hero from '@/app/components/Hero';
 import { getContactPage } from '@/sanity/sanity-utils';
 
 export default async function ContactPage() {
   const {
     heroImage,
+    heroImage_hotspot,
     heroTitle,
     heroSubtitle,
     contactName,
@@ -18,12 +20,19 @@ export default async function ContactPage() {
     dunsNumber,
     cageCode,
     footerImage,
+    footerImage_hotspot,
     footerText,
+    footerAuthor,
   } = await getContactPage();
 
   return (
     <section>
-      <Hero image={heroImage} title={heroTitle} subTitle={heroSubtitle} />
+      <Hero
+        image={heroImage}
+        hotspot={heroImage_hotspot}
+        title={heroTitle}
+        subTitle={heroSubtitle}
+      />
       <div className="m-10 grid grid-cols-2 gap-10">
         <ContactDetails
           contactName={contactName}
@@ -38,7 +47,12 @@ export default async function ContactPage() {
         />
         <ContactForm />
       </div>
-      <Hero image={footerImage} title={footerText} />
+      <FooterHero
+        image={footerImage}
+        hotspot={footerImage_hotspot}
+        quote={footerText}
+        author={footerAuthor}
+      />
     </section>
   );
 }

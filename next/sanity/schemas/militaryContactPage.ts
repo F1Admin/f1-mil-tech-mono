@@ -9,6 +9,9 @@ export default defineType({
       name: 'heroImage',
       title: 'Hero Image',
       type: 'image',
+      options: {
+        hotspot: true,
+      },
     }),
     defineField({
       name: 'heroTitle',
@@ -24,11 +27,6 @@ export default defineType({
       name: 'contactName',
       title: 'Contact Name',
       type: 'string',
-    }),
-    defineField({
-      name: 'contactImage',
-      title: 'Contact Image',
-      type: 'image',
     }),
     defineField({
       name: 'contactTitle',
@@ -69,10 +67,18 @@ export default defineType({
       name: 'footerImage',
       title: 'Footer Image',
       type: 'image',
+      options: {
+        hotspot: true,
+      },
     }),
     defineField({
       name: 'footerText',
       title: 'Footer Text',
+      type: 'string',
+    }),
+    defineField({
+      name: 'footerAuthor',
+      title: 'Footer Author',
       type: 'string',
     }),
   ],

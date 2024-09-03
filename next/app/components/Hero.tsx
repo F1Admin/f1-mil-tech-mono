@@ -1,5 +1,8 @@
+import { SanityHotspot } from '@/sanity/sanity-utils';
+
 interface HeroProps {
   image: string;
+  hotspot?: SanityHotspot | null;
   title?: string;
   subTitle?: string;
   courseNumber?: string;
@@ -8,16 +11,22 @@ interface HeroProps {
 
 export default function Hero({
   image,
+  hotspot = { x: 0.5, y: 0.5 },
   title,
   subTitle,
   courseNumber,
   courseTitle,
 }: HeroProps) {
+  const fallbackHotspot = { x: 0.5, y: 0.5 };
+  const effectiveHotspot = hotspot ?? fallbackHotspot;
+  const backgroundPosition = `${effectiveHotspot.x * 100}% ${effectiveHotspot.y * 100}%`;
+
   return (
     <div
-      className="relative h-[400px] bg-cover bg-center"
+      className="relative h-[400px] bg-cover"
       style={{
         backgroundImage: `url(${image})`,
+        backgroundPosition: backgroundPosition,
       }}
     >
       <div className="absolute bottom-10 left-10 mr-10 md:left-14">

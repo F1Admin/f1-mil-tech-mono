@@ -9,6 +9,9 @@ export default defineType({
       name: 'heroImage',
       title: 'Hero Image',
       type: 'image',
+      options: {
+        hotspot: true,
+      },
     }),
     defineField({
       name: 'heroTitle',
@@ -25,6 +28,9 @@ export default defineType({
       name: 'footerImage',
       title: 'Course Footer Image',
       type: 'image',
+      options: {
+        hotspot: true,
+      },
     }),
     defineField({
       name: 'footerQuote',

@@ -37,7 +37,11 @@ export default function MilitaryCourse() {
   //slice the front course number from any letters and save as seperate variables
   return (
     <section>
-      <Hero image={course.heroImage} title={course.courseTitle} />
+      <Hero
+        image={course.heroImage}
+        hotspot={course.heroImage_hotspot}
+        title={course.courseTitle}
+      />
       <div className="grid grid-cols-2 items-center gap-5 p-20">
         {course.courseSeriesImage && course.courseTitle && (
           <Image
@@ -58,6 +62,7 @@ export default function MilitaryCourse() {
       <Slider images={course.courseCarousel} />
       <FooterHero
         image={course.courseFooterImage}
+        hotspot={course.courseFooterImage_hotspot}
         quote={course.courseFooterText}
         author={course.courseFooterAuthor}
       />

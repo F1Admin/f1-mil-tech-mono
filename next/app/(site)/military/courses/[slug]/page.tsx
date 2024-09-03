@@ -32,11 +32,12 @@ export default function MilitaryCourse() {
     return <div>No data available</div>;
   }
 
-  //slice the front course number from any letters and save as seperate variables
+  console.log('courseFooterImage_hotspot:', course.courseFooterImage_hotspot);
   return (
     <section>
       <Hero
         image={course.heroImage}
+        hotspot={course.heroImage_hotspot}
         courseNumber={course.courseNumber}
         courseTitle={course.courseTitle}
       />
@@ -60,6 +61,7 @@ export default function MilitaryCourse() {
       <Slider images={course.courseCarousel} />
       <FooterHero
         image={course.courseFooterImage}
+        hotspot={course.courseFooterImage_hotspot}
         quote={course.courseFooterText}
         author={course.courseFooterAuthor}
       />

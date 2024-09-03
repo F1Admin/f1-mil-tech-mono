@@ -1,13 +1,28 @@
+import FooterHero from '@/app/components/FooterHero';
 import Hero from '@/app/components/Hero';
 import { getStorePage } from '@/sanity/sanity-utils';
 import Link from 'next/link';
 
 export default async function militaryStore() {
-  const { heroImage, heroTitle, heroSubtitle, link, footerImage, footerText } =
-    await getStorePage();
+  const {
+    heroImage,
+    heroImage_hotspot,
+    heroTitle,
+    heroSubtitle,
+    link,
+    footerImage,
+    footerImage_hotspot,
+    footerText,
+    footerAuthor,
+  } = await getStorePage();
   return (
     <section>
-      <Hero image={heroImage} title={heroTitle} subTitle={heroSubtitle} />
+      <Hero
+        image={heroImage}
+        hotspot={heroImage_hotspot}
+        title={heroTitle}
+        subTitle={heroSubtitle}
+      />
       <div className="m-5 flex h-96 max-w-[500px] items-center border p-5 text-zinc-400 md:m-10 md:p-10">
         <Link className="flex flex-col justify-center" href={link}>
           <h2 className="mb-5 text-5xl">Merchandise</h2>
@@ -18,7 +33,12 @@ export default async function militaryStore() {
           </p>
         </Link>
       </div>
-      <Hero image={footerImage} title={footerText} />
+      <FooterHero
+        image={footerImage}
+        hotspot={footerImage_hotspot}
+        quote={footerText}
+        author={footerAuthor}
+      />
     </section>
   );
 }

@@ -22,6 +22,9 @@ export default defineType({
       name: 'image2',
       title: 'Image 2',
       type: 'image',
+      options: {
+        hotspot: true,
+      },
     }),
     defineField({
       name: 'image2_title',
@@ -37,6 +40,9 @@ export default defineType({
       name: 'image3',
       title: 'Image 3',
       type: 'image',
+      options: {
+        hotspot: true,
+      },
     }),
   ],
 });

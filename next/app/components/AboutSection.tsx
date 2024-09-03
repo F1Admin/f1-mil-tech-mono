@@ -1,16 +1,23 @@
+import { SanityHotspot } from '@/sanity/sanity-utils';
 import { PortableText, PortableTextBlock } from '@portabletext/react';
 
 interface AboutSectionProps {
   image?: string;
+  hotspot?: SanityHotspot;
   title: string;
   subTitle: PortableTextBlock[];
 }
 
 export default function AboutSection({
   image,
+  hotspot = { x: 0.5, y: 0.5 },
   title,
   subTitle,
 }: AboutSectionProps) {
+  const fallbackHotspot = { x: 0.5, y: 0.5 };
+  const effectiveHotspot = hotspot ?? fallbackHotspot;
+  const backgroundPosition = `${effectiveHotspot.x * 100}% ${effectiveHotspot.y * 100}%`;
+
   return (
     <div>
       {image ? (
@@ -18,6 +25,7 @@ export default function AboutSection({
           className="relative min-h-[400px] bg-cover bg-bottom"
           style={{
             backgroundImage: `url(${image})`,
+            backgroundPosition: backgroundPosition,
           }}
         >
           <div className="absolute bottom-10 left-10 mr-10 flex flex-col gap-4 md:left-28 md:w-2/5">

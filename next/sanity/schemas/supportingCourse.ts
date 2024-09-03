@@ -59,6 +59,9 @@ export default defineType({
       name: 'courseFooterImage',
       title: 'Course Footer Image',
       type: 'image',
+      options: {
+        hotspot: true,
+      },
     }),
     defineField({
       name: 'courseFooterText',

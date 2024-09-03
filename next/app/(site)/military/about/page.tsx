@@ -5,12 +5,15 @@ import AboutSection from '@/app/components/AboutSection';
 export default async function MilitaryAboutPage() {
   const {
     image1,
+    image1_hotspot,
     image1_title,
     image1_subTitle,
     image2,
+    image2_hotspot,
     image2_title,
     image2_subTitle,
     image3,
+    image3_hotspot,
     image3_title,
     image3_subTitle,
     facilities_title,
@@ -21,14 +24,22 @@ export default async function MilitaryAboutPage() {
 
   return (
     <section>
-      <Hero image={image1} title={image1_title} subTitle={image1_subTitle} />
+      <div></div>
+      <Hero
+        image={image1}
+        hotspot={image1_hotspot}
+        title={image1_title}
+        subTitle={image1_subTitle}
+      />
       <AboutSection
         image={image2}
+        hotspot={image2_hotspot}
         title={image2_title}
         subTitle={image2_subTitle}
       />
       <AboutSection
         image={image3}
+        hotspot={image3_hotspot}
         title={image3_title}
         subTitle={image3_subTitle}
       />
