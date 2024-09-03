@@ -29,7 +29,7 @@ export default function Hero({
         backgroundPosition: backgroundPosition,
       }}
     >
-      <div className="absolute bottom-10 left-10 mr-10 md:left-14">
+      <div className="absolute bottom-10 left-4 mr-10 md:left-10">
         {courseNumber && courseTitle && (
           <div className="flex items-center">
             <span className="text-6xl font-bold tracking-tighter">

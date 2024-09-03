@@ -25,7 +25,7 @@ export default function FooterHero({
         backgroundPosition: backgroundPosition,
       }}
     >
-      <div className="absolute bottom-10 left-10 mr-10 md:left-14">
+      <div className="absolute bottom-10 left-4 mr-10 md:left-10">
         <div className="flex flex-col items-end gap-3">
           {quote && (
             <h3 className="text-2xl font-thin tracking-tight">{`"${quote}"`}</h3>

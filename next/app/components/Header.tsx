@@ -30,7 +30,7 @@ const Header = () => {
 
   return (
     <header className="bg-black text-zinc-400 shadow-md">
-      <div className="mx-auto flex items-center justify-between px-4 py-5 lg:px-11">
+      <div className="mx-auto flex items-center justify-between px-4 py-5 md:px-10">
         {/* Logo */}
         <Link href="/military">
           {logo && (
@@ -57,7 +57,7 @@ const Header = () => {
         </nav>
       </div>
       <div>
-        <nav className="hidden space-x-8 bg-neutral-800 p-4 px-10 lg:flex">
+        <nav className="hidden space-x-8 bg-neutral-800 px-4 py-4 lg:flex lg:px-10">
           {baseLinks.map(({ path, label }) => (
             <Link
               key={path}
@@ -70,13 +70,13 @@ const Header = () => {
         </nav>
       </div>
       {/* Mobile Menu Icon */}
-      <div className="flex justify-between bg-neutral-800 py-4 lg:hidden">
+      <div className="flex justify-between bg-neutral-800 px-4 py-4 md:px-10 lg:hidden">
         <button
           onClick={() => {
             setMenuOpen(!menuOpen);
             setMobileMenuOpen(false);
           }}
-          className="px-4 text-xs uppercase text-zinc-400 hover:text-white focus:outline-none"
+          className="text-xs uppercase text-zinc-400 hover:text-white focus:outline-none"
         >
           <div className="flex items-center gap-3">
             Military
@@ -86,7 +86,7 @@ const Header = () => {
           </div>
         </button>
         <button
-          className="flex flex-col items-center justify-center space-y-1 px-4"
+          className="flex flex-col items-center justify-center space-y-1"
           onClick={() => {
             setMobileMenuOpen(!mobileMenuOpen);
             setMenuOpen(false);

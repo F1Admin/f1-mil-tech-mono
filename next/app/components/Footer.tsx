@@ -14,10 +14,10 @@ export default async function Footer() {
 
   return (
     <footer>
-      <div className="mx-auto px-10 py-10 text-zinc-400">
+      <div className="mx-auto px-4 py-10 text-zinc-400 md:px-10">
         <hr className="border-t-1 mb-10 border-zinc-700" />
         <div className="flex justify-between lg:block">
-          <div className="mb-16 md:grid lg:grid-cols-4 lg:px-5 xl:grid-cols-5 xl:px-10">
+          <div className="md:grid lg:grid-cols-4 xl:grid-cols-5">
             <div className="mb-10 flex flex-col gap-3 lg:gap-10">
               <div className="text-sm">FLIGHT-1 MILITARY</div>
               <div className="flex flex-col gap-2">
