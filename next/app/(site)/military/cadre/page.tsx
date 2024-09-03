@@ -1,11 +1,17 @@
 import Hero from '@/app/components/Hero';
 import { getCadrePage, getInstructors } from '@/sanity/sanity-utils';
 import InstructorCard from '@/app/components/InstructorCard';
-import Image from 'next/image';
+import FooterHero from '@/app/components/FooterHero';
 
 export default async function Cadre() {
-  const { heroImage, heroTitle, heroSubtitle, footerImage, footerText } =
-    await getCadrePage();
+  const {
+    heroImage,
+    heroTitle,
+    heroSubtitle,
+    footerImage,
+    footerQuote,
+    footerAuthor,
+  } = await getCadrePage();
   const instructors = await getInstructors();
   const foundingMember = instructors
     .filter((instructor) => instructor.yearsWithFlight1 === 'Founding Member')
@@ -25,7 +31,11 @@ export default async function Cadre() {
           <InstructorCard key={instructor._id} instructor={instructor} />
         ))}
       </div>
-      <Hero image={footerImage} title={footerText} />
+      <FooterHero
+        image={footerImage}
+        quote={footerQuote}
+        author={footerAuthor}
+      />
     </section>
   );
 }

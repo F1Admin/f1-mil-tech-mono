@@ -27,8 +27,14 @@ export default defineType({
       type: 'image',
     }),
     defineField({
-      name: 'footerText',
-      title: 'Course Footer Text',
+      name: 'footerQuote',
+      title: 'Footer Quote',
+      type: 'text',
+      rows: 2,
+    }),
+    defineField({
+      name: 'footerAuthor',
+      title: 'Footer Quote Author',
       type: 'string',
     }),
   ],

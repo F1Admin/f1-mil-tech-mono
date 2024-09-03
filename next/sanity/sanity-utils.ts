@@ -337,7 +337,8 @@ const getCadrePageQuery = groq`*[_type == "militaryCadrePage"][0]{
   heroTitle,
   heroSubtitle,
   "footerImage": footerImage.asset->url,
-  footerText,
+  footerQuote,
+  footerAuthor,
 }`;
 
 export type CadrePageQuery = {
@@ -347,7 +348,8 @@ export type CadrePageQuery = {
   heroTitle: string;
   heroSubtitle: string;
   footerImage: string;
-  footerText: string;
+  footerQuote: string;
+  footerAuthor: string;
 };
 
 export async function getCadrePage(): Promise<CadrePageQuery> {
