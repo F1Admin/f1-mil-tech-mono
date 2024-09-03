@@ -110,6 +110,10 @@ const militaryCoursesPageQuery = groq`*[_type == "militaryCoursesPage"][0]{
   "heroImage_hotspot": heroImage.hotspot,
   title,
   subtitle,
+  titleColor,
+  heroImageQuote,
+  heroImageQuoteAuthor,
+  quoteColor,
   "footerImage": footerImage.asset->url,
   "footerImage_hotspot": footerImage.hotspot,
 }`;
@@ -121,6 +125,10 @@ export type MilitaryCoursesPageQuery = {
   heroImage_hotspot: SanityHotspot;
   title: string;
   subtitle: string;
+  titleColor: string;
+  heroImageQuote: string;
+  heroImageQuoteAuthor: string;
+  quoteColor: string;
   footerImage: string;
   footerImage_hotspot: SanityHotspot;
 };

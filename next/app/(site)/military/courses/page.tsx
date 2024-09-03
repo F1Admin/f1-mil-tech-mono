@@ -13,6 +13,10 @@ export default async function MilitaryCoursesPage() {
     heroImage_hotspot,
     title,
     subtitle,
+    titleColor,
+    heroImageQuote,
+    heroImageQuoteAuthor,
+    quoteColor,
     footerImage,
     footerImage_hotspot,
   } = await getMilitaryCoursesPage();
@@ -27,16 +31,20 @@ export default async function MilitaryCoursesPage() {
         hotspot={heroImage_hotspot}
         title={title}
         subTitle={subtitle}
+        titleColor={titleColor}
+        quote={heroImageQuote}
+        author={heroImageQuoteAuthor}
+        quoteColor={quoteColor}
       />
-      <div className="grid-col-1 grid min-h-[400px] gap-10 py-10 pl-10 pr-10 text-zinc-400 md:grid-cols-2 lg:pl-80">
-        <div className="flex flex-col gap-5">
+      <div className="grid-col-1 grid min-h-[400px] gap-3 px-4 py-10 text-zinc-400 md:grid-cols-2 md:px-10 lg:pl-64 xl:pl-96">
+        <div className="flex flex-col gap-7">
           <h1 className="text-2xl">SELECT A COURSE</h1>
-          <ul className="flex flex-col gap-2">
+          <ul className="flex flex-col">
             {courses.map((course) => (
               <Link
                 key={course._id}
                 href={`/military/courses/${course.slug}`}
-                className="text-xl font-thin transition hover:font-normal hover:text-white"
+                className="text-xl transition hover:font-normal hover:text-white"
               >
                 {course.courseNumber
                   ? `${course.courseNumber}M ${course.courseTitle}`
@@ -45,14 +53,16 @@ export default async function MilitaryCoursesPage() {
             ))}
           </ul>
         </div>
-        <div className="flex flex-col gap-5">
-          <h1 className="text-2xl">FLIGHT-1 SUPPORTING COURSES</h1>
-          <ul className="flex flex-col gap-2">
+        <div className="flex flex-col gap-7">
+          <h1 className="whitespace-nowrap text-2xl">
+            FLIGHT-1 SUPPORTING COURSES
+          </h1>
+          <ul className="flex flex-col">
             {supportingCourses.map((course) => (
               <Link
                 key={course._id}
                 href={`/military/courses/supporting-courses/${course.slug}`}
-                className="text-xl font-thin transition hover:font-normal hover:text-white"
+                className="text-xl transition hover:font-normal hover:text-white"
               >
                 {course.courseTitle}
               </Link>

@@ -5,6 +5,10 @@ interface HeroProps {
   hotspot?: SanityHotspot | null;
   title?: string;
   subTitle?: string;
+  titleColor?: string;
+  quote?: string;
+  author?: string;
+  quoteColor?: string;
   courseNumber?: string;
   courseTitle?: string;
 }
@@ -14,13 +18,18 @@ export default function Hero({
   hotspot = { x: 0.5, y: 0.5 },
   title,
   subTitle,
+  titleColor,
+  quote,
+  author,
+  quoteColor,
   courseNumber,
   courseTitle,
 }: HeroProps) {
   const fallbackHotspot = { x: 0.5, y: 0.5 };
   const effectiveHotspot = hotspot ?? fallbackHotspot;
   const backgroundPosition = `${effectiveHotspot.x * 100}% ${effectiveHotspot.y * 100}%`;
-
+  console.log('quote:', quote);
+  console.log('author:', author);
   return (
     <div
       className="relative h-[400px] bg-cover"
@@ -29,7 +38,11 @@ export default function Hero({
         backgroundPosition: backgroundPosition,
       }}
     >
-      <div className="absolute bottom-10 left-4 mr-10 md:left-10">
+      <div
+        className={`absolute bottom-10 left-4 mr-10 ${
+          titleColor === 'black' ? 'text-zinc-900' : ''
+        } md:left-10`}
+      >
         {courseNumber && courseTitle && (
           <div className="flex items-center">
             <span className="text-6xl font-bold tracking-tighter">
@@ -48,13 +61,25 @@ export default function Hero({
           </div>
         )}
         {!courseNumber && (
-          <div className="text-6xl font-bold tracking-tighter text-white">
+          <div className="text-6xl font-bold tracking-tighter">
             {title || courseTitle}
           </div>
         )}
-        {subTitle && (
-          <div className="text-2xl tracking-tight text-white">{subTitle}</div>
-        )}
+        {subTitle && <div className="text-2xl tracking-tight">{subTitle}</div>}
+      </div>
+      <div className="absolute right-4 top-40 mr-20 w-2/5 md:left-auto">
+        <div className="hidden flex-col items-end gap-3 lg:flex">
+          {quote && (
+            <h3
+              className={`${quoteColor === 'black' ? 'text-zinc-900' : ''} text-xl font-thin tracking-tight`}
+            >{`"${quote}"`}</h3>
+          )}
+          {author && (
+            <h4
+              className={`${quoteColor === 'black' ? 'text-zinc-900' : ''} text-lg font-thin`}
+            >{`- ${author}`}</h4>
+          )}
+        </div>
       </div>
     </div>
   );

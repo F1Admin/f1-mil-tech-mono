@@ -22,7 +22,33 @@ export default defineType({
       name: 'subtitle',
       title: 'Page Subtitle',
       type: 'text',
-      rows: 3,
+      rows: 2,
+    }),
+    defineField({
+      name: 'titleColor',
+      title: 'Title Color',
+      type: 'string',
+      options: {
+        list: ['white', 'black'],
+      },
+    }),
+    defineField({
+      name: 'heroImageQuote',
+      title: 'Hero Image Quote',
+      type: 'string',
+    }),
+    defineField({
+      name: 'heroImageQuoteAuthor',
+      title: 'Hero Image Quote Author',
+      type: 'string',
+    }),
+    defineField({
+      name: 'quoteColor',
+      title: 'Quote Color',
+      type: 'string',
+      options: {
+        list: ['white', 'black'],
+      },
     }),
     defineField({
       name: 'footerImage',
