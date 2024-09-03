@@ -25,7 +25,7 @@ export default async function ContactPage() {
   return (
     <section>
       <Hero image={heroImage} title={heroTitle} subTitle={heroSubtitle} />
-      <div className="grid grid-cols-2 gap-10 m-10">
+      <div className="m-10 grid grid-cols-2 gap-10">
         <ContactDetails
           contactName={contactName}
           contactTitle={contactTitle}

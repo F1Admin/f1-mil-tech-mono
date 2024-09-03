@@ -20,31 +20,31 @@ export default function Hero({
         backgroundImage: `url(${image})`,
       }}
     >
-      <div className="absolute bottom-10 left-14">
+      <div className="absolute bottom-10 left-10 mr-10 md:left-14">
         {courseNumber && courseTitle && (
           <div className="flex items-center">
-            <span className="text-6xl tracking-tighter font-bold">
+            <span className="text-6xl font-bold tracking-tighter">
               {courseNumber}
             </span>
             <span className="text-6xl font-thin">M</span>
             <div className="relative mx-5">
               <div
-                className="w-px h-full bg-zinc-400 absolute bottom-[-3em]"
+                className="absolute bottom-[-3em] h-full w-px bg-zinc-400"
                 style={{ height: '6em' }}
               ></div>
             </div>
-            <span className="font-semibold uppercase text-2xl">
+            <span className="text-2xl font-semibold uppercase">
               {courseTitle}
             </span>
           </div>
         )}
-        {(title || courseTitle) && (
-          <div className="text-white text-6xl tracking-tighter font-bold">
+        {!courseNumber && (
+          <div className="text-6xl font-bold tracking-tighter text-white">
             {title || courseTitle}
           </div>
         )}
         {subTitle && (
-          <div className="text-white tracking-tight text-2xl">{subTitle}</div>
+          <div className="text-2xl tracking-tight text-white">{subTitle}</div>
         )}
       </div>
     </div>

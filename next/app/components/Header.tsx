@@ -29,8 +29,8 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="bg-black shadow-md text-zinc-400">
-      <div className="mx-auto px-4 py-[22px] lg:px-11 flex justify-between items-center">
+    <header className="bg-black text-zinc-400 shadow-md">
+      <div className="mx-auto flex items-center justify-between px-4 py-5 lg:px-11">
         {/* Logo */}
         <Link href="/military">
           {logo && (
@@ -44,12 +44,12 @@ const Header = () => {
             />
           )}
         </Link>
-        <nav className="hidden lg:flex space-x-8">
+        <nav className="hidden space-x-8 lg:flex">
           {militaryLinks.map((link, index) => (
             <Link
               key={index}
               href={link.path}
-              className={`hover:text-white text-xs uppercase ${isCurrent(link.path) && 'text-white'}`}
+              className={`text-xs uppercase hover:text-white ${isCurrent(link.path) && 'text-white'}`}
             >
               {link.label}
             </Link>
@@ -57,12 +57,12 @@ const Header = () => {
         </nav>
       </div>
       <div>
-        <nav className="hidden bg-zinc-900 lg:flex px-10 py-4 space-x-8">
+        <nav className="hidden space-x-8 bg-neutral-800 p-4 px-10 lg:flex">
           {baseLinks.map(({ path, label }) => (
             <Link
               key={path}
               href={path}
-              className={`hover:text-white text-xs ${pathname.includes(path) && path != '/' ? 'text-white' : ''}`}
+              className={`text-xs hover:text-white ${pathname.includes(path) && path != '/' ? 'text-white' : ''}`}
             >
               {label}
             </Link>
@@ -70,36 +70,36 @@ const Header = () => {
         </nav>
       </div>
       {/* Mobile Menu Icon */}
-      <div className="lg:hidden flex justify-between bg-zinc-900">
+      <div className="flex justify-between bg-neutral-800 py-4 lg:hidden">
         <button
           onClick={() => {
             setMenuOpen(!menuOpen);
             setMobileMenuOpen(false);
           }}
-          className="bg-zinc-900 text-zinc-200 hover:text-white focus:outline-none px-4 py-4 space-x-8 text-xs uppercase"
+          className="px-4 text-xs uppercase text-zinc-400 hover:text-white focus:outline-none"
         >
-          <div className="flex items-center">
+          <div className="flex items-center gap-3">
             Military
             <ChevronDown
-              transform={menuOpen ? 'rotate(-180deg)' : 'rotate(0deg)'}
+              transform={menuOpen ? 'rotate(-90deg)' : 'rotate(0deg)'}
             />
           </div>
         </button>
         <button
-          className="space-y-1 px-4 py-4 flex flex-col justify-center items-center"
+          className="flex flex-col items-center justify-center space-y-1 px-4"
           onClick={() => {
             setMobileMenuOpen(!mobileMenuOpen);
             setMenuOpen(false);
           }}
         >
-          <div className="w-8 h-1 bg-zinc-400" />
-          <div className="w-8 h-1 bg-zinc-400" />
-          <div className="w-8 h-1 bg-zinc-400" />
+          <div className="h-1 w-8 bg-white" />
+          <div className="h-1 w-8 bg-white" />
+          <div className="h-1 w-8 bg-white" />
         </button>
       </div>
       {/* Mobile Base Menu */}
       {menuOpen && (
-        <div className="lg:hidden bg-zinc-600 shadow-md">
+        <div className="bg-neutral-600 shadow-md lg:hidden">
           <nav className="flex flex-col space-y-4 px-4 py-4">
             {baseLinks
               .filter((link) => link.path !== '/military')
@@ -107,7 +107,7 @@ const Header = () => {
                 <Link
                   key={index}
                   href={link.path}
-                  className="text-zinc-200 text-xs hover:text-white"
+                  className="text-xs text-zinc-200 hover:text-white"
                 >
                   {link.label}
                 </Link>
@@ -117,13 +117,13 @@ const Header = () => {
       )}
       {/* Mobile Military Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-zinc-600">
+        <div className="bg-neutral-600 lg:hidden">
           <nav className="flex flex-col space-y-4 px-4 py-4">
             {militaryLinks.map((link, index) => (
               <Link
                 key={index}
                 href={link.path}
-                className="text-zinc-200 uppercase text-xs hover:text-white"
+                className="text-xs uppercase text-zinc-200 hover:text-white"
               >
                 {link.label}
               </Link>

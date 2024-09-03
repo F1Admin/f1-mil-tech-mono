@@ -39,7 +39,7 @@ export default function MilitaryCourse() {
         courseNumber={course.courseNumber}
         courseTitle={course.courseTitle}
       />
-      <div className="grid grid-cols-2 p-20 items-center gap-5">
+      <div className="grid grid-cols-2 items-center gap-5 p-20">
         {course.courseSeriesImage && course.courseTitle && (
           <Image
             src={course.courseSeriesImage}
@@ -50,7 +50,7 @@ export default function MilitaryCourse() {
         )}
         <div className="flex flex-col gap-20 text-lg text-zinc-100">
           <div>{course.courseDescription}</div>
-          <div className="flex gap-5 items-center">
+          <div className="flex items-center gap-5">
             <div className="font-bold text-zinc-400">Requirements:</div>
             <div>{course.courseRequirements}</div>
           </div>

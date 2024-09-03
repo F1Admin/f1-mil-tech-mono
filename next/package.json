@@ -13,13 +13,13 @@
     "migrate": "npm run build:migrate && node ./dist/app/data/migration/migrateInstructors.js"
   },
   "dependencies": {
+    "@portabletext/react": "^3.1.0",
     "@sanity/client": "^6.21.3",
     "@sanity/image-url": "^1.0.2",
     "@sanity/vision": "^3.54.0",
     "dotenv": "^16.4.5",
     "next": "14.2.5",
     "next-sanity": "^9.4.5",
-    "prettier": "^3.3.3",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.3.0",
@@ -37,6 +37,8 @@
     "eslint-config-next": "14.2.5",
     "fs": "^0.0.1-security",
     "postcss": "^8",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.6",
     "tailwindcss": "^3.4.1",
     "ts-node": "^10.9.2",
     "typescript": "^5"

@@ -1,10 +1,10 @@
 'use client';
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 
-import Image from "next/image";
+import Image from 'next/image';
 
-import './LoadingImage.scss'
+import './LoadingImage.scss';
 
 interface ILoadingImage {
   url: string;
@@ -15,7 +15,6 @@ interface ILoadingImage {
 }
 
 const LoadingImage = (params: ILoadingImage) => {
-
   const { url, title, className, width, height } = params;
 
   const [blur, setBlur] = useState(true);
@@ -34,20 +33,21 @@ const LoadingImage = (params: ILoadingImage) => {
   }, []);
 
   return (
-    <div className={`${className} image-container ${blur ? "blur" : "unblur"}`} style={{
-      background: '#eee'
-    }}>
-      {
-        (width && height) && (
-          <Image
-            className="placeholder-image"
-            src={`${url}?w=${width / 20}&h=${height / 20}&auto=format`}
-            alt={title}
-            width={width / 10}
-            height={height / 10}
-          />
-        )
-      }
+    <div
+      className={`${className} image-container ${blur ? 'blur' : 'unblur'}`}
+      style={{
+        background: '#eee',
+      }}
+    >
+      {width && height && (
+        <Image
+          className="placeholder-image"
+          src={`${url}?w=${width / 20}&h=${height / 20}&auto=format`}
+          alt={title}
+          width={width / 10}
+          height={height / 10}
+        />
+      )}
 
       <Image
         className="real-image"
@@ -58,7 +58,7 @@ const LoadingImage = (params: ILoadingImage) => {
         height={height}
       />
     </div>
-  )
-}
+  );
+};
 
 export default LoadingImage;

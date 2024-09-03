@@ -1,4 +1,4 @@
-import { createClient, groq } from 'next-sanity';
+import { createClient, groq, PortableTextBlock } from 'next-sanity';
 import config from './config/client-config';
 
 const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
@@ -21,6 +21,7 @@ const landingPageQuery = groq`*[_type == "militaryLandingPage"][0]{
   _id,
   _createdAt,
   "image1": image1.asset->url,
+  "image1_hotspot": image1.hotspot,
   image1_title,
   "image2": image2.asset->url,
   image2_title,
@@ -51,11 +52,14 @@ const aboutPageQuery = groq`*[_type == "militaryAboutPage"][0]{
   image1_subTitle,
   "image2": image2.asset->url,
   image2_title,
-  image2_subTitle1,
-  image2_subTitle2,
+  image2_subTitle,
   "image3": image3.asset->url,
   image3_title,
   image3_subTitle,
+  facilities_title,
+  facilities_text,
+  selection_title,
+  selection_text,
 }`;
 
 export type AboutPageQuery = {
@@ -66,11 +70,14 @@ export type AboutPageQuery = {
   image1_subTitle: string;
   image2: string;
   image2_title: string;
-  image2_subTitle1: string;
-  image2_subTitle2: string;
+  image2_subTitle: PortableTextBlock[];
   image3: string;
   image3_title: string;
-  image3_subTitle: string;
+  image3_subTitle: PortableTextBlock[];
+  facilities_title: string;
+  facilities_text: PortableTextBlock[];
+  selection_title: string;
+  selection_text: PortableTextBlock[];
 };
 
 export async function getAboutPage(): Promise<AboutPageQuery> {

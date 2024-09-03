@@ -10,10 +10,10 @@ export default async function Cadre() {
   return (
     <section>
       <Hero image={heroImage} title={heroTitle} subTitle={heroSubtitle} />
-      <div className="flex flex-wrap justify-center gap-7 md:gap-10 py-10 px-4 md:p-11 lg:p-20 text-zinc-400">
+      <div className="flex flex-wrap justify-center gap-7 px-4 py-10 text-zinc-400 md:gap-10 md:p-11 lg:p-20">
         {instructors.map((instructor) => (
           <div key={instructor._id} className="flex flex-col gap-3">
-            <div className="relative w-48 h-48 lg:w-52 lg:h-52 transition overflow-hidden rounded">
+            <div className="relative h-48 w-48 overflow-hidden rounded transition lg:h-52 lg:w-52">
               <Image
                 src={instructor.profileImage}
                 alt={instructor.alt}
@@ -28,21 +28,21 @@ export default async function Cadre() {
               />
             </div>
             <div className="flex flex-col">
-              <h2 className="flex text-xl gap-2">
+              <h2 className="flex gap-2 text-xl">
                 {instructor.firstName} {instructor.lastName}
               </h2>
             </div>
             <div>
               <div>
-                <p className="uppercase font-thin text-sm">Jumps:</p>
+                <p className="text-sm font-thin uppercase">Jumps:</p>
                 <span>{instructor.numberOfJumps}</span>
               </div>
               <div>
-                <p className="uppercase font-thin text-sm">Years in Sport:</p>
+                <p className="text-sm font-thin uppercase">Years in Sport:</p>
                 <span>{instructor.yearsInSport}</span>
               </div>
               <div>
-                <p className="uppercase font-thin text-sm">
+                <p className="text-sm font-thin uppercase">
                   Years with Flight-1:
                 </p>
                 <span>{instructor.yearsWithFlight1}</span>

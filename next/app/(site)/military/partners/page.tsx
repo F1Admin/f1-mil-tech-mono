@@ -10,14 +10,14 @@ export default async function PartnersPage() {
   return (
     <section>
       <Hero image={heroImage} title={heroTitle} subTitle={heroSubtitle} />
-      <div className="grid grid-cols-3 gap-5 gap-y-20 p-20 min-h-[400px]">
+      <div className="grid min-h-[400px] grid-cols-3 gap-5 gap-y-20 p-20">
         {partners.map((partner) => (
           <Link
             href={partner.partnerUrl}
             key={partner._id}
-            className="flex flex-col gap-5 justify-center items-center text-zinc-400"
+            className="flex flex-col items-center justify-center gap-5 text-zinc-400"
           >
-            <div className="flex items-center h-40">
+            <div className="flex h-40 items-center">
               <Image
                 src={partner.partnerLogo}
                 alt={partner.partnerName}
@@ -25,10 +25,10 @@ export default async function PartnersPage() {
                 height="0"
                 sizes="100vw"
                 style={{ filter: 'grayscale(100%)' }}
-                className="w-40 h-auto"
+                className="h-auto w-40"
               />
             </div>
-            <div className="flex flex-col justify-center items-center">
+            <div className="flex flex-col items-center justify-center">
               <div className="text-lg">{partner.partnerName}</div>
               <div>{partner.partnerUrl.replace('https://', '')}</div>
             </div>

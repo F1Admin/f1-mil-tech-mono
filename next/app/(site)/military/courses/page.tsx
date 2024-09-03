@@ -16,7 +16,7 @@ export default async function MilitaryCoursesPage() {
   return (
     <section>
       <Hero image={heroImage} title={title} subTitle={subtitle} />
-      <div className="grid grid-cols-2 h-[400px] pl-80 py-10 pr-10 text-zinc-400">
+      <div className="grid-col-1 grid min-h-[400px] gap-10 py-10 pl-10 pr-10 text-zinc-400 md:grid-cols-2 lg:pl-80">
         <div className="flex flex-col gap-5">
           <h1 className="text-2xl">SELECT A COURSE</h1>
           <ul className="flex flex-col gap-2">
@@ -24,7 +24,7 @@ export default async function MilitaryCoursesPage() {
               <Link
                 key={course._id}
                 href={`/military/courses/${course.slug}`}
-                className="text-xl font-thin hover:text-white hover:font-normal transition"
+                className="text-xl font-thin transition hover:font-normal hover:text-white"
               >
                 {course.courseNumber
                   ? `${course.courseNumber}M ${course.courseTitle}`
@@ -40,7 +40,7 @@ export default async function MilitaryCoursesPage() {
               <Link
                 key={course._id}
                 href={`/military/courses/supporting-courses/${course.slug}`}
-                className="text-xl font-thin hover:text-white hover:font-normal transition"
+                className="text-xl font-thin transition hover:font-normal hover:text-white"
               >
                 {course.courseTitle}
               </Link>

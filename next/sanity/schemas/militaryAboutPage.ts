@@ -19,6 +19,7 @@ export default defineType({
       name: 'image1_subTitle',
       title: 'Image 1 Subtitle',
       type: 'text',
+      rows: 3,
     }),
     defineField({
       name: 'image2',
@@ -31,18 +32,14 @@ export default defineType({
       type: 'string',
     }),
     defineField({
-      name: 'image2_subTitle1',
-      title: 'Image 2 Subtitle 1',
-      type: 'text',
-    }),
-    defineField({
-      name: 'image2_subTitle2',
-      title: 'Image 2 Subtitle 2',
-      type: 'text',
+      name: 'image2_subTitle',
+      title: 'Image 2 Subtitle',
+      type: 'array',
+      of: [{ type: 'block' }],
     }),
     defineField({
       name: 'image3',
-      title: 'Image 3',
+      title: 'Image 3 Image',
       type: 'image',
     }),
     defineField({
@@ -53,7 +50,30 @@ export default defineType({
     defineField({
       name: 'image3_subTitle',
       title: 'Image 3 Subtitle',
-      type: 'text',
+      type: 'array',
+      of: [{ type: 'block' }],
+    }),
+    defineField({
+      name: 'facilities_title',
+      title: 'Facilities Title',
+      type: 'string',
+    }),
+    defineField({
+      name: 'facilities_text',
+      title: 'facilities Text',
+      type: 'array',
+      of: [{ type: 'block' }],
+    }),
+    defineField({
+      name: 'selection_title',
+      title: 'Selection Title',
+      type: 'string',
+    }),
+    defineField({
+      name: 'selection_text',
+      title: 'Selection Text',
+      type: 'array',
+      of: [{ type: 'block' }],
     }),
   ],
 });
