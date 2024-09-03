@@ -2,7 +2,6 @@ import ContactDetails from '@/app/components/ContactDetails';
 import ContactForm from '@/app/components/ContactForm';
 import Hero from '@/app/components/Hero';
 import { getContactPage } from '@/sanity/sanity-utils';
-import { MdLocalPhone } from 'react-icons/md';
 
 export default async function ContactPage() {
   const {

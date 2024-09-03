@@ -323,7 +323,7 @@ export type Instructor = {
   alt: string;
   numberOfJumps: number;
   yearsInSport: number;
-  yearsWithFlight1: number;
+  yearsWithFlight1: string;
 };
 
 export async function getInstructors(): Promise<Instructor[]> {

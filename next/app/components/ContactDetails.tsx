@@ -4,24 +4,25 @@ import {
   MdLocalPhone,
   MdOutlineEmail,
 } from 'react-icons/md';
-import Image from 'next/image';
+import { type ContactPageQuery } from '@/sanity/sanity-utils';
 
-interface ContactDetailsProps {
-  contactName: string;
-  contactTitle: string;
-  contactImage: string;
-  phone: string;
-  email: string;
-  mailingAddress: string;
-  physicalAddress: string;
-  dunsNumber: string;
-  cageCode: string;
-}
+interface ContactDetailsProps
+  extends Pick<
+    ContactPageQuery,
+    | 'contactName'
+    | 'contactTitle'
+    | 'contactImage'
+    | 'phone'
+    | 'email'
+    | 'mailingAddress'
+    | 'physicalAddress'
+    | 'dunsNumber'
+    | 'cageCode'
+  > {}
 
 export default function ContactDetails({
   contactName,
   contactTitle,
-  contactImage,
   phone,
   email,
   mailingAddress,
