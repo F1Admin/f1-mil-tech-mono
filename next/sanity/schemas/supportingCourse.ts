@@ -65,5 +65,10 @@ export default defineType({
       title: 'Course Footer Text',
       type: 'string',
     }),
+    defineField({
+      name: 'courseFooterAuthor',
+      title: 'Course Footer Author',
+      type: 'string',
+    }),
   ],
 });

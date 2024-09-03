@@ -9,6 +9,7 @@ import {
 } from '@/sanity/sanity-utils';
 import Hero from '@/app/components/Hero';
 import Slider from '@/app/components/Slider/Slider';
+import FooterHero from '@/app/components/FooterHero';
 
 export default function MilitaryCourse() {
   const [course, setCourse] = useState<GetSupportingCourseQuery>();
@@ -55,7 +56,11 @@ export default function MilitaryCourse() {
         </div>
       </div>
       <Slider images={course.courseCarousel} />
-      <Hero image={course.courseFooterImage} title={course.courseFooterText} />
+      <FooterHero
+        image={course.courseFooterImage}
+        quote={course.courseFooterText}
+        author={course.courseFooterAuthor}
+      />
     </section>
   );
 }

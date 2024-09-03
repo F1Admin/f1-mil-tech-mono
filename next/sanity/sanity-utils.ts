@@ -153,6 +153,7 @@ const getCourseQuery = groq`*[_type == "course" && slug.current == $slug][0]{
   courseRequirements,
   "courseFooterImage": courseFooterImage.asset->url,
   courseFooterText,
+  courseFooterAuthor,
   "courseCarousel": courseCarousel[]{
     "image": image.asset->url,
   },
@@ -169,6 +170,7 @@ export type GetCourseQuery = {
   courseRequirements: string;
   courseFooterImage: string;
   courseFooterText: string;
+  courseFooterAuthor: string;
   courseCarousel: CourseCarousel[];
 };
 
@@ -190,6 +192,7 @@ const getSupportingCourseQuery = groq`*[_type == "supportingCourse" && slug.curr
   "courseSeriesImage": courseSeriesImage.asset->url,
   "courseFooterImage": courseFooterImage.asset->url,
   courseFooterText,
+  courseFooterAuthor,
   "courseCarousel": courseCarousel[]{
     "image": image.asset->url,
   },
@@ -205,6 +208,7 @@ export type GetSupportingCourseQuery = {
   courseSeriesImage: string;
   courseFooterImage: string;
   courseFooterText: string;
+  courseFooterAuthor: string;
   courseCarousel: CourseCarousel[];
 };
 
