@@ -23,6 +23,11 @@ export default function InstructorCard(props: InstructorCardProps) {
           }}
         />
       </div>
+      <div className="flex flex-col justify-between">
+        <h2 className="flex gap-2 text-xl">
+          {instructor.firstName} {instructor.lastName}
+        </h2>
+      </div>
       <dl className="text-sm">
         <div className="flex justify-between">
           <dt className="font-thin uppercase">Jumps:</dt>
@@ -35,7 +40,6 @@ export default function InstructorCard(props: InstructorCardProps) {
         {instructor.yearsWithFlight1 === 'Founding Member' ||
         instructor.yearsWithFlight1 === 'Military Operations Manager' ? (
           <div className="flex flex-col">
-            <dt className="font-thin uppercase">Years with Flight-1:</dt>
             <dd>{instructor.yearsWithFlight1}</dd>
           </div>
         ) : (
