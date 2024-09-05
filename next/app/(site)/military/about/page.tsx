@@ -51,12 +51,12 @@ export default async function MilitaryAboutPage() {
     subTitle: image3_subTitle,
   };
   const aboutSection3Props = {
-    title: selection_title,
-    subTitle: selection_text,
-  };
-  const aboutSection4Props = {
     title: facilities_title,
     subTitle: facilities_text,
+  };
+  const aboutSection4Props = {
+    title: selection_title,
+    subTitle: selection_text,
   };
 
   return (
