@@ -36,9 +36,9 @@ export default async function militaryStore() {
         <div className="flex items-center gap-4 px-4 py-8 md:px-10">
           <Link
             href={link}
-            className="rounded-full border border-zinc-400 px-6 py-3 text-2xl font-bold text-white transition hover:border-white"
+            className="rounded-xl border border-zinc-400 px-6 py-2 text-2xl font-bold text-white transition hover:border-white"
           >
-            Click Here
+            Click here
           </Link>
           <h4 className="text-xl font-thin">
             and discover our exclusive online military collection.
