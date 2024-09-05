@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { SanityHotspot } from '@/sanity/sanity-utils';
 
 interface FooterHeroProps {
@@ -9,30 +10,39 @@ interface FooterHeroProps {
 
 export default function FooterHero({
   image,
-  hotspot = { x: 0.5, y: 0.5 }, // Default to center if no hotspot provided
+  hotspot,
   quote,
   author,
 }: FooterHeroProps) {
-  const fallbackHotspot = { x: 0.5, y: 0.5 };
-  const effectiveHotspot = hotspot ?? fallbackHotspot;
-  const backgroundPosition = `${effectiveHotspot.x * 100}% ${effectiveHotspot.y * 100}%`;
+  const effectiveHotspot = hotspot ?? { x: 0.5, y: 0.5 };
 
   return (
-    <div
-      className="relative h-[400px] bg-cover"
-      style={{
-        backgroundImage: `url(${image})`,
-        backgroundPosition: backgroundPosition,
-      }}
-    >
-      <div className="absolute bottom-10 left-4 mr-10 md:left-10">
-        <div className="flex flex-col items-end gap-3">
-          {quote && (
-            <h3 className="text-2xl font-thin tracking-tight">{`"${quote}"`}</h3>
-          )}
-          {author && <h4 className="text-xl font-thin">{`- ${author}`}</h4>}
+    <div className="relative h-[400px] overflow-hidden">
+      <Image
+        src={image}
+        alt="Footer hero image"
+        fill
+        style={{
+          objectFit: 'cover',
+          objectPosition: `${effectiveHotspot.x * 100}% ${effectiveHotspot.y * 100}%`,
+        }}
+      />
+      {(quote || author) && (
+        <div className="absolute inset-0 flex items-end justify-start p-4 md:p-10">
+          <div className="max-w-2x p-4 text-white">
+            {quote && (
+              <p className="text-2xl font-thin italic tracking-tight">
+                &ldquo;{quote}&rdquo;
+              </p>
+            )}
+            {author && (
+              <p className="mt-2 text-right text-xl font-thin">
+                &mdash; {author}
+              </p>
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

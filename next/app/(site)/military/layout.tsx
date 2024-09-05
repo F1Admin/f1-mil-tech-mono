@@ -1,20 +1,18 @@
 import React from 'react';
 import { ReactNode } from 'react';
-import Header from '../../components/Header'; // Adjust the import path as necessary
-import Footer from '../../components/Footer'; // Adjust the import path as necessary
+import Header from '@/app/components/Header';
+import Footer from '@/app/components/Footer';
 
 interface MilitaryLayoutProps {
   children: ReactNode;
 }
 
-const MilitaryLayout: React.FC<MilitaryLayoutProps> = ({ children }) => {
+export default function MilitaryLayout({ children }: MilitaryLayoutProps) {
   return (
-    <div>
+    <div className="flex min-h-screen flex-col">
       <Header />
-      <main>{children}</main>
+      <main className="flex-grow">{children}</main>
       <Footer />
     </div>
   );
-};
-
-export default MilitaryLayout;
+}

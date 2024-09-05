@@ -23,34 +23,28 @@ export default function InstructorCard(props: InstructorCardProps) {
           }}
         />
       </div>
-      <div className="flex flex-col justify-between">
-        <h2 className="flex gap-2 text-xl">
-          {instructor.firstName} {instructor.lastName}
-        </h2>
-      </div>
-      <div>
-        <div className="flex flex-grow items-center gap-2">
-          <p className="text-sm font-thin uppercase">Jumps:</p>
-          <p>{instructor.numberOfJumps}</p>
+      <dl className="text-sm">
+        <div className="flex justify-between">
+          <dt className="font-thin uppercase">Jumps:</dt>
+          <dd>{instructor.numberOfJumps}</dd>
         </div>
-        <div className="flex flex-grow items-center gap-2">
-          <p className="text-sm font-thin uppercase">Years in Sport:</p>
-          <p className="text-base font-normal">{instructor.yearsInSport}</p>
+        <div className="flex justify-between">
+          <dt className="font-thin uppercase">Years in Sport:</dt>
+          <dd>{instructor.yearsInSport}</dd>
         </div>
-        {instructor.yearsWithFlight1 === 'Founding Member' ? (
-          <div>
-            <p className="text-sm font-thin uppercase">Years with Flight-1:</p>
-            <span>{instructor.yearsWithFlight1}</span>
+        {instructor.yearsWithFlight1 === 'Founding Member' ||
+        instructor.yearsWithFlight1 === 'Military Operations Manager' ? (
+          <div className="flex flex-col">
+            <dt className="font-thin uppercase">Years with Flight-1:</dt>
+            <dd>{instructor.yearsWithFlight1}</dd>
           </div>
         ) : (
-          <div className="flex flex-grow items-center gap-2">
-            <p className="text-sm font-thin uppercase">Years with Flight-1:</p>
-            <p className="text-base font-normal">
-              {instructor.yearsWithFlight1}
-            </p>
+          <div className="flex justify-between">
+            <dt className="font-thin uppercase">Years with Flight-1:</dt>
+            <dd>{instructor.yearsWithFlight1}</dd>
           </div>
         )}
-      </div>
+      </dl>
     </div>
   );
 }

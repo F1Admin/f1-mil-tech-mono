@@ -1,87 +1,157 @@
 'use client';
 import { useState } from 'react';
+import { useForm, SubmitHandler } from 'react-hook-form';
+
+type FormInputs = {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+};
 
 export default function ContactForm() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(
+    null
+  );
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<FormInputs>();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // Handle form submission logic here
-    console.log(formData);
+  const onSubmit: SubmitHandler<FormInputs> = async (data) => {
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...data,
+          to: 'military@flight-1.com',
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send email');
+      }
+
+      setSubmitStatus('success');
+      reset();
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="border border-zinc-400 p-10">
-      <div className="mb-4">
-        <label className="block text-sm font-thin text-zinc-400">Name</label>
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          required
-          className="mt-3 w-full border border-zinc-400 bg-black px-4 py-2 focus:border-white sm:text-sm"
-        />
-      </div>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="border border-zinc-400 p-6 md:p-10"
+    >
+      <FormField
+        label="Name"
+        name="name"
+        register={register}
+        required
+        error={errors.name}
+      />
+      <FormField
+        label="Email"
+        name="email"
+        type="email"
+        register={register}
+        required
+        error={errors.email}
+      />
+      <FormField
+        label="Subject"
+        name="subject"
+        register={register}
+        required
+        error={errors.subject}
+      />
+      <FormField
+        label="Message"
+        name="message"
+        register={register}
+        required
+        error={errors.message}
+        textarea
+      />
 
-      <div className="mb-4">
-        <label className="block text-sm font-thin text-zinc-400">Email</label>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-          className="mt-3 w-full border border-zinc-400 bg-black px-4 py-2 focus:border-white sm:text-sm"
-        />
-      </div>
-
-      <div className="mb-4">
-        <label className="block text-sm font-thin text-zinc-400">Subject</label>
-        <input
-          type="text"
-          name="subject"
-          value={formData.subject}
-          onChange={handleChange}
-          required
-          className="mt-3 w-full border border-zinc-400 bg-black px-4 py-2 focus:border-white sm:text-sm"
-        />
-      </div>
-
-      <div className="mb-4">
-        <label className="block text-sm font-thin text-zinc-400">Message</label>
-        <textarea
-          name="message"
-          value={formData.message}
-          onChange={handleChange}
-          required
-          className="mt-3 w-full border border-zinc-400 bg-black px-4 py-2 focus:border-white sm:text-sm"
-          rows={10}
-        ></textarea>
-      </div>
-
-      <div className="flex justify-end">
+      <div className="mt-6 flex justify-end">
         <button
           type="submit"
-          className="mt-3 rounded-full border border-zinc-400 bg-black px-5 py-3 focus:border-white sm:text-sm"
+          disabled={isSubmitting}
+          className="rounded-full border border-zinc-400 bg-black px-5 py-3 text-sm text-white transition-colors hover:bg-zinc-800 focus:border-white focus:outline-none disabled:opacity-50"
         >
-          Submit
+          {isSubmitting ? 'Submitting...' : 'Submit'}
         </button>
       </div>
+
+      {submitStatus === 'success' && (
+        <p className="mt-4 text-green-500">Form submitted successfully!</p>
+      )}
+      {submitStatus === 'error' && (
+        <p className="mt-4 text-red-500">
+          An error occurred. Please try again.
+        </p>
+      )}
     </form>
+  );
+}
+
+interface FormFieldProps {
+  label: string;
+  name: keyof FormInputs;
+  register: any;
+  required?: boolean;
+  error?: any;
+  type?: string;
+  textarea?: boolean;
+}
+
+function FormField({
+  label,
+  name,
+  register,
+  required = false,
+  error,
+  type = 'text',
+  textarea = false,
+}: FormFieldProps) {
+  const inputClasses =
+    'mt-1 w-full border border-zinc-400 bg-black px-4 py-2 text-sm text-white focus:border-white focus:outline-none';
+
+  return (
+    <div className="mb-4">
+      <label className="block text-sm font-thin text-zinc-400">
+        {label}
+        {required && <span className="text-red-500">*</span>}
+      </label>
+      {textarea ? (
+        <textarea
+          {...register(name, { required: required && `${label} is required` })}
+          className={inputClasses}
+          rows={5}
+        />
+      ) : (
+        <input
+          type={type}
+          {...register(name, { required: required && `${label} is required` })}
+          className={inputClasses}
+        />
+      )}
+      {error && <p className="mt-1 text-xs text-red-500">{error.message}</p>}
+    </div>
   );
 }

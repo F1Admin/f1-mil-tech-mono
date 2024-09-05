@@ -64,7 +64,7 @@ export default async function ContactPage() {
     <Suspense fallback={<Loading />}>
       <main>
         <Hero {...heroProps} />
-        <div className="m-10 grid grid-cols-2 gap-10">
+        <div className="m-10 grid gap-10 md:grid-cols-2">
           <ContactDetails {...contactDetailsProps} />
           <ContactForm />
         </div>
