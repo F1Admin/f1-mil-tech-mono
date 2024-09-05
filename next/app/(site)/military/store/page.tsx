@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { getStorePage } from '@/sanity/sanity-utils';
 import Loading from '@/app/(site)/loading';
 import Hero from '@/app/components/Hero';
-import FooterHero from '@/app/components/FooterHero';
+import Slider from '@/app/components/Slider/Slider';
 
 export const revalidate = 0;
 
@@ -19,10 +19,7 @@ export default async function militaryStore() {
     heroTitle,
     heroSubtitle,
     link,
-    footerImage,
-    footerImage_hotspot,
-    footerText,
-    footerAuthor,
+    storeCarousel,
   } = await getStorePage();
 
   const heroProps = {
@@ -31,29 +28,25 @@ export default async function militaryStore() {
     title: heroTitle,
     subTitle: heroSubtitle,
   };
-
-  const footerProps = {
-    image: footerImage,
-    hotspot: footerImage_hotspot,
-    quote: footerText,
-    author: footerAuthor,
-  };
-
+  console.log('storeCarousel', storeCarousel);
   return (
     <Suspense fallback={<Loading />}>
       <main>
         <Hero {...heroProps} />
-        <div className="py-15 flex min-h-[400px] items-center px-4 md:px-10">
-          <div className="flex-grow items-center border border-zinc-700 p-10 text-white md:min-w-[75vw] md:flex-none lg:min-w-[50vw]">
-            <Link className="flex flex-col justify-center" href={link}>
-              <h3 className="mb-5 text-3xl">Merchandise</h3>
-              <h4 className="text-xl">
-                Flight-1 Military Pilots - fly your colors here
-              </h4>
-            </Link>
-          </div>
+        <div className="flex items-center gap-4 px-4 py-8 md:px-10">
+          <Link
+            href={link}
+            className="rounded-full border border-zinc-400 px-6 py-3 text-2xl font-bold text-white transition hover:border-white"
+          >
+            Click Here
+          </Link>
+          <h4 className="text-xl font-thin">
+            and discover our exclusive online military collection.
+          </h4>
         </div>
-        <FooterHero {...footerProps} />
+        <Link href={link}>
+          <Slider images={storeCarousel} />
+        </Link>
       </main>
     </Suspense>
   );

@@ -33,12 +33,7 @@ const LoadingImage = (params: ILoadingImage) => {
   }, []);
 
   return (
-    <div
-      className={`${className} image-container ${blur ? 'blur' : 'unblur'}`}
-      style={{
-        background: '#eee',
-      }}
-    >
+    <div className={`${className} image-container ${blur ? 'blur' : 'unblur'}`}>
       {width && height && (
         <Image
           className="placeholder-image"

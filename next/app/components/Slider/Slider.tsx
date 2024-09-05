@@ -7,15 +7,9 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import NextArrow from './NextArrow';
 import PrevArrow from './PrevArrow';
-import { CourseCarousel } from '@/sanity/sanity-utils';
-
-//import FsLightbox from 'fslightbox-react';
-
-//import globalStyles from "@/app/assets/styles/global.module.scss";
+import { type CourseCarousel } from '@/sanity/sanity-utils';
 import './Slider.scss';
 import LoadingImage from '../LoadingImage/LoadingImage';
-
-//import {IImageSlider} from "../../../../typesSection";
 
 const ImageSlider = ({ images }: { images: CourseCarousel[] }) => {
   let settings = {
@@ -57,26 +51,24 @@ const ImageSlider = ({ images }: { images: CourseCarousel[] }) => {
 
   return (
     <div className={'imageSlider'}>
-      <div className={'gliderStyle'}>
-        <Slider {...settings}>
-          {images.map((item, index) => (
-            <div
-              key={index}
-              onClick={() => {
-                setToggler(!toggler);
-                setImageIndex(index + 1);
-              }}
-            >
-              <LoadingImage
-                url={item.image}
-                title={'Image slider'}
-                width={1000}
-                height={600}
-              />
-            </div>
-          ))}
-        </Slider>
-      </div>
+      <Slider {...settings}>
+        {images.map((item, index) => (
+          <div
+            key={index}
+            onClick={() => {
+              setToggler(!toggler);
+              setImageIndex(index + 1);
+            }}
+          >
+            <LoadingImage
+              url={item.image}
+              title={'Image slider'}
+              width={600}
+              height={600}
+            />
+          </div>
+        ))}
+      </Slider>
     </div>
   );
 };

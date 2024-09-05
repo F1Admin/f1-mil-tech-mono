@@ -30,22 +30,10 @@ export default defineType({
       type: 'url',
     }),
     defineField({
-      name: 'footerImage',
-      title: 'Course Footer Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-    }),
-    defineField({
-      name: 'footerText',
-      title: 'Course Footer Text',
-      type: 'string',
-    }),
-    defineField({
-      name: 'footerAuthor',
-      title: 'Footer Author',
-      type: 'string',
+      name: 'storeCarousel',
+      title: 'Store Carousel',
+      type: 'array',
+      of: [{ type: 'coursePhoto' }],
     }),
   ],
 });

@@ -426,10 +426,10 @@ const getStorePageQuery = groq`*[_type == "militaryStorePage"][0]{
   heroTitle,
   heroSubtitle,
   link,
-  "footerImage": footerImage.asset->url,
-  "footerImage_hotspot": footerImage.hotspot,
-  footerText,
-  footerAuthor,
+  "storeCarousel": storeCarousel[]{
+    "image": image.asset->url,
+    "image_hotspot": image.hotspot,
+  },
 }`;
 
 export type StorePageQuery = {
@@ -440,10 +440,7 @@ export type StorePageQuery = {
   heroTitle: string;
   heroSubtitle: string;
   link: string;
-  footerImage: string;
-  footerImage_hotspot: SanityHotspot;
-  footerText: string;
-  footerAuthor: string;
+  storeCarousel: CourseCarousel[];
 };
 
 export async function getStorePage(): Promise<StorePageQuery> {
