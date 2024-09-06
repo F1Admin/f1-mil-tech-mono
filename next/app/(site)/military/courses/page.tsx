@@ -9,6 +9,7 @@ import Link from 'next/link';
 import Loading from '@/app/(site)/loading';
 import Hero from '@/app/components/Hero';
 import FooterHero from '@/app/components/FooterHero';
+import CourseGrid from '@/app/components/CourseGrid/CourseGrid';
 
 export const revalidate = 0;
 
@@ -52,7 +53,7 @@ export default async function MilitaryCoursesPage() {
     <Suspense fallback={<Loading />}>
       <main>
         <Hero {...heroProps} />
-        <div className="grid-col-1 grid min-h-[400px] gap-3 px-4 py-10 text-zinc-400 md:grid-cols-2 md:px-10 lg:pl-64 xl:pl-96">
+        <div className="grid-col-1 grid gap-3 px-4 py-10 text-zinc-400 md:grid-cols-2 md:px-10 lg:pl-64 xl:pl-96">
           <div className="flex flex-col gap-7">
             <h3 className="text-2xl">SELECT A COURSE</h3>
             <ul className="flex flex-col">
@@ -86,6 +87,7 @@ export default async function MilitaryCoursesPage() {
             </ul>
           </div>
         </div>
+        <CourseGrid completed={[]} />
         <FooterHero {...footerHeroProps} />
       </main>
     </Suspense>

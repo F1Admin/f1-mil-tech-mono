@@ -1,0 +1,131 @@
+.main {
+  display: flex;
+  justify-content: center;
+
+  --s: 180px;
+  --m: 8px;
+  --f: calc(1.732 * var(--s) + 4 * var(--m) - 1px);
+  --cm: 40px;
+}
+
+.container {
+  width: calc((var(--s) + (var(--m) * 2)) * 6);
+  padding-bottom: calc(var(--s) * 0.2885);
+  font-size: 0;
+}
+
+.container::before {
+  content: "";
+  width: calc(var(--s) / 2 + var(--m));
+  float: left;
+  height: 120%;
+  shape-outside: repeating-linear-gradient(
+    transparent 0,
+    transparent calc(var(--f) - 3px),
+    #000 0 var(--f)
+  );
+}
+
+.item {
+  position: relative;
+  width: var(--s);
+  margin: var(--m);
+  height: calc(var(--s) * 1.1547);
+  display: inline-block;
+  font-size: initial;
+  clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
+  margin-bottom: calc(var(--m) - var(--s) * 0.2885);
+  background: var(--item-color);
+  color: var(--item-color);
+}
+
+.item.darkColor {
+  --item-color: #59595b;
+}
+
+.item.lightColor {
+  --item-color: #9a9a9a;
+}
+
+.item.isCompleted.darkColor {
+  --item-color: white;
+}
+
+.item.isCompleted.lightColor {
+  --item-color: #59595b;
+}
+
+.item.isCompleted.lightColor:hover {
+  --item-color: #59a5dd;
+}
+
+.item:hover {
+  --item-color: #59a5dd;
+}
+
+.content {
+  background-color: black; /* Equivalent to Tailwind's bg-gray-900 */
+  position: absolute;
+  top: calc((var(--cm) / 2) * 1.1547);
+  left: calc(var(--cm) / 2);
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  width: calc(var(--s) - var(--cm));
+  height: calc((var(--s) - var(--cm)) * 1.1547);
+  padding: 10px;
+  clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
+  cursor: pointer;
+}
+
+.content .name {
+  font-size: 30px;
+  line-height: 1;
+}
+
+.content .desc {
+  font-size: 12px;
+  line-height: 2;
+}
+
+.content hr {
+  border: 5px solid var(--item-color);
+}
+
+.light .item {
+  --item-color: #aaaaaa;
+}
+
+.light .item.isCompleted {
+  --item-color: black;
+}
+
+.light .content {
+  background-color: #f7fafc; /* Equivalent to Tailwind's bg-gray-100 */
+}
+
+@media (max-width: 768px) {
+  .main {
+    --s: 150px;
+  }
+}
+
+@media (max-width: 425px) {
+  .main {
+    --s: 65px;
+    --m: 2px;
+    --cm: 10px;
+  }
+
+  .content .name {
+    font-size: 14px;
+  }
+
+  .content .desc {
+    font-size: 6px;
+  }
+
+  .content hr {
+    border-width: 2px;
+  }
+}
