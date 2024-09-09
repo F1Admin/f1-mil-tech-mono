@@ -25,26 +25,6 @@ export default async function Cadre() {
   } = await getCadrePage();
 
   const instructors = await getInstructors();
-  const manager = instructors.find(
-    (instructor) =>
-      instructor.yearsWithFlight1 === 'Military Operations Manager'
-  );
-  const foundingMember = instructors
-    .filter((instructor) => instructor.yearsWithFlight1 === 'Founding Member')
-    .sort((a, b) => b.numberOfJumps - a.numberOfJumps);
-  const instructor = instructors
-    .filter(
-      (instructor) =>
-        instructor.yearsWithFlight1 !== 'Founding Member' &&
-        instructor.yearsWithFlight1 !== 'Military Operations Manager'
-    )
-    .sort((a, b) => Number(b.yearsWithFlight1) - Number(a.yearsWithFlight1));
-
-  const sortedInstructors = [
-    ...(manager ? [manager] : []),
-    ...foundingMember,
-    ...instructor,
-  ];
 
   const heroProps = {
     image: heroImage,
@@ -64,7 +44,7 @@ export default async function Cadre() {
       <main>
         <Hero {...heroProps} />
         <div className="flex flex-wrap justify-center gap-7 px-4 py-10 text-zinc-400 md:gap-10 md:p-11 lg:p-20">
-          {sortedInstructors.map((instructor) => (
+          {instructors.map((instructor) => (
             <InstructorCard key={instructor._id} instructor={instructor} />
           ))}
         </div>

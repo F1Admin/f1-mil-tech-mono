@@ -6,9 +6,9 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
-      name: 'email',
-      title: 'Email',
-      type: 'string',
+      name: 'order',
+      title: 'Order',
+      type: 'number',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -20,6 +20,21 @@ export default defineType({
       name: 'lastName',
       title: 'Last Name',
       type: 'string',
+    }),
+    defineField({
+      name: 'title',
+      title: 'Title',
+      type: 'string',
+    }),
+    defineField({
+      name: 'numberOfJumps',
+      title: 'Number of Jumps',
+      type: 'number',
+    }),
+    defineField({
+      name: 'dateJoinedFlight1',
+      title: 'Date Joined Flight-1',
+      type: 'date',
     }),
     defineField({
       name: 'profileImage',
@@ -40,36 +55,25 @@ export default defineType({
       ],
     }),
     defineField({
-      name: 'title',
-      title: 'Title',
+      name: 'email',
+      title: 'Email',
       type: 'string',
-    }),
-    defineField({
-      name: 'numberOfJumps',
-      title: 'Number of Jumps',
-      type: 'number',
-    }),
-    defineField({
-      name: 'yearsInSport',
-      title: 'Years in Sport',
-      type: 'number',
-    }),
-    defineField({
-      name: 'yearsWithFlight1',
-      title: 'Years with Flight1',
-      type: 'string',
+      validation: (Rule) => Rule.required(),
     }),
   ],
   preview: {
     select: {
-      title: 'firstName',
-      subtitle: 'lastName',
+      firstName: 'firstName',
+      lastName: 'lastName',
+      title: 'title',
       media: 'profileImage',
+      order: 'order',
     },
     prepare(selection) {
-      const { title, subtitle, media } = selection;
+      const { firstName, lastName, title, media, order } = selection;
       return {
-        title: `${title} ${subtitle}`,
+        title: `${firstName} ${lastName}`,
+        subtitle: `${order} - ${title}`,
         media: media,
       };
     },

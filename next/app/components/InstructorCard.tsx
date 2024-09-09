@@ -29,25 +29,17 @@ export default function InstructorCard(props: InstructorCardProps) {
         </h2>
       </div>
       <dl className="text-sm">
-        <div className="flex justify-between">
+        <div className="flex gap-2">
           <dt className="font-thin uppercase">Jumps:</dt>
           <dd>{instructor.numberOfJumps}</dd>
         </div>
-        <div className="flex justify-between">
-          <dt className="font-thin uppercase">Years in Sport:</dt>
-          <dd>{instructor.yearsInSport}</dd>
+        <div className="flex gap-2">
+          <dt className="font-thin uppercase">Years with Flight-1:</dt>
+          <dd>{instructor.yearsWithFlight1}</dd>
         </div>
-        {instructor.yearsWithFlight1 === 'Founding Member' ||
-        instructor.yearsWithFlight1 === 'Military Operations Manager' ? (
-          <div className="flex flex-col">
-            <dd>{instructor.yearsWithFlight1}</dd>
-          </div>
-        ) : (
-          <div className="flex justify-between">
-            <dt className="font-thin uppercase">Years with Flight-1:</dt>
-            <dd>{instructor.yearsWithFlight1}</dd>
-          </div>
-        )}
+        <div className="flex flex-col">
+          <dd>{instructor.title}</dd>
+        </div>
       </dl>
     </div>
   );

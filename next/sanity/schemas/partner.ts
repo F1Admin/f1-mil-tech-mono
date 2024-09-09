@@ -46,7 +46,7 @@ export default defineType({
       subtitle: 'partnerUrl',
       media: 'partnerLogo',
     },
-    prepare: ({ order, title, subtitle, media }) => ({
+    prepare: ({ order, title, media }) => ({
       title: title,
       subtitle: `Order: ${order}`,
       media: media,

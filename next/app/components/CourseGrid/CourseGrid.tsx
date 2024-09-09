@@ -12,26 +12,34 @@ const CourseGrid = ({
   const { items } = useMemo(() => {
     const grid = [
       [
-        ['101M', 100],
-        ['101/201M', 200],
-        ['301M', 300],
-        ['ENV', 400],
-        ['MFF', 'SUP'],
+        ['101M', '100 SERIES', '101'],
+        ['101/201M', '200 SERIES', '101-201'],
+        ['202M', '200 SERIES', '202'],
+        ['301M', '300 SERIES', '301'],
+        ['302M', '300 SERIES', '302'],
       ],
-      [null, ['202M', 200], ['302M', 300], ['CUS', 400], ['T&B', 'SUP']],
+      [
+        null,
+        null,
+        ['MFF', 'SUPPORT', 'mff'],
+        ['T&B', 'SUPPORT', 'tandem-bundle'],
+        ['CUSTOM', 'SUPPORT', 'custom-courses'],
+      ],
     ];
 
     const transformItem = (
-      item: [string, number] | null
-    ): { name: string; type: number } | null => {
+      item: [string, string, string] | null
+    ): { name: string; type: string; slug: string } | null => {
       if (!item) return null;
-      const [name, type] = item;
-      return { name, type };
+      const [name, type, slug] = item;
+      return { name, type, slug };
     };
 
     const items = grid
       .map((row) =>
-        row.map((item) => transformItem(item as [string, number] | null))
+        row.map((item) =>
+          transformItem(item as [string, string, string] | null)
+        )
       )
       .flat();
 
@@ -40,13 +48,13 @@ const CourseGrid = ({
 
   // Check if the item is completed
   const isCompleted = (
-    item: { name: string; type: number } | null
+    item: { name: string; type: string; slug: string } | null
   ): boolean => {
     return item ? completed.includes(item.name) : false;
   };
 
   return (
-    <div className={`main py-10 ${light ? 'light' : ''}`}>
+    <div className={`main py-16 ${light ? 'light' : ''}`}>
       <div className="container">
         {items.map((item, index) => (
           <div
@@ -55,14 +63,26 @@ const CourseGrid = ({
               light ? 'lightColor' : 'darkColor'
             }`}
           >
-            {item && (
-              <Link href={`/miltary/courses/${item.name}`}>
+            {item && !(item.type == 'SUPPORT') ? (
+              <Link href={`/military/courses/${item.slug}`}>
                 <div className="content">
                   <div className="name">{item.name}</div>
                   <hr />
-                  <div className="desc">{item.type} SERIES</div>
+                  <div className="desc">{item.type}</div>
                 </div>
               </Link>
+            ) : (
+              item && (
+                <Link
+                  href={`/military/courses/supporting-courses/${item.slug}`}
+                >
+                  <div className="content">
+                    <div className="name">{item.name}</div>
+                    <hr />
+                    <div className="desc">{item.type}</div>
+                  </div>
+                </Link>
+              )
             )}
           </div>
         ))}

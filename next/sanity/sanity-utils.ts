@@ -358,7 +358,7 @@ export async function getContactPage(): Promise<ContactPageQuery> {
   return createClient(config).fetch(getContactPageQuery);
 }
 
-const getInstructorsQuery = groq`*[_type == "instructor"] | order(yearWithFlight1 desc){
+const getInstructorsQuery = groq`*[_type == "instructor"] | order(order asc){
   _id,
   email,
   firstName,
@@ -367,8 +367,7 @@ const getInstructorsQuery = groq`*[_type == "instructor"] | order(yearWithFlight
   "profileImage": profileImage.asset->url,
   "alt": profileImage.alt,
   numberOfJumps,
-  yearsInSport,
-  yearsWithFlight1,
+  dateJoinedFlight1,
 }`;
 
 export type Instructor = {
@@ -380,12 +379,27 @@ export type Instructor = {
   profileImage: string;
   alt: string;
   numberOfJumps: number;
-  yearsInSport: number;
-  yearsWithFlight1: string;
+  dateJoinedFlight1: Date;
+  yearsWithFlight1: number;
 };
 
 export async function getInstructors(): Promise<Instructor[]> {
-  return createClient(config).fetch(getInstructorsQuery);
+  const instructors: Instructor[] =
+    await createClient(config).fetch(getInstructorsQuery);
+  return instructors.map((instructor) => ({
+    ...instructor,
+    yearsWithFlight1: calculateYearsWithFlight1(instructor.dateJoinedFlight1),
+  }));
+}
+
+function calculateYearsWithFlight1(dateJoined: Date): number {
+  console.log(dateJoined);
+  const joinDate = new Date(dateJoined);
+  console.log(joinDate);
+  const now = new Date();
+  const diffTime = now.getTime() - joinDate.getTime();
+  const diffYears = diffTime / (1000 * 3600 * 24 * 365.25);
+  return Math.max(0, Math.floor(diffYears));
 }
 
 const getCadrePageQuery = groq`*[_type == "militaryCadrePage"][0]{
