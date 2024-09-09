@@ -93,7 +93,7 @@ export const structure: StructureResolver = (S) =>
             .title('Partners')
             .apiVersion(apiVersion)
             .filter('_type == "partner"')
-            .defaultOrdering([{ field: 'partnerName', direction: 'asc' }])
+            .defaultOrdering([{ field: 'order', direction: 'asc' }])
         ),
       S.divider(),
       S.listItem()

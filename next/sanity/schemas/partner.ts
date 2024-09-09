@@ -15,6 +15,12 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'order',
+      title: 'Order',
+      type: 'number',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: 'partnerName',
       title: 'Partner Name',
       type: 'string',
@@ -33,4 +39,17 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
   ],
+  preview: {
+    select: {
+      order: 'order',
+      title: 'partnerName',
+      subtitle: 'partnerUrl',
+      media: 'partnerLogo',
+    },
+    prepare: ({ order, title, subtitle, media }) => ({
+      title: title,
+      subtitle: `Order: ${order}`,
+      media: media,
+    }),
+  },
 });

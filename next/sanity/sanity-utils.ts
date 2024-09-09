@@ -292,7 +292,7 @@ export async function getPartnersPage(): Promise<PartnerPageQuery> {
   return createClient(config).fetch(getParnersPageQuery);
 }
 
-const getPartnersQuery = groq`*[_type == "partner"]{
+const getPartnersQuery = groq`*[_type == "partner"] | order(order asc){
   _id,
   partnerName,
   "partnerLogo": partnerLogo.asset->url,
