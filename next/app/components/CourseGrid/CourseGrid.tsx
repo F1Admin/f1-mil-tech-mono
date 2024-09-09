@@ -1,5 +1,7 @@
+'use client';
+
 import Link from 'next/link';
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import './CourseGrid.css';
 
 const CourseGrid = ({
@@ -9,23 +11,56 @@ const CourseGrid = ({
   completed: string[];
   light?: boolean;
 }) => {
+  const [screenSize, setScreenSize] = useState('large');
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 1130px)');
+    const handleMediaQueryChange = (
+      e: MediaQueryList | MediaQueryListEvent
+    ) => {
+      setScreenSize(e.matches ? 'small' : 'large');
+    };
+    mediaQuery.addEventListener('change', handleMediaQueryChange);
+    handleMediaQueryChange(mediaQuery);
+    return () =>
+      mediaQuery.removeEventListener('change', handleMediaQueryChange);
+  }, []);
+
   const { items } = useMemo(() => {
-    const grid = [
-      [
-        ['101M', '100 SERIES', '101'],
-        ['101/201M', '200 SERIES', '101-201'],
-        ['202M', '200 SERIES', '202'],
-        ['301M', '300 SERIES', '301'],
-        ['302M', '300 SERIES', '302'],
-      ],
-      [
-        null,
-        null,
-        ['MFF', 'SUPPORT', 'mff'],
-        ['T&B', 'SUPPORT', 'tandem-bundle'],
-        ['CUSTOM', 'SUPPORT', 'custom-courses'],
-      ],
-    ];
+    const grid =
+      screenSize === 'large'
+        ? [
+            [
+              ['101M', '100 SERIES', '101'],
+              ['101/201M', '200 SERIES', '101-201'],
+              ['202M', '200 SERIES', '202'],
+              ['301M', '300 SERIES', '301'],
+              ['302M', '300 SERIES', '302'],
+            ],
+            [
+              null,
+              null,
+              ['MFF', 'SUPPORT', 'mff'],
+              ['T&B', 'SUPPORT', 'tandem-bundle'],
+              ['CUSTOM', 'SUPPORT', 'custom-courses'],
+            ],
+          ]
+        : [
+            [
+              ['101M', '100 SERIES', '101'],
+              ['101/201M', '200 SERIES', '101-201'],
+              ['202M', '200 SERIES', '202'],
+            ],
+            [
+              ['301M', '300 SERIES', '301'],
+              ['302M', '300 SERIES', '302'],
+            ],
+            [
+              ['MFF', 'SUPPORT', 'mff'],
+              ['T&B', 'SUPPORT', 'tandem-bundle'],
+              ['CUSTOM', 'SUPPORT', 'custom-courses'],
+            ],
+          ];
 
     const transformItem = (
       item: [string, string, string] | null
@@ -44,7 +79,7 @@ const CourseGrid = ({
       .flat();
 
     return { grid, items };
-  }, []);
+  }, [screenSize]);
 
   // Check if the item is completed
   const isCompleted = (

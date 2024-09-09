@@ -53,8 +53,8 @@ export default async function MilitaryCoursesPage() {
     <Suspense fallback={<Loading />}>
       <main>
         <Hero {...heroProps} />
-        <div className="grid-col-1 grid gap-3 px-4 py-16 text-zinc-400 md:grid-cols-2 md:px-10 lg:pl-64 xl:pl-96">
-          <div className="flex flex-col gap-7">
+        <div className="grid-col-1 grid gap-10 px-4 py-16 text-zinc-400 md:grid-cols-2 md:px-10 lg:pl-64 xl:pl-96">
+          <div className="flex flex-col gap-7 md:gap-3">
             <h3 className="text-2xl">SELECT A COURSE</h3>
             <ul className="flex flex-col">
               {courses.map((course) => (
@@ -70,7 +70,7 @@ export default async function MilitaryCoursesPage() {
               ))}
             </ul>
           </div>
-          <div className="flex flex-col gap-7">
+          <div className="flex flex-col gap-7 md:gap-3">
             <h3 className="whitespace-nowrap text-2xl">
               FLIGHT-1 SUPPORTING COURSES
             </h3>
