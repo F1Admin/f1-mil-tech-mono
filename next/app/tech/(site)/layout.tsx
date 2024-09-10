@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import React from 'react';
+import Header from '@/app/components/Header';
+import Footer from '@/app/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Flight-1 Tech',
@@ -11,5 +13,11 @@ export default function TechLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <>
+      <Header />
+      {children}
+      <Footer />
+    </>
+  );
 }

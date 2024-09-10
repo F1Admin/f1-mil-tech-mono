@@ -2,7 +2,7 @@ import Hero from '@/app/components/Hero';
 import { getLandingPage } from '@/sanity/sanity-tech-utils';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
-import Loading from '../loading';
+import Loading from '@/app/loading';
 
 export const revalidate = 0;
 

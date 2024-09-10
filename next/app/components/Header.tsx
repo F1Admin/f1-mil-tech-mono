@@ -23,7 +23,7 @@ const Header = () => {
   useEffect(() => {
     let isMounted = true;
 
-    const fetchLogo = () => {
+    if (pathname) {
       if (pathname.startsWith('/military')) {
         getMilitarySiteSettings()
           .then((settings) => {
@@ -39,9 +39,7 @@ const Header = () => {
           })
           .catch((error) => console.error('Error fetching tech logo:', error));
       }
-    };
-
-    fetchLogo();
+    }
 
     return () => {
       isMounted = false;
