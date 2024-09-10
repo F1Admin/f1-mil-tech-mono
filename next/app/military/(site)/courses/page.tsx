@@ -10,6 +10,7 @@ import Loading from '@/app/loading';
 import Hero from '@/app/components/Hero';
 import FooterHero from '@/app/components/FooterHero';
 import CourseGrid from '@/app/components/CourseGrid/CourseGrid';
+import { RiArrowDropRightLine } from 'react-icons/ri';
 
 export const revalidate = 0;
 
@@ -61,8 +62,9 @@ export default async function MilitaryCoursesPage() {
                 <Link
                   key={course._id}
                   href={`/military/courses/${course.slug}`}
-                  className="text-xl transition hover:font-normal hover:text-white"
+                  className="flex items-center text-xl transition hover:font-normal hover:text-white"
                 >
+                  <RiArrowDropRightLine className="text-4xl" />
                   {course.courseNumber
                     ? `${course.courseNumber}M ${course.courseTitle}`
                     : course.courseTitle}
@@ -79,8 +81,9 @@ export default async function MilitaryCoursesPage() {
                 <Link
                   key={course._id}
                   href={`/military/courses/supporting-courses/${course.slug}`}
-                  className="text-xl transition hover:font-normal hover:text-white"
+                  className="flex items-center text-xl transition hover:font-normal hover:text-white"
                 >
+                  <RiArrowDropRightLine className="text-4xl" />
                   {course.courseTitle}
                 </Link>
               ))}

@@ -26,6 +26,20 @@ export default async function Cadre() {
 
   const instructors = await getInstructors();
 
+  const manager = instructors.filter(
+    (instructor) => instructor.title === 'Military Operations Manager'
+  );
+  const founders = instructors.filter(
+    (instructor) => instructor.title === 'Co-Founder'
+  );
+  const topRow = [...manager, ...founders];
+  const courseDirectors = instructors.filter(
+    (instructor) => instructor.title === 'Course Director'
+  );
+  const cadreInstructors = instructors.filter(
+    (instructor) => instructor.title === 'Instructor'
+  );
+
   const heroProps = {
     image: heroImage,
     hotspot: heroImage_hotspot,
@@ -44,7 +58,18 @@ export default async function Cadre() {
       <main>
         <Hero {...heroProps} />
         <div className="flex flex-wrap justify-center gap-7 px-4 py-10 text-zinc-400 md:gap-10 md:p-11 lg:p-20">
-          {instructors.map((instructor) => (
+          {topRow.length > 0 &&
+            topRow.map((instructor) => (
+              <InstructorCard key={instructor._id} instructor={instructor} />
+            ))}
+        </div>
+        <div className="flex flex-wrap justify-center gap-7 px-4 py-10 text-zinc-400 md:gap-10 md:p-11 lg:p-20">
+          {courseDirectors.map((instructor) => (
+            <InstructorCard key={instructor._id} instructor={instructor} />
+          ))}
+        </div>
+        <div className="flex flex-wrap justify-center gap-7 px-4 py-10 text-zinc-400 md:gap-10 md:p-11 lg:p-20">
+          {cadreInstructors.map((instructor) => (
             <InstructorCard key={instructor._id} instructor={instructor} />
           ))}
         </div>

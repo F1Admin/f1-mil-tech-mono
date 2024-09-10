@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { type Instructor } from '@/sanity/sanity-military-utils';
-
+import { RiArrowDropRightLine } from 'react-icons/ri';
 interface InstructorCardProps {
   instructor: Instructor; // define the 'instructor' prop
 }
@@ -37,7 +37,8 @@ export default function InstructorCard(props: InstructorCardProps) {
           <dt className="font-thin uppercase">Years with Flight-1:</dt>
           <dd>{instructor.yearsWithFlight1}</dd>
         </div>
-        <div className="flex flex-col">
+        <div className="flex items-center">
+          <RiArrowDropRightLine className="-ml-2 text-xl" />
           <dd>{instructor.title}</dd>
         </div>
       </dl>
