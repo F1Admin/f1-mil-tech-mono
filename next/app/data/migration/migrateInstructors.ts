@@ -226,9 +226,6 @@ async function migrateAllInstructors() {
 }
 
 async function testCreateDocument() {
-  console.log('Project ID:', process.env.NEXT_PUBLIC_SANITY_PROJECT_ID);
-  console.log('Dataset:', process.env.NEXT_PUBLIC_SANITY_DATASET);
-  console.log('Token:', process.env.SANITY_API_TOKEN);
   try {
     const result = await createClient(clientConfig).create({
       _type: 'instructor',

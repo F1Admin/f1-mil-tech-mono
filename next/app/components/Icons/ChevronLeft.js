@@ -8,7 +8,7 @@ const ChevronLeft = () => (
   >
     <g opacity="1">
       <path
-        class="cls-1"
+        className="cls-1"
         d="M6.67,0h11.23l-7.11,20.01,7.11,20.01H6.67L0,20.01,6.67,0Z"
       />
     </g>

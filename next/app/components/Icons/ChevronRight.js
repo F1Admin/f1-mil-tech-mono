@@ -8,7 +8,7 @@ const ChevronRight = () => (
   >
     <g>
       <path
-        class="cls-1"
+        className="cls-1"
         d="M11.23,40.02H0l7.11-20.01L0,0h11.23l6.67,20.01-6.67,20.01Z"
       />
     </g>

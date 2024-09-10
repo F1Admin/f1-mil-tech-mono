@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { SanityHotspot } from '@/sanity/sanity-utils';
+import { SanityHotspot } from '@/sanity/sanity-military-utils';
 
 interface FooterHeroProps {
   image: string;

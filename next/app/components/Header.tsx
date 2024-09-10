@@ -5,9 +5,11 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import ChevronDown from './Icons/ChevronDown';
 import militaryLinks from '../data/militaryLinks';
+import techLinks from '../data/techLinks';
 import baseLinks from '../data/baseLinks';
 import { usePathname } from 'next/navigation';
-import { getSiteSettings } from '@/sanity/sanity-utils';
+import { getSiteSettings as getMilitarySiteSettings } from '@/sanity/sanity-military-utils';
+import { getSiteSettings as getTechSiteSettings } from '@/sanity/sanity-tech-utils';
 
 const Header = () => {
   const [logo, setLogo] = useState('');
@@ -16,14 +18,35 @@ const Header = () => {
   const pathname = usePathname();
 
   const isCurrent = (path: string) => pathname.includes(path);
+  const links = pathname.startsWith('/military') ? militaryLinks : techLinks;
 
   useEffect(() => {
-    const fetchLogo = async () => {
-      const settings = await getSiteSettings();
-      setLogo(settings.militaryLogo || '');
+    let isMounted = true;
+
+    const fetchLogo = () => {
+      if (pathname.startsWith('/military')) {
+        getMilitarySiteSettings()
+          .then((settings) => {
+            if (isMounted) setLogo(settings.militaryLogo || '');
+          })
+          .catch((error) =>
+            console.error('Error fetching military logo:', error)
+          );
+      } else if (pathname.startsWith('/tech')) {
+        getTechSiteSettings()
+          .then((settings) => {
+            if (isMounted) setLogo(settings.techLogo || '');
+          })
+          .catch((error) => console.error('Error fetching tech logo:', error));
+      }
     };
+
     fetchLogo();
-  }, []);
+
+    return () => {
+      isMounted = false;
+    };
+  }, [pathname]);
 
   const toggleMenu = (menu: 'mobile' | 'base') => {
     if (menu === 'mobile') {
@@ -51,7 +74,7 @@ const Header = () => {
           )}
         </Link>
         <nav className="hidden space-x-8 lg:flex">
-          {militaryLinks.map(({ path, label }) => (
+          {links.map(({ path, label }) => (
             <Link
               key={path}
               href={path}
@@ -114,7 +137,7 @@ const Header = () => {
       {mobileMenuOpen && (
         <div className="bg-neutral-600 lg:hidden">
           <nav className="flex flex-col space-y-4 px-4 py-4">
-            {militaryLinks.map(({ path, label }) => (
+            {links.map(({ path, label }) => (
               <Link
                 key={path}
                 href={path}

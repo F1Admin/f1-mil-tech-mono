@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { type Instructor } from '@/sanity/sanity-utils';
+import { type Instructor } from '@/sanity/sanity-military-utils';
 
 interface InstructorCardProps {
   instructor: Instructor; // define the 'instructor' prop

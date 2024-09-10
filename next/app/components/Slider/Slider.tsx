@@ -7,7 +7,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import NextArrow from './NextArrow';
 import PrevArrow from './PrevArrow';
-import { type CourseCarousel } from '@/sanity/sanity-utils';
+import { type CourseCarousel } from '@/sanity/sanity-military-utils';
 import './Slider.scss';
 import LoadingImage from '../LoadingImage/LoadingImage';
 

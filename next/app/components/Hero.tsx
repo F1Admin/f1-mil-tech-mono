@@ -1,4 +1,4 @@
-import { SanityHotspot } from '@/sanity/sanity-utils';
+import { SanityHotspot } from '@/sanity/sanity-military-utils';
 
 interface HeroProps {
   image: string;

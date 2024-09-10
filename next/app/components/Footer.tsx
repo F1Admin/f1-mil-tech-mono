@@ -5,7 +5,7 @@ import {
   getCourses,
   getSiteSettings,
   getSupportingCourses,
-} from '@/sanity/sanity-utils';
+} from '@/sanity/sanity-military-utils';
 
 export default async function Footer() {
   const [courses, supportingCourses, { footerLogo }] = await Promise.all([
