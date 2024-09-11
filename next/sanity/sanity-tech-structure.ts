@@ -23,4 +23,49 @@ export const structure: StructureResolver = (S) =>
             .documentId('techLandingPage')
             .title('Landing Page')
         ),
+      S.listItem()
+        .title('About Page')
+        .child(
+          S.document()
+            .schemaType('techAboutPage')
+            .documentId('techAboutPage')
+            .title('About Page')
+        ),
+      S.divider(),
+      S.listItem()
+        .title('Products')
+        .child(
+          S.documentList()
+            .title('Products')
+            .apiVersion(apiVersion)
+            .filter('_type == "product"')
+            .defaultOrdering([{ field: 'order', direction: 'asc' }])
+        ),
+      S.divider(),
+      S.listItem()
+        .title('Partners Page')
+        .child(
+          S.document()
+            .schemaType('techPartnerPage')
+            .documentId('techPartnerPage')
+            .title('Partners Page')
+        ),
+      S.listItem()
+        .title('Partners')
+        .child(
+          S.documentList()
+            .title('Partners')
+            .apiVersion(apiVersion)
+            .filter('_type == "partner"')
+            .defaultOrdering([{ field: 'order', direction: 'asc' }])
+        ),
+      S.divider(),
+      S.listItem()
+        .title('Contact Page')
+        .child(
+          S.document()
+            .schemaType('techContactPage')
+            .documentId('techContactPage')
+            .title('Contact Page')
+        ),
     ]);

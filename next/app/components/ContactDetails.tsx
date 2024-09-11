@@ -11,7 +11,6 @@ interface ContactDetailsProps
     ContactPageQuery,
     | 'contactName'
     | 'contactTitle'
-    | 'contactImage'
     | 'phone'
     | 'email'
     | 'mailingAddress'

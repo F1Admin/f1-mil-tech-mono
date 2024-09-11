@@ -2,7 +2,7 @@ import ContactDetails from '@/app/components/ContactDetails';
 import ContactForm from '@/app/components/ContactForm';
 import FooterHero from '@/app/components/FooterHero';
 import Hero from '@/app/components/Hero';
-import { getContactPage } from '@/sanity/sanity-military-utils';
+import { getContactPage } from '@/sanity/sanity-tech-utils';
 import { Suspense } from 'react';
 import Loading from '@/app/loading';
 import { Metadata } from 'next';
@@ -10,7 +10,7 @@ import { Metadata } from 'next';
 export const revalidate = 0;
 
 export const metadata: Metadata = {
-  title: 'Military Contact Page',
+  title: 'Tech Contact Page',
 };
 
 export default async function ContactPage() {

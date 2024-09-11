@@ -379,25 +379,27 @@ export type Instructor = {
   profileImage: string;
   alt: string;
   numberOfJumps: number;
-  dateJoinedFlight1: Date;
+  dateJoinedFlight1: number;
   yearsWithFlight1: number;
 };
 
 export async function getInstructors(): Promise<Instructor[]> {
   const instructors: Instructor[] =
     await createClient(militaryConfig).fetch(getInstructorsQuery);
-  return instructors.map((instructor) => ({
-    ...instructor,
-    yearsWithFlight1: calculateYearsWithFlight1(instructor.dateJoinedFlight1),
-  }));
+  return instructors.map((instructor) => {
+    return {
+      ...instructor,
+      yearsWithFlight1: calculateYearsWithFlight1(instructor.dateJoinedFlight1),
+    };
+  });
 }
 
-function calculateYearsWithFlight1(dateJoined: Date): number {
-  const joinDate = new Date(dateJoined);
+function calculateYearsWithFlight1(dateJoined: number): number {
+  if (!dateJoined) return 0;
+  const joinDate = dateJoined;
   const now = new Date();
-  const diffTime = now.getTime() - joinDate.getTime();
-  const diffYears = diffTime / (1000 * 3600 * 24 * 365.25);
-  return Math.max(0, Math.floor(diffYears));
+  const diffTime = now.getFullYear() - joinDate;
+  return diffTime;
 }
 
 const getCadrePageQuery = groq`*[_type == "militaryCadrePage"][0]{

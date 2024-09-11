@@ -18,15 +18,21 @@ export default function FooterHero({
 
   return (
     <div className="relative h-[400px] overflow-hidden">
-      <Image
-        src={image}
-        alt="Footer hero image"
-        fill
-        style={{
-          objectFit: 'cover',
-          objectPosition: `${effectiveHotspot.x * 100}% ${effectiveHotspot.y * 100}%`,
-        }}
-      />
+      {image ? (
+        <Image
+          src={image}
+          alt="Footer hero image"
+          fill
+          style={{
+            objectFit: 'cover',
+            objectPosition: `${effectiveHotspot.x * 100}% ${effectiveHotspot.y * 100}%`,
+          }}
+        />
+      ) : (
+        <div className="flex h-full w-full items-center justify-center bg-gray-200">
+          <p className="text-gray-500">No image provided</p>
+        </div>
+      )}
       {(quote || author) && (
         <div className="absolute inset-0 flex items-end justify-start p-4 md:p-10">
           <div className="max-w-2x p-4 text-white">

@@ -33,8 +33,9 @@ export default defineType({
     }),
     defineField({
       name: 'dateJoinedFlight1',
-      title: 'Date Joined Flight-1',
-      type: 'date',
+      title: 'Year Joined Flight-1',
+      type: 'number',
+      initialValue: new Date().getFullYear(),
     }),
     defineField({
       name: 'profileImage',

@@ -74,13 +74,13 @@ export default defineType({
       of: [{ type: 'block' }],
     }),
     defineField({
-      name: 'selection_title',
-      title: 'Selection Title',
+      name: 'philosophy_title',
+      title: 'Philosophy Title',
       type: 'string',
     }),
     defineField({
-      name: 'selection_text',
-      title: 'Selection Text',
+      name: 'philosophy_text',
+      title: 'Philosophy Text',
       type: 'array',
       of: [{ type: 'block' }],
     }),
