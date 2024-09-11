@@ -20,7 +20,7 @@ const techLinks = [
     label: 'Contact',
   },
   {
-    path: '/tech/store',
+    path: 'https://store.flight-1.com',
     label: 'Store',
   },
 ];
