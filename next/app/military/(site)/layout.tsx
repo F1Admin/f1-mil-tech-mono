@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import React from 'react';
 import Header from '@/app/components/Header';
-import Footer from '@/app/components/Footer';
+import FooterMilitary from '@/app/components/FooterMilitary';
 
 export const metadata: Metadata = {
   title: 'Flight-1 Military',
@@ -17,7 +17,7 @@ export default function MilitaryLayout({
     <>
       <Header />
       {children}
-      <Footer />
+      <FooterMilitary />
     </>
   );
 }
