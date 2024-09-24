@@ -56,7 +56,7 @@ export default async function MilitaryCourse({
       <main>
         <Hero {...heroProps} />
 
-        <div className="flex grid-cols-2 flex-col items-center gap-5 p-20 lg:grid">
+        <div className="flex flex-col items-center gap-5 p-20 lg:grid lg:grid-cols-2">
           <CourseSeriesImage
             courseNumber={course.courseNumber}
             courseTitle={course.courseTitle}
