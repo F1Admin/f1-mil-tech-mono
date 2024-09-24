@@ -93,15 +93,20 @@ export default defineType({
     select: {
       title: 'courseTitle',
       courseNumber: 'courseNumber',
+      media: 'courseSeriesImage',
+      order: 'order',
     },
-    prepare({ title, courseNumber }) {
+    prepare({ title, courseNumber, media, order }) {
       if (!courseNumber) {
         return {
           title,
+          media,
         };
       }
       return {
         title: `${courseNumber} - ${title}`,
+        subtitle: `Order: ${order}`,
+        media: media,
       };
     },
   },

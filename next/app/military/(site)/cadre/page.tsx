@@ -27,7 +27,7 @@ export default async function Cadre() {
   const instructors = await getInstructors();
 
   const manager = instructors.filter(
-    (instructor) => instructor.title === 'Military Operations Manager'
+    (instructor) => instructor.title === 'Military Director'
   );
   const founders = instructors.filter(
     (instructor) => instructor.title === 'Co-Founder'

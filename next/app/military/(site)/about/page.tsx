@@ -3,6 +3,7 @@ import Hero from '@/app/components/Hero';
 import AboutSection from '@/app/components/AboutSection';
 import { Suspense } from 'react';
 import Loading from '@/app/loading';
+import Image from 'next/image';
 
 export const revalidate = 0;
 
@@ -18,10 +19,6 @@ export default async function MilitaryAboutPage() {
     image1_hotspot,
     image1_title,
     image1_subTitle,
-    image2,
-    image2_hotspot,
-    image2_title,
-    image2_subTitle,
     image3,
     image3_hotspot,
     image3_title,
@@ -37,12 +34,6 @@ export default async function MilitaryAboutPage() {
     hotspot: image1_hotspot,
     title: image1_title,
     subTitle: image1_subTitle,
-  };
-  const aboutSection1Props = {
-    image: image2,
-    hotspot: image2_hotspot,
-    title: image2_title,
-    subTitle: image2_subTitle,
   };
   const aboutSection2Props = {
     image: image3,
@@ -63,7 +54,6 @@ export default async function MilitaryAboutPage() {
     <Suspense fallback={<Loading />}>
       <main>
         <Hero {...heroProps} />
-        <AboutSection {...aboutSection1Props} />
         <AboutSection {...aboutSection2Props} />
         <div className="grid grid-cols-1 gap-10 p-10 md:grid-cols-2 md:gap-3 md:py-20 md:pl-28 md:pr-10">
           <AboutSection {...aboutSection3Props} />

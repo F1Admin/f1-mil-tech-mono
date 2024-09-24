@@ -74,4 +74,18 @@ export default defineType({
       type: 'string',
     }),
   ],
+  preview: {
+    select: {
+      title: 'courseTitle',
+      order: 'order',
+      media: 'courseSeriesImage',
+    },
+    prepare({ title, order, media }) {
+      return {
+        title: title,
+        subtitle: `Order: ${order}`,
+        media: media,
+      };
+    },
+  },
 });

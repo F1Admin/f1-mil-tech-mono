@@ -25,27 +25,8 @@ export default defineType({
       rows: 3,
     }),
     defineField({
-      name: 'image2',
-      title: 'Image 2',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-    }),
-    defineField({
-      name: 'image2_title',
-      title: 'Image 2 Title',
-      type: 'string',
-    }),
-    defineField({
-      name: 'image2_subTitle',
-      title: 'Image 2 Subtitle',
-      type: 'array',
-      of: [{ type: 'block' }],
-    }),
-    defineField({
       name: 'image3',
-      title: 'Image 3 Image',
+      title: 'Origins Image',
       type: 'image',
       options: {
         hotspot: true,
@@ -53,12 +34,12 @@ export default defineType({
     }),
     defineField({
       name: 'image3_title',
-      title: 'Image 3 Title',
+      title: 'Origins Title',
       type: 'string',
     }),
     defineField({
       name: 'image3_subTitle',
-      title: 'Image 3 Subtitle',
+      title: 'Origins Subtitle',
       type: 'array',
       of: [{ type: 'block' }],
     }),
