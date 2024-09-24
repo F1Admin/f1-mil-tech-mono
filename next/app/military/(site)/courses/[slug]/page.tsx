@@ -8,6 +8,7 @@ import FooterHero from '@/app/components/FooterHero';
 import Loading from '@/app/loading';
 import { RiArrowDropRightLine } from 'react-icons/ri';
 import { PortableText } from 'next-sanity';
+import CourseSeriesImage from '@/app/components/CourseSeriesImage';
 
 export const revalidate = 0;
 
@@ -54,15 +55,13 @@ export default async function MilitaryCourse({
     <Suspense fallback={<Loading />}>
       <main>
         <Hero {...heroProps} />
+
         <div className="flex grid-cols-2 flex-col items-center gap-5 p-20 lg:grid">
-          {course.courseSeriesImage && course.courseTitle && (
-            <Image
-              src={course.courseSeriesImage}
-              alt={course.courseTitle}
-              width={500}
-              height={200}
-            />
-          )}
+          <CourseSeriesImage
+            courseNumber={course.courseNumber}
+            courseTitle={course.courseTitle}
+            image={course.courseSeriesImage}
+          />
           <div className="flex flex-col gap-10 text-lg text-zinc-100">
             <div className="flex flex-col gap-5">
               <PortableText value={course.courseDescription} />
