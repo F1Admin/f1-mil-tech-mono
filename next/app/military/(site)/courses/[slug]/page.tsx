@@ -6,6 +6,8 @@ import Slider from '@/app/components/Slider/Slider';
 import Hero from '@/app/components/Hero';
 import FooterHero from '@/app/components/FooterHero';
 import Loading from '@/app/loading';
+import { RiArrowDropRightLine } from 'react-icons/ri';
+import { PortableText } from 'next-sanity';
 
 export const revalidate = 0;
 
@@ -23,7 +25,7 @@ export const generateMetadata = async ({
   }
   return {
     title: course.courseTitle,
-    description: course.courseDescription,
+    description: course.courseDescription.join(' '),
   };
 };
 
@@ -52,7 +54,7 @@ export default async function MilitaryCourse({
     <Suspense fallback={<Loading />}>
       <main>
         <Hero {...heroProps} />
-        <div className="grid grid-cols-2 items-center gap-5 p-20">
+        <div className="flex grid-cols-2 flex-col items-center gap-5 p-20 lg:grid">
           {course.courseSeriesImage && course.courseTitle && (
             <Image
               src={course.courseSeriesImage}
@@ -61,11 +63,23 @@ export default async function MilitaryCourse({
               height={200}
             />
           )}
-          <div className="flex flex-col gap-20 text-lg text-zinc-100">
-            <div>{course.courseDescription}</div>
-            <div className="flex items-center gap-5">
+          <div className="flex flex-col gap-10 text-lg text-zinc-100">
+            <div className="flex flex-col gap-5">
+              <PortableText value={course.courseDescription} />
+            </div>
+            <div className="flex flex-col gap-5">
               <div className="font-bold text-zinc-400">Requirements:</div>
-              <div>{course.courseRequirements}</div>
+              <ul>
+                {course.courseRequirements &&
+                  course.courseRequirements.map(
+                    (requirement: string, index: number) => (
+                      <li key={index} className="flex items-center gap-2">
+                        <RiArrowDropRightLine className="min-w-5 text-xl text-zinc-400" />
+                        {requirement}
+                      </li>
+                    )
+                  )}
+              </ul>
             </div>
           </div>
         </div>

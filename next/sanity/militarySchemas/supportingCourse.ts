@@ -40,14 +40,14 @@ export default defineType({
     defineField({
       name: 'courseDescription',
       title: 'Course Description',
-      type: 'text',
-      rows: 5,
+      type: 'array',
+      of: [{ type: 'block' }],
     }),
     defineField({
       name: 'courseRequirements',
       title: 'Course Requirements',
-      type: 'text',
-      rows: 3,
+      type: 'array',
+      of: [{ type: 'string' }],
     }),
     defineField({
       name: 'courseCarousel',

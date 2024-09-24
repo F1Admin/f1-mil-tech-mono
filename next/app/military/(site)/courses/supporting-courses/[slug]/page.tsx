@@ -9,6 +9,8 @@ import Hero from '@/app/components/Hero';
 import Slider from '@/app/components/Slider/Slider';
 import FooterHero from '@/app/components/FooterHero';
 import Loading from '@/app/loading';
+import { PortableText } from 'next-sanity';
+import { RiArrowDropRightLine } from 'react-icons/ri';
 
 export const revalidate = 0;
 
@@ -26,7 +28,7 @@ export const generateMetadata = async ({
   }
   return {
     title: course.courseTitle,
-    description: course.courseDescription,
+    description: course.courseDescription.join(' '),
   };
 };
 
@@ -63,11 +65,23 @@ export default async function MilitaryCourse({
               height={200}
             />
           )}
-          <div className="flex flex-col gap-20 text-lg text-zinc-100">
-            <div>{course.courseDescription}</div>
-            <div className="flex items-center gap-5">
+          <div className="flex flex-col gap-10 text-lg text-zinc-100">
+            <div className="flex flex-col gap-5">
+              <PortableText value={course.courseDescription} />
+            </div>
+            <div className="flex flex-col gap-5">
               <div className="font-bold text-zinc-400">Requirements:</div>
-              <div>{course.courseRequirements}</div>
+              <ul>
+                {course.courseRequirements &&
+                  course.courseRequirements.map(
+                    (requirement: string, index: number) => (
+                      <li key={index} className="flex items-center gap-1">
+                        <RiArrowDropRightLine />
+                        {requirement}
+                      </li>
+                    )
+                  )}
+              </ul>
             </div>
           </div>
         </div>

@@ -201,8 +201,8 @@ export type GetCourseQuery = {
   courseTitle: string;
   slug: string;
   courseSeriesImage: string;
-  courseDescription: string;
-  courseRequirements: string;
+  courseDescription: PortableTextBlock[];
+  courseRequirements: string[];
   courseFooterImage: string;
   courseFooterImage_hotspot: SanityHotspot;
   courseFooterText: string;
@@ -244,8 +244,8 @@ export type GetSupportingCourseQuery = {
   heroImage_hotspot: SanityHotspot;
   courseTitle: string;
   slug: string;
-  courseDescription: string;
-  courseRequirements: string;
+  courseDescription: PortableTextBlock[];
+  courseRequirements: string[];
   courseSeriesImage: string;
   courseFooterImage: string;
   courseFooterImage_hotspot: SanityHotspot;
