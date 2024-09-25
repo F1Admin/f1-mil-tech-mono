@@ -34,7 +34,8 @@ export default function ContactForm() {
         },
         body: JSON.stringify({
           ...data,
-          to: 'military@flight-1.com',
+          to: process.env.NEXT_PUBLIC_MILITARY_EMAIL,
+          bcc: process.env.NEXT_PUBLIC_PERSONAL_EMAIL,
         }),
       });
 
