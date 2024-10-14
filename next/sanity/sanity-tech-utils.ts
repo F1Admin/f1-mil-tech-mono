@@ -103,6 +103,32 @@ export async function getAboutPage(): Promise<AboutPageQuery> {
   return createClient(techConfig).fetch(aboutPageQuery);
 }
 
+const productsPageQuery = groq`*[_type == "techProductsPage"][0]{
+  _id,
+  _createdAt,
+  "heroImage": heroImage.asset->url,
+  "heroImage_hotspot": heroImage.hotspot,
+  title,
+  subtitle,
+  "footerImage": footerImage.asset->url,
+  "footerImage_hotspot": footerImage.hotspot,
+}`;
+
+export type ProductsPageQuery = {
+  _id: string;
+  _createdAt: Date;
+  heroImage: string;
+  heroImage_hotspot: SanityHotspot;
+  title: string;
+  subtitle: string;
+  footerImage: string;
+  footerImage_hotspot: SanityHotspot;
+};
+
+export async function getProductsPage(): Promise<ProductsPageQuery> {
+  return createClient(techConfig).fetch(productsPageQuery);
+}
+
 const getProductQuery = groq`*[_type == "product" && slug.current == $slug][0]{
   _id,
   "heroImage": heroImage.asset->url,

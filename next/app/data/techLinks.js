@@ -4,12 +4,8 @@ const techLinks = [
     label: 'About',
   },
   {
-    path: '/tech/products/plako',
-    label: 'Plako',
-  },
-  {
-    path: '/tech/products/sim',
-    label: 'SIM',
+    path: '/tech/products',
+    label: 'Products',
   },
   {
     path: '/tech/partners',
