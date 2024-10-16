@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "https://staging.flight-1.com/:path((?!military|tech).*)",
+      "destination": "stagin-stagi-PbS4tzHUhUv5-1515294139.us-east-2.elb.amazonaws.com:path*"
+    },
+    {
+      "source": "https://flight-1.com//:path((?!military|tech).*)",
+      "destination": "prod-F-prodA-kYJXBZsjPjW5-474837207.us-east-2.elb.amazonaws.com:path*"
+    }
+  ]
+}
