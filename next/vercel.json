@@ -1,7 +1,7 @@
 {
   "rewrites": [
     {
-      "source": ":path((?!military|tech).*)",
+      "source": "/:path((?!military|!tech).*)",
       "destination": "stagin-stagi-PbS4tzHUhUv5-1515294139.us-east-2.elb.amazonaws.com:path*"
     }
   ]
