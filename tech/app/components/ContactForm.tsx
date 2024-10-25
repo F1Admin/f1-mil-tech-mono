@@ -34,7 +34,7 @@ export default function ContactForm() {
         },
         body: JSON.stringify({
           ...data,
-          to: process.env.NEXT_PUBLIC_MILITARY_EMAIL,
+          to: process.env.NEXT_PUBLIC_TECH_EMAIL,
           bcc: process.env.NEXT_PUBLIC_PERSONAL_EMAIL,
         }),
       });
