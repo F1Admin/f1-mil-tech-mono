@@ -4,7 +4,7 @@ import {
   MdLocalPhone,
   MdOutlineEmail,
 } from 'react-icons/md';
-import { type ContactPageQuery } from '@/sanity/sanity-military-utils';
+import { type ContactPageQuery } from '@/sanity/sanity-tech-utils';
 
 interface ContactDetailsProps
   extends Pick<

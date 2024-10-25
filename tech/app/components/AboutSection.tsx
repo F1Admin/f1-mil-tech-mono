@@ -1,4 +1,4 @@
-import { SanityHotspot } from '@/sanity/sanity-military-utils';
+import { SanityHotspot } from '@/sanity/sanity-tech-utils';
 import { PortableText, PortableTextBlock } from '@portabletext/react';
 
 interface AboutSectionProps {
