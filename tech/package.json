@@ -1,0 +1,50 @@
+{
+  "name": "next",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "generate": "sanity schema extract && sanity typegen generate",
+    "build:migrate": "tsc --project ./tsconfig.node.json",
+    "migrate": "npm run build:migrate && node ./dist/app/data/migration/migrateInstructors.js"
+  },
+  "dependencies": {
+    "@portabletext/react": "^3.1.0",
+    "@sanity/client": "^6.21.3",
+    "@sanity/image-url": "^1.0.2",
+    "@sanity/vision": "^3.54.0",
+    "@sendgrid/mail": "^8.1.3",
+    "dotenv": "^16.4.5",
+    "next": "^14.2.13",
+    "next-sanity": "^9.4.5",
+    "nodemailer": "^6.9.15",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-hook-form": "^7.53.0",
+    "react-icons": "^5.3.0",
+    "react-slick": "^0.30.2",
+    "sanity": "^3.54.0",
+    "sass": "^1.77.8",
+    "slick-carousel": "^1.8.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/nodemailer": "^6.4.15",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@types/react-slick": "^0.23.13",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.5",
+    "fs": "^0.0.1-security",
+    "postcss": "^8",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.6",
+    "tailwindcss": "^3.4.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5"
+  }
+}
