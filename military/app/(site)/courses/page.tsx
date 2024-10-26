@@ -61,7 +61,7 @@ export default async function MilitaryCoursesPage() {
               {courses.map((course) => (
                 <Link
                   key={course._id}
-                  href={`/military/courses/${course.slug}`}
+                  href={`/courses/${course.slug}`}
                   className="flex items-center text-xl transition hover:font-normal hover:text-white"
                 >
                   <RiArrowDropRightLine className="text-4xl" />
@@ -80,7 +80,7 @@ export default async function MilitaryCoursesPage() {
               {supportingCourses.map((course) => (
                 <Link
                   key={course._id}
-                  href={`/military/courses/supporting-courses/${course.slug}`}
+                  href={`/courses/supporting-courses/${course.slug}`}
                   className="flex items-center text-xl transition hover:font-normal hover:text-white"
                 >
                   <RiArrowDropRightLine className="text-4xl" />

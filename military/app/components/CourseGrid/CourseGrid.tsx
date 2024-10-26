@@ -99,7 +99,7 @@ const CourseGrid = ({
             }`}
           >
             {item && !(item.type == 'SUPPORT') ? (
-              <Link href={`/military/courses/${item.slug}`}>
+              <Link href={`/courses/${item.slug}`}>
                 <div className="content">
                   <div className="name">{item.name}</div>
                   <hr />
@@ -108,9 +108,7 @@ const CourseGrid = ({
               </Link>
             ) : (
               item && (
-                <Link
-                  href={`/military/courses/supporting-courses/${item.slug}`}
-                >
+                <Link href={`/courses/supporting-courses/${item.slug}`}>
                   <div className="content">
                     <div className="name">{item.name}</div>
                     <hr />

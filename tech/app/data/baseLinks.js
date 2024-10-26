@@ -4,7 +4,7 @@ const baseLinks = [
     label: 'SPORT',
   },
   {
-    path: 'https://tech.flight-1.com/',
+    path: 'https://flight-1.com/military/plako',
     label: 'TECH',
   },
   {

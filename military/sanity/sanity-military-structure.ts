@@ -10,7 +10,7 @@ export const structure: StructureResolver = (S) =>
         .title('Site Settings')
         .child(
           S.document()
-            .schemaType('militarySiteSettings')
+            .schemaType('siteSettings')
             .documentId('siteSettings')
             .title('Site Settings')
         ),

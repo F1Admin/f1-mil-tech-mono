@@ -31,10 +31,7 @@ export default async function Footer() {
             </FooterSection>
             <FooterSection title="COURSES">
               {courses.map((course) => (
-                <FooterLink
-                  key={course._id}
-                  href={`/military/courses/${course.slug}`}
-                >
+                <FooterLink key={course._id} href={`/courses/${course.slug}`}>
                   {course.courseNumber
                     ? `${course.courseNumber}M ${course.courseTitle}`
                     : course.courseTitle}
@@ -45,7 +42,7 @@ export default async function Footer() {
               {supportingCourses.map((course) => (
                 <FooterLink
                   key={course._id}
-                  href={`/military/courses/supporting-courses/${course.slug}`}
+                  href={`/courses/supporting-courses/${course.slug}`}
                 >
                   {course.courseTitle}
                 </FooterLink>
