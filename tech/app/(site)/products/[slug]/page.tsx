@@ -9,12 +9,17 @@ import Loading from '@/app/loading';
 import { PortableText } from '@portabletext/react';
 export const revalidate = 0;
 
+type Params = Promise<{
+  slug: string;
+}>;
+
 export const generateMetadata = async ({
   params,
 }: {
-  params: { slug: string };
+  params: Params;
 }): Promise<Metadata> => {
-  const product = await getProduct(params.slug);
+  const { slug } = await params;
+  const product = await getProduct(slug);
   if (!product) {
     return {
       title: 'Course Not Found',
@@ -27,12 +32,9 @@ export const generateMetadata = async ({
   };
 };
 
-export default async function ProductPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const product = await getProduct(params.slug);
+export default async function ProductPage({ params }: { params: Params }) {
+  const { slug } = await params;
+  const product = await getProduct(slug);
 
   const heroProps = {
     image: product.heroImage,
