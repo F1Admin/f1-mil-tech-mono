@@ -428,32 +428,3 @@ export type CadrePageQuery = {
 export async function getCadrePage(): Promise<CadrePageQuery> {
   return createClient(militaryConfig).fetch(getCadrePageQuery);
 }
-
-const getStorePageQuery = groq`*[_type == "militaryStorePage"][0]{
-  _id,
-  _createdAt,
-  "heroImage": heroImage.asset->url,
-  "heroImage_hotspot": heroImage.hotspot,
-  heroTitle,
-  heroSubtitle,
-  link,
-  "storeCarousel": storeCarousel[]{
-    "image": image.asset->url,
-    "image_hotspot": image.hotspot,
-  },
-}`;
-
-export type StorePageQuery = {
-  _id: string;
-  _createdAt: Date;
-  heroImage: string;
-  heroImage_hotspot: SanityHotspot;
-  heroTitle: string;
-  heroSubtitle: string;
-  link: string;
-  storeCarousel: CourseCarousel[];
-};
-
-export async function getStorePage(): Promise<StorePageQuery> {
-  return createClient(militaryConfig).fetch(getStorePageQuery);
-}

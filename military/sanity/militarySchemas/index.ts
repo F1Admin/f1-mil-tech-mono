@@ -10,7 +10,6 @@ import partner from './partner';
 import militaryPartnerPage from './militaryPartnerPage';
 import militaryContactPage from './militaryContactPage';
 import militaryCadrePage from './militaryCadrePage';
-import militaryStorePage from './militaryStorePage';
 
 export const schemaTypes = [
   siteSettings,
@@ -25,5 +24,4 @@ export const schemaTypes = [
   partner,
   militaryContactPage,
   militaryCadrePage,
-  militaryStorePage,
 ];

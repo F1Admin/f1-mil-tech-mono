@@ -20,7 +20,7 @@ const militaryLinks = [
     label: 'Contact',
   },
   {
-    path: '/store',
+    path: 'https://store.flight-1.com/collections/flight-1-military',
     label: 'Store',
   },
 ];

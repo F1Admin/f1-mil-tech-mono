@@ -104,12 +104,4 @@ export const structure: StructureResolver = (S) =>
             .documentId('militaryContactPage')
             .title('Contact Page')
         ),
-      S.listItem()
-        .title('Store Page')
-        .child(
-          S.document()
-            .schemaType('militaryStorePage')
-            .documentId('militaryStorePage')
-            .title('Store Page')
-        ),
     ]);
