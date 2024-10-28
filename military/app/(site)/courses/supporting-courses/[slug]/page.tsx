@@ -15,12 +15,17 @@ import CourseSeriesImage from '@/app/components/CourseSeriesImage';
 
 export const revalidate = 0;
 
+type Params = Promise<{
+  slug: string;
+}>;
+
 export const generateMetadata = async ({
   params,
 }: {
-  params: { slug: string };
+  params: Params;
 }): Promise<Metadata> => {
-  const course = await getSupportingCourse(params.slug);
+  const { slug } = await params;
+  const course = await getSupportingCourse(slug);
   if (!course) {
     return {
       title: 'Course Not Found',
@@ -33,12 +38,9 @@ export const generateMetadata = async ({
   };
 };
 
-export default async function MilitaryCourse({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const course = await getSupportingCourse(params.slug);
+export default async function MilitaryCourse({ params }: { params: Params }) {
+  const { slug } = await params;
+  const course = await getSupportingCourse(slug);
 
   const heroProps = {
     image: course.heroImage,

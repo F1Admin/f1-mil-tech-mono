@@ -1,6 +1,5 @@
 import { Suspense } from 'react';
 import { Metadata } from 'next';
-import Image from 'next/image';
 import { getCourse, getCourses } from '@/sanity/sanity-military-utils';
 import Slider from '@/app/components/Slider/Slider';
 import Hero from '@/app/components/Hero';
@@ -12,12 +11,17 @@ import CourseSeriesImage from '@/app/components/CourseSeriesImage';
 
 export const revalidate = 0;
 
+type Params = Promise<{
+  slug: string;
+}>;
+
 export const generateMetadata = async ({
   params,
 }: {
-  params: { slug: string };
+  params: Params;
 }): Promise<Metadata> => {
-  const course = await getCourse(params.slug);
+  const { slug } = await params;
+  const course = await getCourse(slug);
   if (!course) {
     return {
       title: 'Course Not Found',
@@ -30,12 +34,9 @@ export const generateMetadata = async ({
   };
 };
 
-export default async function MilitaryCourse({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const course = await getCourse(params.slug);
+export default async function MilitaryCourse({ params }: { params: Params }) {
+  const { slug } = await params;
+  const course = await getCourse(slug);
 
   const heroProps = {
     image: course.heroImage,
