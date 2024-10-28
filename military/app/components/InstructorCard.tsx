@@ -7,12 +7,15 @@ interface InstructorCardProps {
 
 export default function InstructorCard(props: InstructorCardProps) {
   const { instructor } = props;
+  const alt =
+    instructor.alt ||
+    `${instructor.firstName} ${instructor.lastName} Profile Image`;
   return (
     <div key={instructor._id} className="flex flex-col gap-3">
       <div className="relative h-48 w-48 overflow-hidden rounded transition lg:h-52 lg:w-52">
         <Image
           src={instructor.profileImage}
-          alt={instructor.alt}
+          alt={alt}
           className="rounded"
           fill
           sizes="(min-width: 1024px) 208px, 192px"
