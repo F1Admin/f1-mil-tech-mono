@@ -32,7 +32,10 @@ export default async function Cadre() {
   const founders = instructors.filter(
     (instructor) => instructor.title === 'Co-Founder'
   );
-  const topRow = [...manager, ...founders];
+  const coordinators = instructors.filter(
+    (instructor) => instructor.title === 'Coordinator'
+  );
+  const topRow = [...manager, ...founders, ...coordinators];
   const courseDirectors = instructors.filter(
     (instructor) => instructor.title === 'Course Director'
   );

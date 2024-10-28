@@ -59,7 +59,7 @@ export default async function MilitaryCourse({ params }: { params: Params }) {
     <Suspense fallback={<Loading />}>
       <main>
         <Hero {...heroProps} />
-        <div className="flex flex-col items-center gap-5 p-20 lg:grid lg:grid-cols-2">
+        <div className="flex flex-col items-center gap-5 p-10 sm:p-20 lg:grid lg:grid-cols-2">
           <CourseSeriesImage
             courseTitle={course.courseTitle}
             image={course.courseSeriesImage}
