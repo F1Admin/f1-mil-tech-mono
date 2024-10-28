@@ -44,7 +44,7 @@ const Header = () => {
   return (
     <header className="bg-black text-zinc-400 shadow-md">
       <div className="mx-auto flex items-center justify-between px-4 py-5 md:px-10">
-        <Link href="/military">
+        <Link href="/">
           {logo && (
             <Image
               src={logo}
@@ -74,6 +74,7 @@ const Header = () => {
             key={path}
             href={path}
             className={`text-xs hover:text-white ${isCurrent(path) && path !== '/' ? 'text-white' : ''}`}
+            onClick={() => toggleMenu('base')}
           >
             {label}
           </Link>
@@ -104,12 +105,13 @@ const Header = () => {
         <div className="bg-neutral-600 shadow-md lg:hidden">
           <nav className="flex flex-col space-y-4 px-4 py-4">
             {baseLinks
-              .filter(({ path }) => path !== '/military')
+              .filter(({ label }) => label !== 'TECH')
               .map(({ path, label }) => (
                 <Link
                   key={path}
                   href={path}
                   className="text-xs text-zinc-200 hover:text-white"
+                  onClick={() => toggleMenu('base')}
                 >
                   {label}
                 </Link>

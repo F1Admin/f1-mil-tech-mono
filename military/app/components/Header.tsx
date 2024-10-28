@@ -103,12 +103,13 @@ const Header = () => {
         <div className="bg-neutral-600 shadow-md lg:hidden">
           <nav className="flex flex-col space-y-4 px-4 py-4">
             {baseLinks
-              .filter(({ path }) => path !== '/military')
+              .filter(({ label }) => label !== 'MILITARY')
               .map(({ path, label }) => (
                 <Link
                   key={path}
                   href={path}
                   className="text-xs text-zinc-200 hover:text-white"
+                  onClick={() => toggleMenu('base')}
                 >
                   {label}
                 </Link>
@@ -124,6 +125,7 @@ const Header = () => {
                 key={path}
                 href={path}
                 className="text-xs uppercase text-zinc-200 hover:text-white"
+                onClick={() => toggleMenu('mobile')}
               >
                 {label}
               </Link>
