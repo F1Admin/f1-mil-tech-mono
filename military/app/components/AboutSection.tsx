@@ -57,7 +57,7 @@ export default function AboutSection({
             backgroundPosition: backgroundPosition,
           }}
         >
-          <div className="absolute bottom-10 left-10 mr-10 md:left-28 md:w-2/5">
+          <div className="absolute bottom-10 left-10 mr-10 md:left-28 md:w-3/5 xl:w-2/5">
             <AboutContent title={title} subTitle={subTitle} />
           </div>
         </div>
