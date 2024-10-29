@@ -1,9 +1,4 @@
-import {
-  MdAlternateEmail,
-  MdCorporateFare,
-  MdLocalPhone,
-  MdOutlineEmail,
-} from 'react-icons/md';
+import { MdCorporateFare, MdLocalPhone, MdOutlineEmail } from 'react-icons/md';
 import { type ContactPageQuery } from '@/sanity/sanity-military-utils';
 
 interface ContactDetailsProps
@@ -45,7 +40,6 @@ export default function ContactDetails({
       <div>
         <h2 className="mb-1 text-sm font-thin uppercase">Email Address</h2>
         <p className="flex items-center gap-1">
-          <MdAlternateEmail />
           <a href={`mailto: ${email}`}>{email}</a>
         </p>
       </div>
