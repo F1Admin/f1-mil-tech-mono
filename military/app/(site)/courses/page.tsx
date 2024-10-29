@@ -56,7 +56,7 @@ export default async function MilitaryCoursesPage() {
         <Hero {...heroProps} />
         <div className="grid-col-1 grid gap-10 px-4 py-16 text-zinc-400 md:grid-cols-2 md:px-10 lg:pl-64 xl:pl-96">
           <div className="flex flex-col gap-7 md:gap-3">
-            <h3 className="text-2xl">SELECT A COURSE</h3>
+            <h3 className="text-2xl">FLIGHT-1 TRAINING SYSTEM</h3>
             <ul className="flex flex-col">
               {courses.map((course) => (
                 <Link
