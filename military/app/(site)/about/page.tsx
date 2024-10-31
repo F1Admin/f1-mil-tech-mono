@@ -3,7 +3,6 @@ import Hero from '@/app/components/Hero';
 import AboutSection from '@/app/components/AboutSection';
 import { Suspense } from 'react';
 import Loading from '@/app/loading';
-import Image from 'next/image';
 
 export const revalidate = 0;
 
@@ -55,7 +54,7 @@ export default async function MilitaryAboutPage() {
       <main>
         <Hero {...heroProps} />
         <AboutSection {...aboutSection2Props} />
-        <div className="flex flex-col gap-10 p-10 md:p-20">
+        <div className="flex flex-col">
           <AboutSection {...aboutSection3Props} />
           <AboutSection {...aboutSection4Props} />
         </div>
