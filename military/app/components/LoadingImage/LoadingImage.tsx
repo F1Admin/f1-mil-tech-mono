@@ -39,8 +39,8 @@ const LoadingImage = (params: ILoadingImage) => {
           className="placeholder-image"
           src={`${url}?w=${width / 20}&h=${height / 20}&auto=format`}
           alt={title}
-          width={width / 10}
-          height={height / 10}
+          fill
+          sizes="(max-width: 450px) 100vw, 600px"
         />
       )}
 
@@ -49,8 +49,9 @@ const LoadingImage = (params: ILoadingImage) => {
         ref={loadingImage}
         src={url}
         alt={title}
-        width={width}
-        height={height}
+        fill
+        sizes="(max-width: 450px) 100vw, 600px"
+        style={{ objectFit: 'cover' }}
       />
     </div>
   );
