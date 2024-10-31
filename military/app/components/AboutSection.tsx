@@ -51,13 +51,13 @@ export default function AboutSection({
     <div>
       {image ? (
         <div
-          className="relative min-h-[500px] bg-cover bg-bottom sm:min-h-[400px]"
+          className="relative h-[700px] bg-cover bg-bottom sm:h-[600px] md:h-[500px]"
           style={{
             backgroundImage: `url(${image})`,
             backgroundPosition: backgroundPosition,
           }}
         >
-          <div className="absolute bottom-10 left-10 mr-10 md:left-20 md:w-3/5 xl:w-2/5">
+          <div className="absolute bottom-10 left-10 mr-10 md:left-20 md:mr-20">
             <AboutContent title={title} subTitle={subTitle} />
           </div>
         </div>
