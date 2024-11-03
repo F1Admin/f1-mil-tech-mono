@@ -65,7 +65,7 @@ export default async function TechAboutPage() {
         <Hero {...heroProps} />
         <AboutSection {...aboutSection1Props} />
         <AboutSection {...aboutSection2Props} />
-        <div className="grid grid-cols-1 gap-10 p-10 md:grid-cols-2 md:gap-3 md:py-20 md:pl-28 md:pr-10">
+        <div className="flex flex-col">
           <AboutSection {...aboutSection3Props} />
           <AboutSection {...aboutSection4Props} />
         </div>

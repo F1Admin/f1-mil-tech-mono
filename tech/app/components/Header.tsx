@@ -43,15 +43,15 @@ const Header = () => {
 
   return (
     <header className="bg-black text-zinc-400 shadow-md">
-      <div className="mx-auto flex items-center justify-between px-4 py-5 md:px-10">
+      <div className="mx-auto flex items-center justify-between px-4 py-6 md:px-10">
         <Link href="/">
           {logo && (
             <Image
               src={logo}
               alt="Flight 1 Logo"
-              width={225}
-              height={100}
-              className="object-contain"
+              width={485 / 2.2} // current logo is 485 x 76
+              height={76 / 2.2}
+              style={{ objectFit: 'contain' }}
               priority
             />
           )}

@@ -15,10 +15,6 @@ const techLinks = [
     path: '/contact',
     label: 'Contact',
   },
-  {
-    path: 'https://store.flight-1.com',
-    label: 'Store',
-  },
 ];
 
 export default techLinks;

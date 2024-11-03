@@ -22,8 +22,8 @@ export const generateMetadata = async ({
   const product = await getProduct(slug);
   if (!product) {
     return {
-      title: 'Course Not Found',
-      description: 'The requested course could not be found.',
+      title: 'Product Not Found',
+      description: 'The requested product could not be found.',
     };
   }
   return {
@@ -55,12 +55,15 @@ export default async function ProductPage({ params }: { params: Params }) {
         <Hero {...heroProps} />
         <div className="grid grid-cols-2 items-center gap-5 p-20">
           {product.productImage && product.productTitle && (
-            <Image
-              src={product.productImage}
-              alt={product.productTitle}
-              width={500}
-              height={200}
-            />
+            <div className="relative min-h-[450px] w-full">
+              <Image
+                src={product.productImage}
+                alt={product.productTitle}
+                fill
+                sizes="(max-width: 450px) 100vw, 450px"
+                style={{ objectFit: 'contain' }}
+              />
+            </div>
           )}
           <div className="flex flex-col gap-5 text-lg text-zinc-100">
             <PortableText value={product.productDescription} />

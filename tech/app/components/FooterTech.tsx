@@ -26,7 +26,7 @@ export default async function Footer() {
               {products.map((product) => (
                 <FooterLink
                   key={product._id}
-                  href={`/tech/products/${product.slug}`}
+                  href={`/products/${product.slug}`}
                 >
                   {product.productTitle}
                 </FooterLink>

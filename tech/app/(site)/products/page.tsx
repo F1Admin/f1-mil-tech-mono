@@ -48,7 +48,7 @@ export default async function ProductsPage() {
               {products.map((product) => (
                 <Link
                   key={product._id}
-                  href={`/tech/products/${product.slug}`}
+                  href={`/products/${product.slug}`}
                   className="flex items-center text-xl transition hover:font-normal hover:text-white"
                 >
                   <RiArrowDropRightLine className="text-4xl" />
