@@ -14,7 +14,7 @@ interface AboutContentProps {
 
 function AboutContent({ title, subTitle }: AboutContentProps) {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 px-10 py-10 md:px-20">
       <h3 className="text-xl font-bold uppercase">{title}</h3>
       <div className="whitespace-pre-line text-lg font-thin">
         <PortableText
@@ -51,18 +51,18 @@ export default function AboutSection({
     <div>
       {image ? (
         <div
-          className="relative min-h-[400px] bg-cover bg-bottom"
+          className="grid min-h-[400px] grid-rows-[1fr_auto] bg-cover"
           style={{
             backgroundImage: `url(${image})`,
             backgroundPosition: backgroundPosition,
           }}
         >
-          <div className="absolute bottom-10 left-10 mr-10 md:left-28 md:w-2/5">
+          <div className="row-start-2">
             <AboutContent title={title} subTitle={subTitle} />
           </div>
         </div>
       ) : (
-        <div className="md:min-h-[400px]">
+        <div>
           <AboutContent title={title} subTitle={subTitle} />
         </div>
       )}
