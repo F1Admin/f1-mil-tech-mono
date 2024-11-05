@@ -13,6 +13,12 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'productLogo',
+      title: 'Product Logo',
+      type: 'image',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
@@ -74,7 +80,7 @@ export default defineType({
     select: {
       title: 'productTitle',
       order: 'order',
-      media: 'productImage',
+      media: 'productLogo',
     },
     prepare({ title, order, media }) {
       return {

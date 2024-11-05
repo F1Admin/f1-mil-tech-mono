@@ -6,6 +6,7 @@ import Hero from '@/app/components/Hero';
 import Loading from '@/app/loading';
 import product from '@/sanity/techSchemas/product';
 import Link from 'next/link';
+import Image from 'next/image';
 import { RiArrowDropRightLine } from 'react-icons/ri';
 
 export const revalidate = 0;
@@ -41,22 +42,23 @@ export default async function ProductsPage() {
     <Suspense fallback={<Loading />}>
       <main>
         <Hero {...heroProps} />
-        <div className="grid-col-1 grid min-h-[400px] gap-10 px-4 py-16 text-zinc-400 md:grid-cols-2 md:px-10 lg:pl-64 xl:pl-96">
-          <div className="flex flex-col gap-7 md:gap-3">
-            <h3 className="text-2xl">SELECT A PRODUCT</h3>
-            <ul className="flex flex-col">
-              {products.map((product) => (
-                <Link
-                  key={product._id}
-                  href={`/products/${product.slug}`}
-                  className="flex items-center text-xl transition hover:font-normal hover:text-white"
-                >
-                  <RiArrowDropRightLine className="text-4xl" />
-                  {product.productTitle}
-                </Link>
-              ))}
-            </ul>
-          </div>
+        <div className="flex justify-center gap-20 px-4 py-20 md:px-20">
+          {products.map((product) => (
+            <div key={product._id}>
+              <Link
+                href={`/products/${product.slug}`}
+                className="flex flex-col items-center gap-4"
+              >
+                <Image
+                  src={product.productLogo}
+                  alt={product.productTitle}
+                  width={200}
+                  height={200}
+                />
+                <h3 className="text-center text-lg">{product.productTitle}</h3>
+              </Link>
+            </div>
+          ))}
         </div>
         <FooterHero {...footerProps} />
       </main>

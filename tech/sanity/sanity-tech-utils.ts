@@ -177,6 +177,7 @@ export const getProductsQuery = groq`*[_type == "product"] | order(order asc){
   "order": order,
   "slug": slug.current,
   productTitle,
+  "productLogo": productLogo.asset->url,
 }`;
 
 export type Product = {
@@ -184,6 +185,7 @@ export type Product = {
   order: number;
   slug: string;
   productTitle: string;
+  productLogo: string;
 };
 
 export async function getProducts(): Promise<Product[]> {
