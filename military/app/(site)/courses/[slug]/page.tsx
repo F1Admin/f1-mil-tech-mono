@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import { getCourse, getCourses } from '@/sanity/sanity-military-utils';
 import Slider from '@/app/components/Slider/Slider';
 import Hero from '@/app/components/Hero';

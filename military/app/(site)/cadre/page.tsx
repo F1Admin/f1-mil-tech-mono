@@ -2,7 +2,7 @@ import Hero from '@/app/components/Hero';
 import { getCadrePage, getInstructors } from '@/sanity/sanity-military-utils';
 import InstructorCard from '@/app/components/InstructorCard';
 import FooterHero from '@/app/components/FooterHero';
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import { Suspense } from 'react';
 import Loading from '@/app/loading';
 

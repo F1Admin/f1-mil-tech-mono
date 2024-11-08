@@ -1,6 +1,5 @@
 import { Suspense } from 'react';
-import { Metadata } from 'next';
-import Image from 'next/image';
+import type { Metadata } from 'next';
 import {
   getSupportingCourse,
   getSupportingCourses,
