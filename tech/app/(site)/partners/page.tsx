@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getPartners, getPartnersPage } from '@/sanity/sanity-tech-utils';

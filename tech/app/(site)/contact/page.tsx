@@ -5,7 +5,7 @@ import Hero from '@/app/components/Hero';
 import { getContactPage } from '@/sanity/sanity-tech-utils';
 import { Suspense } from 'react';
 import Loading from '@/app/loading';
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 
 export const revalidate = 0;
 

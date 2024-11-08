@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import Metadata from 'next';
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import { getProduct, getProducts } from '@/sanity/sanity-tech-utils';
 import Slider from '@/app/components/Slider/Slider';
@@ -7,7 +7,6 @@ import Hero from '@/app/components/Hero';
 import FooterHero from '@/app/components/FooterHero';
 import Loading from '@/app/loading';
 import { PortableText } from '@portabletext/react';
-import { RiArrowDropRightLine } from 'react-icons/ri';
 import TechSpecs from '@/app/components/TechSpecs';
 import Features from '@/app/components/Features';
 import ProductGraphic from '@/app/components/ProductGraphic';

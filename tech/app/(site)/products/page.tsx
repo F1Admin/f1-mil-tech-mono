@@ -1,5 +1,5 @@
 import { getProducts, getProductsPage } from '@/sanity/sanity-tech-utils';
-import Metadata from 'next';
+import type { Metadata } from 'next';
 import { Suspense } from 'react';
 import FooterHero from '@/app/components/FooterHero';
 import Hero from '@/app/components/Hero';
