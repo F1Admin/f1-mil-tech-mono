@@ -1,13 +1,11 @@
 import { getProducts, getProductsPage } from '@/sanity/sanity-tech-utils';
-import { Metadata } from 'next';
+import Metadata from 'next';
 import { Suspense } from 'react';
 import FooterHero from '@/app/components/FooterHero';
 import Hero from '@/app/components/Hero';
 import Loading from '@/app/loading';
-import product from '@/sanity/techSchemas/product';
 import Link from 'next/link';
 import Image from 'next/image';
-import { RiArrowDropRightLine } from 'react-icons/ri';
 
 export const revalidate = 0;
 
@@ -42,20 +40,25 @@ export default async function ProductsPage() {
     <Suspense fallback={<Loading />}>
       <main>
         <Hero {...heroProps} />
-        <div className="flex justify-center gap-20 px-4 py-20 md:px-20">
+        <div className="flex flex-col justify-center gap-10 px-4 py-10 md:flex-row md:px-20 lg:py-20">
           {products.map((product) => (
             <div key={product._id}>
               <Link
                 href={`/products/${product.slug}`}
-                className="flex flex-col items-center gap-4"
+                className="flex flex-col items-center gap-2"
               >
-                <Image
-                  src={product.productLogo}
-                  alt={product.productTitle}
-                  width={200}
-                  height={200}
-                />
-                <h3 className="text-center text-lg">{product.productTitle}</h3>
+                <div className="relative h-[150px] w-[200px] lg:h-[200px] lg:w-[300px] xl:h-[300px] xl:w-[400px]">
+                  <Image
+                    src={product.productLogo}
+                    alt={product.productTitle}
+                    fill
+                    sizes="100vw"
+                    style={{ objectFit: 'contain' }}
+                  />
+                </div>
+                <h3 className="text-center text-xl font-thin uppercase tracking-tighter lg:text-2xl">
+                  {product.productTitle}
+                </h3>
               </Link>
             </div>
           ))}
