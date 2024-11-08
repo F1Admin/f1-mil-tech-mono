@@ -5,11 +5,11 @@ $mobileBreakpoint: 480px;
 .imageSlider {
   background-color: black; 
   .variable-width.custom-slider .slick-list {
-    height: 400px;
+    height: 500px;
     @media screen and (max-width: $smallBreakpoint) {
-      height: 500px;
+      height: 400px;
       .slick-img {
-        height: 500px;
+        height: 400px;
       }
     }
 
@@ -38,7 +38,7 @@ $mobileBreakpoint: 480px;
         display: flex;
         justify-content: center;
         align-items: center;
-        img {
+        & img {
           width: auto;
           max-width: none;
           height: 400px; 

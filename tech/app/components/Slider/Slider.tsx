@@ -7,11 +7,11 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import NextArrow from './NextArrow';
 import PrevArrow from './PrevArrow';
-import { type CourseCarousel } from '@/sanity/sanity-tech-utils';
+import { type ProductCarousel } from '@/sanity/sanity-tech-utils';
 import './Slider.scss';
 import LoadingImage from '../LoadingImage/LoadingImage';
 
-const ImageSlider = ({ images }: { images: CourseCarousel[] }) => {
+const ImageSlider = ({ images }: { images: ProductCarousel[] }) => {
   let settings = {
     className: 'slider variable-width custom-slider',
     infinite: true,

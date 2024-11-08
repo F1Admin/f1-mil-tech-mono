@@ -6,7 +6,8 @@ import product from './product';
 import partner from './partner';
 import techContactPage from './techContactPage';
 import techProductsPage from './techProductsPage';
-
+import productPhoto from './productPhoto';
+import productList from './productList';
 export const schemaTypes = [
   siteSettings,
   techLandingPage,
@@ -16,4 +17,6 @@ export const schemaTypes = [
   techContactPage,
   product,
   partner,
+  productPhoto,
+  productList,
 ];

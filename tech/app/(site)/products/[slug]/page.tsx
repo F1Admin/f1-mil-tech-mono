@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { Metadata } from 'next';
+import Metadata from 'next';
 import Image from 'next/image';
 import { getProduct, getProducts } from '@/sanity/sanity-tech-utils';
 import Slider from '@/app/components/Slider/Slider';
@@ -7,6 +7,11 @@ import Hero from '@/app/components/Hero';
 import FooterHero from '@/app/components/FooterHero';
 import Loading from '@/app/loading';
 import { PortableText } from '@portabletext/react';
+import { RiArrowDropRightLine } from 'react-icons/ri';
+import TechSpecs from '@/app/components/TechSpecs';
+import Features from '@/app/components/Features';
+import ProductGraphic from '@/app/components/ProductGraphic';
+
 export const revalidate = 0;
 
 type Params = Promise<{
@@ -20,6 +25,7 @@ export const generateMetadata = async ({
 }): Promise<Metadata> => {
   const { slug } = await params;
   const product = await getProduct(slug);
+
   if (!product) {
     return {
       title: 'Product Not Found',
@@ -69,7 +75,21 @@ export default async function ProductPage({ params }: { params: Params }) {
             <PortableText value={product.productDescription} />
           </div>
         </div>
-        {/* <Slider images={product.productCarousel} /> */}
+        {product.productCarousel && <Slider images={product.productCarousel} />}
+        {product.productGraphic && (
+          <ProductGraphic
+            productGraphic={product.productGraphic}
+            productGraphicAlt={product.productGraphicAlt}
+          />
+        )}
+        {product.features && <Features features={product.features} />}
+        {product.productGraphic2 && (
+          <ProductGraphic
+            productGraphic={product.productGraphic2}
+            productGraphicAlt={product.productGraphic2Alt}
+          />
+        )}
+        {product.techSpecs && <TechSpecs specs={product.techSpecs} />}
         <FooterHero {...footerHeroProps} />
       </main>
     </Suspense>

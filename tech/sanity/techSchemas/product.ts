@@ -57,6 +57,55 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'productCarousel',
+      title: 'Product Carousel',
+      type: 'array',
+      of: [{ type: 'productPhoto' }],
+    }),
+    defineField({
+      name: 'productGraphic',
+      title: 'Product Graphic',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alt',
+          type: 'string',
+        }),
+      ],
+    }),
+    defineField({
+      name: 'features',
+      title: 'Features',
+      type: 'array',
+      of: [{ type: 'productList' }],
+    }),
+    defineField({
+      name: 'productGraphic2',
+      title: 'Product Graphic 2',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alt',
+          type: 'string',
+        }),
+      ],
+    }),
+
+    defineField({
+      name: 'techSpecs',
+      title: 'Tech Specs',
+      type: 'array',
+      of: [{ type: 'productList' }],
+    }),
+    defineField({
       name: 'footerImage',
       title: 'Footer Image',
       type: 'image',

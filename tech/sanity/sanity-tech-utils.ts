@@ -142,10 +142,18 @@ const getProductQuery = groq`*[_type == "product" && slug.current == $slug][0]{
   "footerImage_hotspot": footerImage.hotspot,
   footerText,
   courseFooterAuthor,
-  "courseCarousel": courseCarousel[]{
+  "productCarousel": productCarousel[]{
     "image": image.asset->url,
     "image_hotspot": image.hotspot,
   },
+  features,
+  techSpecs,
+  "productGraphic": productGraphic.asset->url,
+  "productGraphic_hotspot": productGraphic.hotspot,
+  "productGraphicAlt": productGraphic.alt,
+  "productGraphic2": productGraphic2.asset->url,
+  "productGraphic2_hotspot": productGraphic2.hotspot,
+  "productGraphic2Alt": productGraphic2.alt,
 }`;
 
 export type GetProductQuery = {
@@ -157,15 +165,31 @@ export type GetProductQuery = {
   productTitle: string;
   productImage: string;
   productDescription: PortableTextBlock[];
+  productCarousel: ProductCarousel[];
+  features: ProductList[];
+  techSpecs: ProductList[];
   footerImage: string;
   footerImage_hotspot: SanityHotspot;
   footerText: string;
   footerAuthor: string;
+  productGraphic: string;
+  productGraphic_hotspot: SanityHotspot;
+  productGraphicAlt: string;
+  productGraphic2: string;
+  productGraphic2_hotspot: SanityHotspot;
+  productGraphic2Alt: string;
 };
 
-export type CourseCarousel = {
+export type ProductCarousel = {
   image: string;
   image_hotspot: SanityHotspot;
+};
+
+export type ProductList = {
+  _key: string;
+  order: number;
+  title: string;
+  items: string[];
 };
 
 export async function getProduct(slug: string): Promise<GetProductQuery> {
@@ -177,7 +201,7 @@ export const getProductsQuery = groq`*[_type == "product"] | order(order asc){
   "order": order,
   "slug": slug.current,
   productTitle,
-  "productLogo": productLogo.asset->url,
+  "productLogo": productLogo.asset->url
 }`;
 
 export type Product = {
