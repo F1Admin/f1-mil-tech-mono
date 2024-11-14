@@ -17,6 +17,16 @@ const Header = () => {
 
   const isCurrent = (path: string) => pathname.includes(path);
 
+  const toggleMenu = (menu: 'mobile' | 'base') => {
+    if (menu === 'mobile') {
+      setMobileMenuOpen(!mobileMenuOpen);
+      setMenuOpen(false);
+    } else {
+      setMenuOpen(!menuOpen);
+      setMobileMenuOpen(false);
+    }
+  };
+
   useEffect(() => {
     let isMounted = true;
 
@@ -30,16 +40,6 @@ const Header = () => {
       isMounted = false;
     };
   }, []);
-
-  const toggleMenu = (menu: 'mobile' | 'base') => {
-    if (menu === 'mobile') {
-      setMobileMenuOpen(!mobileMenuOpen);
-      setMenuOpen(false);
-    } else {
-      setMenuOpen(!menuOpen);
-      setMobileMenuOpen(false);
-    }
-  };
 
   return (
     <header className="bg-black text-zinc-400 shadow-md">
@@ -86,7 +86,7 @@ const Header = () => {
           className="text-xs uppercase text-zinc-400 hover:text-white focus:outline-none"
         >
           <div className="flex items-center gap-3">
-            Military
+            Tech
             <ChevronDown
               transform={menuOpen ? 'rotate(-90deg)' : 'rotate(0deg)'}
             />
@@ -127,6 +127,7 @@ const Header = () => {
                 key={path}
                 href={path}
                 className="text-xs uppercase text-zinc-200 hover:text-white"
+                onClick={() => toggleMenu('mobile')}
               >
                 {label}
               </Link>

@@ -33,7 +33,7 @@ const Header = () => {
       .then((settings) => {
         if (isMounted) setLogo(settings.militaryLogo);
       })
-      .catch((error) => console.error('Error fetching tech logo:', error));
+      .catch((error) => console.error('Error fetching military logo:', error));
 
     return () => {
       isMounted = false;

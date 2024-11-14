@@ -11,14 +11,12 @@ export type SanityHotspot = {
 
 const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
   _id,
-  "techLogo": techLogo.asset->url,
-  "footerLogo": footerLogo.asset->url,
+  "techLogo": techLogo.asset->url
 }`;
 
 export type SiteSettingsQuery = {
   _id: string;
   techLogo: string;
-  footerLogo: string;
 };
 
 export async function getSiteSettings(): Promise<SiteSettingsQuery> {

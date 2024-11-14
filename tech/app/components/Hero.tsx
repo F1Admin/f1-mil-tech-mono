@@ -1,4 +1,5 @@
 import { SanityHotspot } from '@/sanity/sanity-tech-utils';
+import Image from 'next/image';
 
 interface HeroProps {
   image: string;
@@ -25,23 +26,22 @@ export default function Hero({
   courseNumber,
   courseTitle,
 }: HeroProps) {
-  const fallbackHotspot = { x: 0.5, y: 0.5 };
-  const effectiveHotspot = hotspot ?? fallbackHotspot;
+  const effectiveHotspot = hotspot ?? { x: 0.5, y: 0.5 };
   const backgroundPosition = `${effectiveHotspot.x * 100}% ${effectiveHotspot.y * 100}%`;
 
   return (
-    <div
-      className="relative h-[400px] bg-cover"
-      style={{
-        backgroundImage: `url(${image})`,
-        backgroundPosition,
-      }}
-    >
-      <div
-        className={`absolute bottom-10 left-4 mr-10 ${
-          titleColor === 'black' ? 'text-zinc-900' : ''
-        } md:left-10`}
-      >
+    <div className="relative grid min-h-[400px] grid-rows-[1fr_auto] p-4 md:p-10">
+      <div className="absolute inset-0 z-0">
+        <Image
+          src={image}
+          alt={title || 'Hero Image'}
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw"
+          priority
+          style={{ objectFit: 'cover', objectPosition: backgroundPosition }}
+        />
+      </div>
+      <div className="z-10 row-start-2">
         {courseNumber && courseTitle ? (
           <CourseInfo courseNumber={courseNumber} courseTitle={courseTitle} />
         ) : (

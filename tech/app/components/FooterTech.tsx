@@ -1,13 +1,9 @@
 import Link from 'next/link';
 import techLinks from '../data/techLinks';
-import Image from 'next/image';
-import { getProducts, getSiteSettings } from '@/sanity/sanity-tech-utils';
+import { getProducts } from '@/sanity/sanity-tech-utils';
 
 export default async function Footer() {
-  const [products, { footerLogo }] = await Promise.all([
-    getProducts(),
-    getSiteSettings(),
-  ]);
+  const products = await getProducts();
 
   return (
     <footer>
@@ -32,28 +28,6 @@ export default async function Footer() {
                 </FooterLink>
               ))}
             </FooterSection>
-            <div className="relative hidden lg:col-end-5 lg:flex xl:col-end-6">
-              <div className="absolute right-[-20px] top-0 h-48 w-48">
-                <Image
-                  src={footerLogo}
-                  alt="Flight 1 Skull"
-                  fill
-                  sizes="(max-width: 1024px) 20rem, (max-width: 1280px) 25rem, 30rem"
-                  className="object-contain opacity-30"
-                  priority
-                />
-              </div>
-            </div>
-          </div>
-          <div className="relative h-48 w-48 lg:hidden">
-            <Image
-              src={footerLogo}
-              alt="Flight 1 Skull"
-              fill
-              sizes="(max-width: 640px) 18rem, (max-width: 768px) 20rem, (max-width: 1024px) 24rem, 30rem"
-              className="absolute right-0 top-0 object-contain opacity-30"
-              priority
-            />
           </div>
         </div>
         <hr className="border-t-1 mb-5 border-zinc-700" />
