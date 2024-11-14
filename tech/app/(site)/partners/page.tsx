@@ -44,7 +44,7 @@ export default async function PartnersPage() {
     <Suspense fallback={<Loading />}>
       <main>
         <Hero {...heroProps} />
-        <div className="grid min-h-[400px] grid-cols-3 gap-5 gap-y-20 p-20">
+        <div className="grid min-h-[400px] grid-cols-1 gap-5 gap-y-20 p-10 md:grid-cols-3 md:p-20">
           {partners.map((partner) => (
             <Link
               href={partner.partnerUrl}
@@ -57,7 +57,7 @@ export default async function PartnersPage() {
                   alt={partner.partnerName}
                   width="0"
                   height="0"
-                  sizes="100vw"
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                   style={{ filter: 'grayscale(100%)' }}
                   className="h-auto w-40"
                 />
