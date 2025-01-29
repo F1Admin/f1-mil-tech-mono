@@ -20,7 +20,7 @@ export default async function TechAboutPage() {
     <Suspense fallback={<Loading />}>
       <main>
         <Hero image={heroImage} hotspot={heroImage_hotspot} title={title} />
-        <div className="flex flex-col gap-4 px-4 py-10 text-gray-400 md:px-10">
+        <div className="flex flex-col gap-4 px-4 py-10 text-zinc-400 md:px-10">
           <h2 className="text-2xl font-bold uppercase">Our Story</h2>
           {about_text.map((text, index) => (
             <p className="md:px-4" key={index}>

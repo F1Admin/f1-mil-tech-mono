@@ -10,5 +10,10 @@ export default defineType({
       title: 'Tech Logo',
       type: 'image',
     }),
+    defineField({
+      name: 'footerLogo',
+      title: 'Footer Logo',
+      type: 'image',
+    }),
   ],
 });

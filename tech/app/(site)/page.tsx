@@ -39,12 +39,12 @@ export default async function TechLandingPage() {
                   />
                 </div>
                 <div className="text-center">
-                  <h2 className="uppercase text-gray-500">
+                  <h2 className="uppercase text-zinc-500">
                     {product.productTitle}
                   </h2>
                   <Link
                     href={`/products/${product.slug}`}
-                    className="text-sm uppercase text-gray-400 underline"
+                    className="text-sm uppercase text-zinc-400 underline"
                   >
                     Learn More
                   </Link>

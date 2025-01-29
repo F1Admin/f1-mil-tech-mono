@@ -42,12 +42,17 @@ export default defineType({
       type: 'string',
       validation: (Rule) => Rule.required(),
     }),
-
     defineField({
-      name: 'productImage',
-      title: 'Product Image',
-      type: 'image',
-      validation: (Rule) => Rule.required(),
+      name: 'productQuoteToggle',
+      title: 'Product Quote Visibility',
+      type: 'boolean',
+      initialValue: false,
+    }),
+    defineField({
+      name: 'productQuote',
+      title: 'Product Quote',
+      type: 'text',
+      rows: 3,
     }),
     defineField({
       name: 'productDescription',
@@ -57,53 +62,22 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'productCarousel',
-      title: 'Product Carousel',
-      type: 'array',
-      of: [{ type: 'productPhoto' }],
-    }),
-    defineField({
-      name: 'productGraphic',
-      title: 'Product Graphic',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-      fields: [
-        defineField({
-          name: 'alt',
-          title: 'Alt',
-          type: 'string',
-        }),
-      ],
+      name: 'featuresToggle',
+      title: 'Features Visibility',
+      type: 'boolean',
+      initialValue: false,
     }),
     defineField({
       name: 'features',
       title: 'Features',
       type: 'array',
-      of: [{ type: 'productList' }],
+      of: [{ type: 'block' }],
     }),
     defineField({
-      name: 'productGraphic2',
-      title: 'Product Graphic 2',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-      fields: [
-        defineField({
-          name: 'alt',
-          title: 'Alt',
-          type: 'string',
-        }),
-      ],
-    }),
-
-    defineField({
-      name: 'techSpecs',
-      title: 'Tech Specs',
+      name: 'productCarousel',
+      title: 'Product Carousel',
       type: 'array',
-      of: [{ type: 'productList' }],
+      of: [{ type: 'productPhoto' }],
     }),
     defineField({
       name: 'footerImage',
@@ -117,11 +91,6 @@ export default defineType({
     defineField({
       name: 'footerText',
       title: 'Footer Text',
-      type: 'string',
-    }),
-    defineField({
-      name: 'footerAuthor',
-      title: 'Footer Author',
       type: 'string',
     }),
   ],

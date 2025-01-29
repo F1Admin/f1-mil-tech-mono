@@ -4,12 +4,10 @@ import Image from 'next/image';
 import { getProduct, getProducts } from '@/sanity/sanity-tech-utils';
 import Slider from '@/app/components/Slider/Slider';
 import Hero from '@/app/components/Hero';
-import FooterHero from '@/app/components/FooterHero';
 import Loading from '@/app/loading';
 import { PortableText } from '@portabletext/react';
-import TechSpecs from '@/app/components/TechSpecs';
-import Features from '@/app/components/Features';
-import ProductGraphic from '@/app/components/ProductGraphic';
+import ProductHero from '@/app/components/ProductHero';
+import ProductDescription from '@/app/components/ProductDescription';
 
 export const revalidate = 0;
 
@@ -41,55 +39,56 @@ export default async function ProductPage({ params }: { params: Params }) {
   const { slug } = await params;
   const product = await getProduct(slug);
 
-  const heroProps = {
-    image: product.heroImage,
-    hotspot: product.heroImage_hotspot,
-    courseTitle: product.productTitle,
-  };
-
-  const footerHeroProps = {
-    image: product.footerImage,
-    hotspot: product.footerImage_hotspot,
-    quote: product.footerText,
-    author: product.footerAuthor,
-  };
-
   return (
     <Suspense fallback={<Loading />}>
       <main>
-        <Hero {...heroProps} />
-        <div className="grid grid-cols-2 items-center gap-5 p-20">
-          {product.productImage && product.productTitle && (
-            <div className="relative min-h-[450px] w-full">
-              <Image
-                src={product.productImage}
-                alt={product.productTitle}
-                fill
-                sizes="(max-width: 450px) 100vw, 450px"
-                style={{ objectFit: 'contain' }}
+        <ProductHero
+          image={product.heroImage}
+          productLogo={product.productLogo}
+          productTitle={product.productTitle}
+        />
+        {product.productQuoteToggle && (
+          <div className="px-20 pt-10 text-lg text-zinc-400">
+            {`"${product.productQuote}"`}
+          </div>
+        )}
+        {product.productDescription && (
+          <ProductDescription productDescription={product.productDescription} />
+        )}
+        {product.featuresToggle && (
+          <div className="mb-10 flex flex-col gap-5 text-zinc-400">
+            <hr className="mx-4 my-10 border-zinc-700 px-4 md:mx-10" />
+            <div className="flex flex-col gap-5 px-10 md:px-20">
+              <PortableText
+                value={product.features}
+                components={{
+                  block: {
+                    normal: ({ children }) => <div>{children}</div>,
+                  },
+                  list: {
+                    bullet: ({ children }) => (
+                      <ul className="space-y-2">{children}</ul>
+                    ),
+                  },
+                  listItem: {
+                    bullet: ({ children }) => (
+                      <li className="flex items-center">
+                        <span className="mr-2 text-zinc-100">•</span>
+                        <span>{children}</span>
+                      </li>
+                    ),
+                  },
+                }}
               />
             </div>
-          )}
-          <div className="flex flex-col gap-5 text-lg text-zinc-100">
-            <PortableText value={product.productDescription} />
           </div>
-        </div>
+        )}
         {product.productCarousel && <Slider images={product.productCarousel} />}
-        {product.productGraphic && (
-          <ProductGraphic
-            productGraphic={product.productGraphic}
-            productGraphicAlt={product.productGraphicAlt}
-          />
-        )}
-        {product.features && <Features features={product.features} />}
-        {product.productGraphic2 && (
-          <ProductGraphic
-            productGraphic={product.productGraphic2}
-            productGraphicAlt={product.productGraphic2Alt}
-          />
-        )}
-        {product.techSpecs && <TechSpecs specs={product.techSpecs} />}
-        <FooterHero {...footerHeroProps} />
+        <Hero
+          image={product.footerImage}
+          hotspot={product.footerImage_hotspot}
+          title={product.footerText}
+        />
       </main>
     </Suspense>
   );

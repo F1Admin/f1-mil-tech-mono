@@ -11,12 +11,14 @@ export type SanityHotspot = {
 
 const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
   _id,
-  "techLogo": techLogo.asset->url
+  "techLogo": techLogo.asset->url,
+  "footerLogo": footerLogo.asset->url
 }`;
 
 export type SiteSettingsQuery = {
   _id: string;
   techLogo: string;
+  footerLogo: string;
 };
 
 export async function getSiteSettings(): Promise<SiteSettingsQuery> {
@@ -69,81 +71,43 @@ export async function getAboutPage(): Promise<AboutPageQuery> {
   return createClient(techConfig).fetch(aboutPageQuery);
 }
 
-const productsPageQuery = groq`*[_type == "techProductsPage"][0]{
-  _id,
-  _createdAt,
-  "heroImage": heroImage.asset->url,
-  "heroImage_hotspot": heroImage.hotspot,
-  title,
-  subtitle,
-  "footerImage": footerImage.asset->url,
-  "footerImage_hotspot": footerImage.hotspot,
-}`;
-
-export type ProductsPageQuery = {
-  _id: string;
-  _createdAt: Date;
-  heroImage: string;
-  heroImage_hotspot: SanityHotspot;
-  title: string;
-  subtitle: string;
-  footerImage: string;
-  footerImage_hotspot: SanityHotspot;
-};
-
-export async function getProductsPage(): Promise<ProductsPageQuery> {
-  return createClient(techConfig).fetch(productsPageQuery);
-}
-
 const getProductQuery = groq`*[_type == "product" && slug.current == $slug][0]{
   _id,
+  order,
+  productTitle,
+  "productLogo": productLogo.asset->url,
   "heroImage": heroImage.asset->url,
   "heroImage_hotspot": heroImage.hotspot,
-  "order": order,
-  "slug": slug.current,
-  productTitle,
-  "productImage": productImage.asset->url,
+  productQuote,
+  productQuoteToggle,
   productDescription,
-  "footerImage": footerImage.asset->url,
-  "footerImage_hotspot": footerImage.hotspot,
-  footerText,
-  courseFooterAuthor,
-  "productCarousel": productCarousel[]{
+  features,
+  featuresToggle,
+  "productCarousel": productCarousel[] {
     "image": image.asset->url,
     "image_hotspot": image.hotspot,
   },
-  features,
-  techSpecs,
-  "productGraphic": productGraphic.asset->url,
-  "productGraphic_hotspot": productGraphic.hotspot,
-  "productGraphicAlt": productGraphic.alt,
-  "productGraphic2": productGraphic2.asset->url,
-  "productGraphic2_hotspot": productGraphic2.hotspot,
-  "productGraphic2Alt": productGraphic2.alt,
+  "footerImage": footerImage.asset->url,
+  "footerImage_hotspot": footerImage.hotspot,
+  footerText,
 }`;
 
 export type GetProductQuery = {
   _id: string;
   order: number;
-  slug: string;
+  productTitle: string;
+  productLogo: string;
   heroImage: string;
   heroImage_hotspot: SanityHotspot;
-  productTitle: string;
-  productImage: string;
+  productQuote: string;
+  productQuoteToggle: boolean;
   productDescription: PortableTextBlock[];
+  features: PortableTextBlock[];
+  featuresToggle: boolean;
   productCarousel: ProductCarousel[];
-  features: ProductList[];
-  techSpecs: ProductList[];
   footerImage: string;
   footerImage_hotspot: SanityHotspot;
   footerText: string;
-  footerAuthor: string;
-  productGraphic: string;
-  productGraphic_hotspot: SanityHotspot;
-  productGraphicAlt: string;
-  productGraphic2: string;
-  productGraphic2_hotspot: SanityHotspot;
-  productGraphic2Alt: string;
 };
 
 export type ProductCarousel = {

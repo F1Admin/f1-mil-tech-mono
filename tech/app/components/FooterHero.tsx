@@ -29,8 +29,8 @@ export default function FooterHero({
           }}
         />
       ) : (
-        <div className="flex h-full w-full items-center justify-center bg-gray-200">
-          <p className="text-gray-500">No image provided</p>
+        <div className="flex h-full w-full items-center justify-center bg-zinc-900">
+          <p className="text-zinc-400">No image provided</p>
         </div>
       )}
       {(quote || author) && (

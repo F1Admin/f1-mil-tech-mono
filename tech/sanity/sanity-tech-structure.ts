@@ -33,14 +33,6 @@ export const structure: StructureResolver = (S) =>
         ),
       S.divider(),
       S.listItem()
-        .title('Products Page')
-        .child(
-          S.document()
-            .schemaType('techProductsPage')
-            .documentId('techProductsPage')
-            .title('Products Page')
-        ),
-      S.listItem()
         .title('Products')
         .child(
           S.documentList()
