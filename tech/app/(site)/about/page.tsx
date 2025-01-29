@@ -13,61 +13,20 @@ export async function generateMetadata() {
 }
 
 export default async function TechAboutPage() {
-  const {
-    image1,
-    image1_hotspot,
-    image1_title,
-    image1_subTitle,
-    image2,
-    image2_hotspot,
-    image2_title,
-    image2_subTitle,
-    image3,
-    image3_hotspot,
-    image3_title,
-    image3_subTitle,
-    facilities_title,
-    facilities_text,
-    philosophy_title,
-    philosophy_text,
-  } = await getAboutPage();
-
-  const heroProps = {
-    image: image1,
-    hotspot: image1_hotspot,
-    title: image1_title,
-    subTitle: image1_subTitle,
-  };
-  const aboutSection1Props = {
-    image: image2,
-    hotspot: image2_hotspot,
-    title: image2_title,
-    subTitle: image2_subTitle,
-  };
-  const aboutSection2Props = {
-    image: image3,
-    hotspot: image3_hotspot,
-    title: image3_title,
-    subTitle: image3_subTitle,
-  };
-  const aboutSection3Props = {
-    title: facilities_title,
-    subTitle: facilities_text,
-  };
-  const aboutSection4Props = {
-    title: philosophy_title,
-    subTitle: philosophy_text,
-  };
+  const { heroImage, heroImage_hotspot, title, about_text } =
+    await getAboutPage();
 
   return (
     <Suspense fallback={<Loading />}>
       <main>
-        <Hero {...heroProps} />
-        <AboutSection {...aboutSection1Props} />
-        <AboutSection {...aboutSection2Props} />
-        <div className="flex flex-col">
-          <AboutSection {...aboutSection3Props} />
-          <AboutSection {...aboutSection4Props} />
+        <Hero image={heroImage} hotspot={heroImage_hotspot} title={title} />
+        <div className="flex flex-col gap-4 px-4 py-10 text-gray-400 md:px-10">
+          <h2 className="text-2xl font-bold uppercase">Our Story</h2>
+          {about_text.map((text, index) => (
+            <p className="md:px-4" key={index}>
+              {text.children[0].text}
+            </p>
+          ))}
         </div>
       </main>
     </Suspense>

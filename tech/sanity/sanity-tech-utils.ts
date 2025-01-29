@@ -28,13 +28,10 @@ const landingPageQuery = groq`*[_type == "techLandingPage"][0]{
   _createdAt,
   "image1": image1.asset->url,
   "image1_hotspot": image1.hotspot,
-  image1_title,
+  title,
+  subTitle,
   "image2": image2.asset->url,
   "image2_hotspot": image2.hotspot,
-  image2_title,
-  image2_subTitle,
-  "image3": image3.asset->url,
-  "image3_hotspot": image3.hotspot,
 }`;
 
 export type LandingPageQuery = {
@@ -42,13 +39,10 @@ export type LandingPageQuery = {
   _createdAt: Date;
   image1: string;
   image1_hotspot: SanityHotspot;
-  image1_title: string;
+  title: string;
+  subTitle: string;
   image2: string;
   image2_hotspot: SanityHotspot;
-  image2_title: string;
-  image2_subTitle: string;
-  image3: string;
-  image3_hotspot: SanityHotspot;
 };
 
 export async function getLandingPage(): Promise<LandingPageQuery> {
@@ -57,44 +51,18 @@ export async function getLandingPage(): Promise<LandingPageQuery> {
 
 const aboutPageQuery = groq`*[_type == "techAboutPage"][0]{
   _id,
-  _createdAt,
-  "image1": image1.asset->url,
-  "image1_hotspot": image1.hotspot,
-  image1_title,
-  image1_subTitle,
-  "image2": image2.asset->url,
-  "image2_hotspot": image2.hotspot,
-  image2_title,
-  image2_subTitle,
-  "image3": image3.asset->url,
-  "image3_hotspot": image3.hotspot,
-  image3_title,
-  image3_subTitle,
-  facilities_title,
-  facilities_text,
-  philosophy_title,
-  philosophy_text,
+  "heroImage": heroImage.asset->url,
+  "heroImage_hotspot": heroImage.hotspot,
+  title,
+  "about_text": about_text[]
 }`;
 
 export type AboutPageQuery = {
   _id: string;
-  _createdAt: Date;
-  image1: string;
-  image1_hotspot: SanityHotspot;
-  image1_title: string;
-  image1_subTitle: string;
-  image2: string;
-  image2_hotspot: SanityHotspot;
-  image2_title: string;
-  image2_subTitle: PortableTextBlock[];
-  image3: string;
-  image3_hotspot: SanityHotspot;
-  image3_title: string;
-  image3_subTitle: PortableTextBlock[];
-  facilities_title: string;
-  facilities_text: PortableTextBlock[];
-  philosophy_title: string;
-  philosophy_text: PortableTextBlock[];
+  heroImage: string;
+  heroImage_hotspot: SanityHotspot;
+  title: string;
+  about_text: PortableTextBlock[];
 };
 
 export async function getAboutPage(): Promise<AboutPageQuery> {

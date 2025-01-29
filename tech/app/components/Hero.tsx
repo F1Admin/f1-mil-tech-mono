@@ -5,26 +5,22 @@ interface HeroProps {
   image: string;
   hotspot?: SanityHotspot | null;
   title?: string;
+  title2?: string;
   subTitle?: string;
-  titleColor?: string;
   quote?: string;
   author?: string;
   quoteColor?: string;
-  courseNumber?: string;
-  courseTitle?: string;
 }
 
 export default function Hero({
   image,
   hotspot = { x: 0.5, y: 0.5 },
   title,
+  title2,
   subTitle,
-  titleColor,
   quote,
   author,
   quoteColor,
-  courseNumber,
-  courseTitle,
 }: HeroProps) {
   const effectiveHotspot = hotspot ?? { x: 0.5, y: 0.5 };
   const backgroundPosition = `${effectiveHotspot.x * 100}% ${effectiveHotspot.y * 100}%`;
@@ -42,12 +38,11 @@ export default function Hero({
         />
       </div>
       <div className="z-10 row-start-2">
-        {courseNumber && courseTitle ? (
-          <CourseInfo courseNumber={courseNumber} courseTitle={courseTitle} />
-        ) : (
-          <div className="text-6xl font-bold tracking-tighter">
-            {title || courseTitle}
-          </div>
+        <div className="max-w-2xl text-6xl font-bold tracking-tighter">
+          {title}
+        </div>
+        {title2 && (
+          <div className="text-6xl font-bold tracking-tighter">{title2}</div>
         )}
         {subTitle && <div className="text-2xl tracking-tight">{subTitle}</div>}
       </div>

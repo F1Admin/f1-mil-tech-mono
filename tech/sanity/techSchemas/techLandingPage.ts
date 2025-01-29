@@ -14,31 +14,18 @@ export default defineType({
       },
     }),
     defineField({
-      name: 'image1_title',
-      title: 'Image 1 Title',
+      name: 'title',
+      title: 'Landing Page Title',
+      type: 'string',
+    }),
+    defineField({
+      name: 'subTitle',
+      title: 'Landing Page Subtitle',
       type: 'string',
     }),
     defineField({
       name: 'image2',
       title: 'Image 2',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-    }),
-    defineField({
-      name: 'image2_title',
-      title: 'Image 2 Title',
-      type: 'string',
-    }),
-    defineField({
-      name: 'image2_subTitle',
-      title: 'Image 2 Subtitle',
-      type: 'string',
-    }),
-    defineField({
-      name: 'image3',
-      title: 'Image 3',
       type: 'image',
       options: {
         hotspot: true,

@@ -4,10 +4,6 @@ const techLinks = [
     label: 'About',
   },
   {
-    path: '/products',
-    label: 'Products',
-  },
-  {
     path: '/partners',
     label: 'Partners',
   },
