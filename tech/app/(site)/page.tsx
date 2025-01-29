@@ -25,7 +25,8 @@ export default async function TechLandingPage() {
           />
           <div className="mb-10 flex flex-col items-center justify-center py-10 md:flex-row md:gap-8">
             {products.map((product) => (
-              <div
+              <Link
+                href={`/products/${product.slug}`}
                 key={product._id}
                 className="mb-8 flex h-full w-64 flex-col md:mb-0"
               >
@@ -42,14 +43,11 @@ export default async function TechLandingPage() {
                   <h2 className="uppercase text-zinc-500">
                     {product.productTitle}
                   </h2>
-                  <Link
-                    href={`/products/${product.slug}`}
-                    className="text-sm uppercase text-zinc-400 underline"
-                  >
+                  <div className="text-sm uppercase text-zinc-400 underline">
                     Learn More
-                  </Link>
+                  </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
           <Hero image={image2} hotspot={image2_hotspot} />

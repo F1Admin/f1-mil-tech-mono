@@ -51,30 +51,6 @@ export default function Hero({
   );
 }
 
-function CourseInfo({
-  courseNumber,
-  courseTitle,
-}: {
-  courseNumber: string;
-  courseTitle: string;
-}) {
-  return (
-    <div className="flex items-center">
-      <span className="text-6xl font-bold tracking-tighter">
-        {courseNumber}
-      </span>
-      <span className="text-6xl font-thin">M</span>
-      <div className="relative mx-5">
-        <div
-          className="absolute bottom-[-3em] h-full w-px bg-zinc-400"
-          style={{ height: '6em' }}
-        ></div>
-      </div>
-      <span className="text-2xl font-semibold uppercase">{courseTitle}</span>
-    </div>
-  );
-}
-
 function QuoteSection({
   quote,
   author,
