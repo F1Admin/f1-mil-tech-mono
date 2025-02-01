@@ -38,11 +38,13 @@ export default function Hero({
         />
       </div>
       <div className="z-10 row-start-2">
-        <div className="max-w-2xl text-6xl font-bold tracking-tighter">
+        <div className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
           {title}
         </div>
         {title2 && (
-          <div className="text-6xl font-bold tracking-tighter">{title2}</div>
+          <div className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
+            {title2}
+          </div>
         )}
         {subTitle && <div className="text-2xl tracking-tight">{subTitle}</div>}
       </div>
