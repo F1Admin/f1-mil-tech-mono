@@ -28,7 +28,7 @@ export default async function TechLandingPage() {
               <Link
                 href={`/products/${product.slug}`}
                 key={product._id}
-                className="mb-8 flex h-full w-64 flex-col md:mb-0"
+                className="mb-8 flex h-full w-64 flex-col p-2 md:mb-0"
               >
                 <div className="relative aspect-square w-full flex-grow">
                   <Image

@@ -45,19 +45,19 @@ function ProductInfo({
 }) {
   return (
     <div className="flex items-center">
-      <div className="relative h-48 w-72">
+      <div className="relative h-32 w-48">
         <Image
           src={productLogo}
           alt={productTitle}
           fill
-          sizes="300px"
+          sizes="288px"
           className="object-contain"
           priority
         />
       </div>
-      <div className="relative">
+      <div className="relative mx-5">
         <div
-          className="absolute bottom-[-3em] left-[-1.5em] h-full w-px bg-zinc-400"
+          className="absolute bottom-[-3em] h-full w-px bg-zinc-400"
           style={{ height: '6em' }}
         ></div>
       </div>
