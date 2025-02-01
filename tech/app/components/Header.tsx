@@ -15,7 +15,7 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
 
-  const isCurrent = (path: string) => pathname.includes(path);
+  const isCurrent = (path: string) => pathname === path;
 
   const toggleMenu = (menu: 'mobile' | 'base') => {
     if (menu === 'mobile') {
