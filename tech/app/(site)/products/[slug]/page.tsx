@@ -48,7 +48,7 @@ export default async function ProductPage({ params }: { params: Params }) {
           productTitle={product.productTitle}
         />
         {product.productQuoteToggle && (
-          <div className="px-20 pt-10 text-lg text-zinc-400">
+          <div className="px-10 pt-10 text-lg text-zinc-400 md:px-20">
             {`"${product.productQuote}"`}
           </div>
         )}

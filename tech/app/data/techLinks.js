@@ -1,5 +1,9 @@
 const techLinks = [
   {
+    path: '/',
+    label: 'Product',
+  },
+  {
     path: '/about',
     label: 'About',
   },

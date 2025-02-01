@@ -70,7 +70,9 @@ function FooterSection({
 }) {
   return (
     <div className="flex flex-col gap-3">
-      <h2 className="text-sm font-semibold">{title}</h2>
+      <Link href="/">
+        <h2 className="text-sm font-semibold">{title}</h2>
+      </Link>
       <ul className="flex flex-col gap-2">{children}</ul>
     </div>
   );

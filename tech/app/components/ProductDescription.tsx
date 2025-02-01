@@ -19,7 +19,7 @@ const ProductDescription = ({
   const [leftColumn, rightColumn] = splitContent(productDescription);
 
   return (
-    <div className="grid grid-cols-2 gap-8 px-20 py-10 text-lg text-zinc-400">
+    <div className="grid grid-cols-1 gap-8 px-10 py-10 text-lg text-zinc-400 md:grid-cols-2 md:px-20">
       <div className="flex flex-col gap-5">
         <PortableText value={leftColumn} />
       </div>
