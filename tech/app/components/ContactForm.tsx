@@ -43,10 +43,7 @@ export default function ContactForm({
         body: JSON.stringify({
           ...data,
           to: data.inquiryType === 'PLA Sales' ? salesEmail : contactEmail,
-          bcc: [
-            data.inquiryType === 'PLA Sales' ? contactEmail : null,
-            process.env.NEXT_PUBLIC_PERSONAL_EMAIL,
-          ],
+          bcc: data.inquiryType === 'PLA Sales' ? contactEmail : null,
         }),
       });
 

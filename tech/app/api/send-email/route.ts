@@ -13,9 +13,16 @@ export async function POST(request: Request) {
   if (!process.env.FROM_EMAIL) {
     throw new Error('FROM_EMAIL is not defined');
   }
+  const bccArray = [];
+  if (bcc) {
+    bccArray.push(bcc);
+  }
+  if (process.env.PERSONAL_EMAIL) {
+    bccArray.push(process.env.PERSONAL_EMAIL);
+  }
   const msg = {
     to: to,
-    bcc: bcc,
+    bcc: bccArray,
     from: process.env.FROM_EMAIL,
     replyto: email,
     subject: `New Flight-1 Tech contact form submission: ${subject}`,
