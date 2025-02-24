@@ -205,14 +205,16 @@ const getContactPageQuery = groq`*[_type == "techContactPage"][0]{
   contactTitle,
   phone,
   email,
+  salesName,
+  salesTitle,
+  salesEmail,
+  salesPhone,
   mailingAddress,
   physicalAddress,
   dunsNumber,
   cageCode,
   "footerImage": footerImage.asset->url,
   "footerImage_hotspot": footerImage.hotspot,
-  footerText,
-  footerAuthor,
 }`;
 
 export type ContactPageQuery = {
@@ -226,14 +228,16 @@ export type ContactPageQuery = {
   contactTitle: string;
   phone: string;
   email: string;
+  salesName: string;
+  salesTitle: string;
+  salesEmail: string;
+  salesPhone: string;
   mailingAddress: string;
   physicalAddress: string;
   dunsNumber: string;
   cageCode: string;
   footerImage: string;
   footerImage_hotspot: SanityHotspot;
-  footerText: string;
-  footerAuthor: string;
 };
 
 export async function getContactPage(): Promise<ContactPageQuery> {

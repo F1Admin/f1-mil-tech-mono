@@ -13,6 +13,10 @@ interface ContactDetailsProps
     | 'contactTitle'
     | 'phone'
     | 'email'
+    | 'salesName'
+    | 'salesTitle'
+    | 'salesEmail'
+    | 'salesPhone'
     | 'mailingAddress'
     | 'physicalAddress'
     | 'dunsNumber'
@@ -24,6 +28,10 @@ export default function ContactDetails({
   contactTitle,
   phone,
   email,
+  salesName,
+  salesTitle,
+  salesEmail,
+  salesPhone,
   mailingAddress,
   physicalAddress,
   dunsNumber,
@@ -54,6 +62,24 @@ export default function ContactDetails({
         <p className="flex items-center gap-1">
           <MdOutlineEmail />
           {mailingAddress}
+        </p>
+      </div>
+      <div>
+        <h2 className="mb-1 text-sm font-thin uppercase">{salesTitle}</h2>
+        <h2>{salesName}</h2>
+      </div>
+      <div>
+        <h2 className="mb-1 text-sm font-thin uppercase">Email Address</h2>
+        <p className="flex items-center gap-1">
+          <MdAlternateEmail />
+          <a href={`mailto: ${salesEmail}`}>{salesEmail}</a>
+        </p>
+      </div>
+      <div>
+        <h2 className="mb-1 text-sm font-thin uppercase">Phone Number</h2>
+        <p className="flex items-center gap-1">
+          <MdLocalPhone />
+          <a href={`tel:${salesPhone}`}>{salesPhone}</a>
         </p>
       </div>
       <div>

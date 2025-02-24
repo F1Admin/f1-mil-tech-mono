@@ -44,6 +44,26 @@ export default defineType({
       type: 'string',
     }),
     defineField({
+      name: 'salesName',
+      title: 'Sales Name',
+      type: 'string',
+    }),
+    defineField({
+      name: 'salesTitle',
+      title: 'Sales Title',
+      type: 'string',
+    }),
+    defineField({
+      name: 'salesEmail',
+      title: 'Sales Email',
+      type: 'string',
+    }),
+    defineField({
+      name: 'salesPhone',
+      title: 'Sales Phone',
+      type: 'string',
+    }),
+    defineField({
       name: 'mailingAddress',
       title: 'Mailing Address',
       type: 'string',
@@ -70,16 +90,6 @@ export default defineType({
       options: {
         hotspot: true,
       },
-    }),
-    defineField({
-      name: 'footerText',
-      title: 'Footer Text',
-      type: 'string',
-    }),
-    defineField({
-      name: 'footerAuthor',
-      title: 'Footer Author',
-      type: 'string',
     }),
   ],
 });

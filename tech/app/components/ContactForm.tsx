@@ -5,11 +5,19 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 type FormInputs = {
   name: string;
   email: string;
+  phone: string;
   subject: string;
   message: string;
+  inquiryType: string;
 };
 
-export default function ContactForm() {
+export default function ContactForm({
+  salesEmail,
+  contactEmail,
+}: {
+  salesEmail: string;
+  contactEmail: string;
+}) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(
     null
@@ -34,8 +42,11 @@ export default function ContactForm() {
         },
         body: JSON.stringify({
           ...data,
-          to: process.env.NEXT_PUBLIC_TECH_EMAIL,
-          bcc: process.env.NEXT_PUBLIC_PERSONAL_EMAIL,
+          to: data.inquiryType === 'PLA Sales' ? salesEmail : contactEmail,
+          bcc: [
+            data.inquiryType === 'PLA Sales' ? contactEmail : null,
+            process.env.NEXT_PUBLIC_PERSONAL_EMAIL,
+          ],
         }),
       });
 
@@ -72,6 +83,30 @@ export default function ContactForm() {
         register={register}
         required
         error={errors.email}
+      />
+      <FormField
+        label="Phone"
+        name="phone"
+        type="tel"
+        register={register}
+        required
+        error={errors.phone}
+      />
+      <FormField
+        label="Inquiry Type"
+        name="inquiryType"
+        register={register}
+        required
+        error={errors.inquiryType}
+        type="select"
+        options={[
+          { value: 'PLA Sales', label: 'PLA Sales' },
+          {
+            value: 'Flight-1 Tech Inquiries',
+            label: 'Flight-1 Tech Inquiries',
+          },
+        ]}
+        defaultValue="PLA Sales"
       />
       <FormField
         label="Subject"
@@ -119,6 +154,8 @@ interface FormFieldProps {
   error?: any;
   type?: string;
   textarea?: boolean;
+  options?: { value: string; label: string }[];
+  defaultValue?: string;
 }
 
 function FormField({
@@ -129,6 +166,8 @@ function FormField({
   error,
   type = 'text',
   textarea = false,
+  options,
+  defaultValue,
 }: FormFieldProps) {
   const inputClasses =
     'mt-1 w-full border border-zinc-400 bg-black px-4 py-2 text-sm text-white focus:border-white focus:outline-none';
@@ -145,6 +184,18 @@ function FormField({
           className={inputClasses}
           rows={5}
         />
+      ) : options ? (
+        <select
+          {...register(name, { required: required && `${label} is required` })}
+          className={inputClasses}
+          defaultValue={defaultValue}
+        >
+          {options.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
       ) : (
         <input
           type={type}

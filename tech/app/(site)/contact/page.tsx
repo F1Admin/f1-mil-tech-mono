@@ -23,14 +23,16 @@ export default async function ContactPage() {
     contactTitle,
     phone,
     email,
+    salesName,
+    salesTitle,
+    salesEmail,
+    salesPhone,
     mailingAddress,
     physicalAddress,
     dunsNumber,
     cageCode,
     footerImage,
     footerImage_hotspot,
-    footerText,
-    footerAuthor,
   } = await getContactPage();
 
   const heroProps = {
@@ -45,6 +47,10 @@ export default async function ContactPage() {
     contactTitle,
     phone,
     email,
+    salesName,
+    salesTitle,
+    salesEmail,
+    salesPhone,
     mailingAddress,
     physicalAddress,
     dunsNumber,
@@ -54,8 +60,6 @@ export default async function ContactPage() {
   const footerHeroProps = {
     image: footerImage,
     hotspot: footerImage_hotspot,
-    quote: footerText,
-    author: footerAuthor,
   };
 
   return (
@@ -64,7 +68,7 @@ export default async function ContactPage() {
         <Hero {...heroProps} />
         <div className="m-10 grid gap-10 md:grid-cols-2">
           <ContactDetails {...contactDetailsProps} />
-          <ContactForm />
+          <ContactForm salesEmail={salesEmail} contactEmail={email} />
         </div>
         <FooterHero {...footerHeroProps} />
       </main>
