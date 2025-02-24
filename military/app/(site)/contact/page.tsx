@@ -64,7 +64,7 @@ export default async function ContactPage() {
         <Hero {...heroProps} />
         <div className="m-10 grid gap-10 md:grid-cols-2">
           <ContactDetails {...contactDetailsProps} />
-          <ContactForm />
+          <ContactForm email={email} />
         </div>
         <FooterHero {...footerHeroProps} />
       </main>

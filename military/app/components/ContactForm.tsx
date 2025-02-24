@@ -9,7 +9,7 @@ type FormInputs = {
   message: string;
 };
 
-export default function ContactForm() {
+export default function ContactForm({ email }: { email: string }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(
     null
@@ -34,8 +34,7 @@ export default function ContactForm() {
         },
         body: JSON.stringify({
           ...data,
-          to: process.env.NEXT_PUBLIC_MILITARY_EMAIL,
-          bcc: process.env.NEXT_PUBLIC_PERSONAL_EMAIL,
+          to: email,
         }),
       });
 

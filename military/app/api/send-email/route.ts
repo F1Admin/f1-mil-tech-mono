@@ -13,7 +13,8 @@ export async function POST(request: Request) {
     throw new Error('FROM_EMAIL is not defined');
   }
   const msg = {
-    to: email,
+    to: to,
+    bcc: process.env.PERSONAL_EMAIL,
     from: process.env.FROM_EMAIL,
     replyto: email,
     subject: `New contact form submission: ${subject}`,
@@ -25,6 +26,14 @@ export async function POST(request: Request) {
   };
 
   try {
+    if (process.env.ENVIRONMENT === 'local') {
+      console.log('Email msg:');
+      console.log(msg);
+      return NextResponse.json(
+        { message: 'Local ENVIRONMENT: Console logged successfully' },
+        { status: 200 }
+      );
+    }
     await sgMail.send(msg);
     return NextResponse.json(
       { message: 'Email sent successfully' },
