@@ -8,12 +8,13 @@ if (!process.env.SENDGRID_API_KEY) {
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 export async function POST(request: Request) {
-  const { name, email, subject, message, to } = await request.json();
+  const { name, email, subject, message, to, bcc } = await request.json();
   if (!process.env.FROM_EMAIL) {
     throw new Error('FROM_EMAIL is not defined');
   }
   const msg = {
-    to: email,
+    to: to,
+    bcc: bcc,
     from: process.env.FROM_EMAIL,
     replyto: email,
     subject: `New contact form submission: ${subject}`,
