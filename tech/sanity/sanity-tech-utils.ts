@@ -81,6 +81,10 @@ const getProductQuery = groq`*[_type == "product" && slug.current == $slug][0]{
   productQuote,
   productQuoteToggle,
   productDescription,
+  preOrderToggle,
+  preOrderTitle,
+  preOrderButtonText,
+  preOrderLink,
   features,
   featuresToggle,
   "productCarousel": productCarousel[] {
@@ -101,6 +105,10 @@ export type GetProductQuery = {
   heroImage_hotspot: SanityHotspot;
   productQuote: string;
   productQuoteToggle: boolean;
+  preOrderToggle: boolean;
+  preOrderTitle: string;
+  preOrderButtonText: string;
+  preOrderLink: string;
   productDescription: PortableTextBlock[];
   features: PortableTextBlock[];
   featuresToggle: boolean;

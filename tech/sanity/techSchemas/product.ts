@@ -55,6 +55,27 @@ export default defineType({
       rows: 3,
     }),
     defineField({
+      name: 'preOrderToggle',
+      title: 'Pre-Order Visibility',
+      type: 'boolean',
+      initialValue: false,
+    }),
+    defineField({
+      name: 'preOrderTitle',
+      title: 'Pre-Order Title',
+      type: 'string',
+    }),
+    defineField({
+      name: 'preOrderButtonText',
+      title: 'Pre-Order Button Text',
+      type: 'string',
+    }),
+    defineField({
+      name: 'preOrderLink',
+      title: 'Pre-Order Link',
+      type: 'url',
+    }),
+    defineField({
       name: 'productDescription',
       title: 'Product Description',
       type: 'array',

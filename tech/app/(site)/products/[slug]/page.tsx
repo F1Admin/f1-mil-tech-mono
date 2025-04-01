@@ -1,6 +1,5 @@
 import { Suspense } from 'react';
 import type { Metadata } from 'next';
-import Image from 'next/image';
 import { getProduct, getProducts } from '@/sanity/sanity-tech-utils';
 import Slider from '@/app/components/Slider/Slider';
 import Hero from '@/app/components/Hero';
@@ -8,6 +7,7 @@ import Loading from '@/app/loading';
 import { PortableText } from '@portabletext/react';
 import ProductHero from '@/app/components/ProductHero';
 import ProductDescription from '@/app/components/ProductDescription';
+import Link from 'next/link';
 
 export const revalidate = 0;
 
@@ -42,6 +42,19 @@ export default async function ProductPage({ params }: { params: Params }) {
   return (
     <Suspense fallback={<Loading />}>
       <main>
+        {product.preOrderToggle && (
+          <div className="flex flex-col items-center gap-5 px-10 py-10 text-lg text-zinc-400 md:flex-row md:px-20">
+            <h2 className="text-lg font-bold md:text-2xl">
+              {product.preOrderTitle}
+            </h2>
+            <Link
+              href={product.preOrderLink}
+              className="rounded-full bg-red-600 px-4 py-2 font-bold uppercase tracking-wide text-white hover:bg-red-500"
+            >
+              {product.preOrderButtonText}
+            </Link>
+          </div>
+        )}
         <ProductHero
           image={product.heroImage}
           productLogo={product.productLogo}
@@ -80,6 +93,22 @@ export default async function ProductPage({ params }: { params: Params }) {
                   },
                 }}
               />
+            </div>
+          </div>
+        )}
+        {product.preOrderToggle && (
+          <div>
+            <hr className="mx-4 border-zinc-700 px-4 md:mx-10" />
+            <div className="flex flex-col items-center gap-5 px-10 py-10 text-lg text-zinc-400 md:flex-row md:px-20">
+              <h2 className="text-lg font-bold md:text-2xl">
+                {product.preOrderTitle}
+              </h2>
+              <Link
+                href={product.preOrderLink}
+                className="rounded-full bg-red-600 px-4 py-2 font-bold uppercase tracking-wide text-white hover:bg-red-500"
+              >
+                {product.preOrderButtonText}
+              </Link>
             </div>
           </div>
         )}
