@@ -8,6 +8,7 @@ import { PortableText } from '@portabletext/react';
 import ProductHero from '@/app/components/ProductHero';
 import ProductDescription from '@/app/components/ProductDescription';
 import Link from 'next/link';
+import YouTubeVideo from '@/app/components/YouTubeVideo';
 
 export const revalidate = 0;
 
@@ -68,6 +69,7 @@ export default async function ProductPage({ params }: { params: Params }) {
         {product.productDescription && (
           <ProductDescription productDescription={product.productDescription} />
         )}
+        {product.videoToggle && <YouTubeVideo video={product.video} />}
         {product.featuresToggle && (
           <div className="mb-10 flex flex-col gap-5 text-zinc-400">
             <hr className="mx-4 my-10 border-zinc-700 px-4 md:mx-10" />

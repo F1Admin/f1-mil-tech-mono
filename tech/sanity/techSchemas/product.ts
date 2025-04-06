@@ -95,6 +95,17 @@ export default defineType({
       of: [{ type: 'block' }],
     }),
     defineField({
+      name: 'videoToggle',
+      title: 'Video Visibility',
+      type: 'boolean',
+      initialValue: false,
+    }),
+    defineField({
+      name: 'video',
+      title: 'Video',
+      type: 'youtubeVideo',
+    }),
+    defineField({
       name: 'productCarousel',
       title: 'Product Carousel',
       type: 'array',

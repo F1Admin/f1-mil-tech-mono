@@ -7,6 +7,7 @@ import partner from './partner';
 import techContactPage from './techContactPage';
 import productPhoto from './productPhoto';
 import productList from './productList';
+import video from './video';
 export const schemaTypes = [
   siteSettings,
   techLandingPage,
@@ -17,4 +18,5 @@ export const schemaTypes = [
   partner,
   productPhoto,
   productList,
+  video,
 ];
