@@ -7,8 +7,6 @@ import Loading from '@/app/loading';
 import Hero from '@/app/components/Hero';
 import FooterHero from '@/app/components/FooterHero';
 
-export const revalidate = 0;
-
 export const metadata: Metadata = {
   title: 'Tech Partners Page',
 };

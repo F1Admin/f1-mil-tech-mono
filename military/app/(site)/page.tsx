@@ -4,8 +4,6 @@ import Loading from '@/app/loading';
 import { getLandingPage } from '@/sanity/sanity-military-utils';
 import Hero from '@/app/components/Hero';
 
-export const revalidate = 0;
-
 export async function generateMetadata() {
   return {
     title: 'Military Landing Page',

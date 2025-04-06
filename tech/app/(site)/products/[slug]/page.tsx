@@ -10,8 +10,6 @@ import ProductDescription from '@/app/components/ProductDescription';
 import Link from 'next/link';
 import YouTubeVideo from '@/app/components/YouTubeVideo';
 
-export const revalidate = 0;
-
 type Params = Promise<{
   slug: string;
 }>;

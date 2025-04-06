@@ -12,8 +12,6 @@ import FooterHero from '@/app/components/FooterHero';
 import CourseGrid from '@/app/components/CourseGrid/CourseGrid';
 import { RiArrowDropRightLine } from 'react-icons/ri';
 
-export const revalidate = 0;
-
 export const metadata: Metadata = {
   title: 'Military Courses Page',
 };

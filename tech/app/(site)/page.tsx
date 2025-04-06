@@ -5,7 +5,6 @@ import { Suspense } from 'react';
 import Loading from '@/app/loading';
 import Image from 'next/image';
 import Link from 'next/link';
-export const revalidate = 0;
 
 export default async function TechLandingPage() {
   try {

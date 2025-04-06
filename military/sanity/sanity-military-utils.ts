@@ -1,5 +1,5 @@
 import { createClient, groq, PortableTextBlock } from 'next-sanity';
-import { militaryConfig } from './config/client-config';
+import militaryConfig from './config/client-config';
 
 export type SanityHotspot = {
   width?: number;
@@ -22,7 +22,11 @@ export type SiteSettingsQuery = {
 };
 
 export async function getSiteSettings(): Promise<SiteSettingsQuery> {
-  return createClient(militaryConfig).fetch(siteSettingsQuery);
+  return createClient(militaryConfig).fetch(
+    siteSettingsQuery,
+    {},
+    { next: { tags: ['siteSettings'] } }
+  );
 }
 
 const landingPageQuery = groq`*[_type == "militaryLandingPage"][0]{
@@ -54,7 +58,11 @@ export type LandingPageQuery = {
 };
 
 export async function getLandingPage(): Promise<LandingPageQuery> {
-  return createClient(militaryConfig).fetch(landingPageQuery);
+  return createClient(militaryConfig).fetch(
+    landingPageQuery,
+    {},
+    { next: { tags: ['militaryLandingPage'] } }
+  );
 }
 
 const aboutPageQuery = groq`*[_type == "militaryAboutPage"][0]{
@@ -97,7 +105,11 @@ export type AboutPageQuery = {
 };
 
 export async function getAboutPage(): Promise<AboutPageQuery> {
-  return createClient(militaryConfig).fetch(aboutPageQuery);
+  return createClient(militaryConfig).fetch(
+    aboutPageQuery,
+    {},
+    { next: { tags: ['militaryAboutPage'] } }
+  );
 }
 
 const militaryCoursesPageQuery = groq`*[_type == "militaryCoursesPage"][0]{
@@ -131,7 +143,11 @@ export type MilitaryCoursesPageQuery = {
 };
 
 export async function getMilitaryCoursesPage(): Promise<MilitaryCoursesPageQuery> {
-  return createClient(militaryConfig).fetch(militaryCoursesPageQuery);
+  return createClient(militaryConfig).fetch(
+    militaryCoursesPageQuery,
+    {},
+    { next: { tags: ['militaryCoursesPage'] } }
+  );
 }
 
 export const getCoursesQuery = groq`*[_type == "course"] | order(order asc){
@@ -149,7 +165,11 @@ export type Course = {
 };
 
 export async function getCourses(): Promise<Course[]> {
-  return createClient(militaryConfig).fetch(getCoursesQuery);
+  return createClient(militaryConfig).fetch(
+    getCoursesQuery,
+    {},
+    { next: { tags: ['course'] } }
+  );
 }
 
 const getSupporingCoursesQuery = groq`*[_type == "supportingCourse"] | order(order asc){
@@ -167,7 +187,11 @@ export type SupportingCourse = {
 };
 
 export async function getSupportingCourses(): Promise<SupportingCourse[]> {
-  return createClient(militaryConfig).fetch(getSupporingCoursesQuery);
+  return createClient(militaryConfig).fetch(
+    getSupporingCoursesQuery,
+    {},
+    { next: { tags: ['supportingCourse'] } }
+  );
 }
 
 const getCourseQuery = groq`*[_type == "course" && slug.current == $slug][0]{
@@ -213,7 +237,11 @@ export type CourseCarousel = {
 };
 
 export async function getCourse(slug: string): Promise<GetCourseQuery> {
-  return createClient(militaryConfig).fetch(getCourseQuery, { slug });
+  return createClient(militaryConfig).fetch(
+    getCourseQuery,
+    { slug },
+    { next: { tags: ['course'] } }
+  );
 }
 
 const getSupportingCourseQuery = groq`*[_type == "supportingCourse" && slug.current == $slug][0]{
@@ -254,9 +282,11 @@ export type GetSupportingCourseQuery = {
 export async function getSupportingCourse(
   slug: string
 ): Promise<GetSupportingCourseQuery> {
-  return createClient(militaryConfig).fetch(getSupportingCourseQuery, {
-    slug,
-  });
+  return createClient(militaryConfig).fetch(
+    getSupportingCourseQuery,
+    { slug },
+    { next: { tags: ['supportingCourse'] } }
+  );
 }
 
 const getParnersPageQuery = groq`*[_type == "militaryPartnerPage"][0]{
@@ -286,7 +316,11 @@ export type PartnerPageQuery = {
 };
 
 export async function getPartnersPage(): Promise<PartnerPageQuery> {
-  return createClient(militaryConfig).fetch(getParnersPageQuery);
+  return createClient(militaryConfig).fetch(
+    getParnersPageQuery,
+    {},
+    { next: { tags: ['militaryPartnerPage'] } }
+  );
 }
 
 const getPartnersQuery = groq`*[_type == "partner"] | order(order asc){
@@ -304,7 +338,11 @@ export type Partner = {
 };
 
 export async function getPartners(): Promise<Partner[]> {
-  return createClient(militaryConfig).fetch(getPartnersQuery);
+  return createClient(militaryConfig).fetch(
+    getPartnersQuery,
+    {},
+    { next: { tags: ['partner'] } }
+  );
 }
 
 const getContactPageQuery = groq`*[_type == "militaryContactPage"][0]{
@@ -352,7 +390,11 @@ export type ContactPageQuery = {
 };
 
 export async function getContactPage(): Promise<ContactPageQuery> {
-  return createClient(militaryConfig).fetch(getContactPageQuery);
+  return createClient(militaryConfig).fetch(
+    getContactPageQuery,
+    {},
+    { next: { tags: ['militaryContactPage'] } }
+  );
 }
 
 const getInstructorsQuery = groq`*[_type == "instructor"] | order(order asc){
@@ -426,5 +468,9 @@ export type CadrePageQuery = {
 };
 
 export async function getCadrePage(): Promise<CadrePageQuery> {
-  return createClient(militaryConfig).fetch(getCadrePageQuery);
+  return createClient(militaryConfig).fetch(
+    getCadrePageQuery,
+    {},
+    { next: { tags: ['militaryCadrePage'] } }
+  );
 }

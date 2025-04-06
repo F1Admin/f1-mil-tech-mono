@@ -7,8 +7,6 @@ import { Suspense } from 'react';
 import Loading from '@/app/loading';
 import type { Metadata } from 'next';
 
-export const revalidate = 0;
-
 export const metadata: Metadata = {
   title: 'Tech Contact Page',
 };

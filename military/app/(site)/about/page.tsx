@@ -4,8 +4,6 @@ import AboutSection from '@/app/components/AboutSection';
 import { Suspense } from 'react';
 import Loading from '@/app/loading';
 
-export const revalidate = 0;
-
 export async function generateMetadata() {
   return {
     title: 'Military About Page',

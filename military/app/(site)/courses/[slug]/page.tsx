@@ -9,8 +9,6 @@ import { RiArrowDropRightLine } from 'react-icons/ri';
 import { PortableText } from 'next-sanity';
 import CourseSeriesImage from '@/app/components/CourseSeriesImage';
 
-export const revalidate = 0;
-
 type Params = Promise<{
   slug: string;
 }>;

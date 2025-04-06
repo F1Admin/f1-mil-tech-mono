@@ -6,8 +6,6 @@ import type { Metadata } from 'next';
 import { Suspense } from 'react';
 import Loading from '@/app/loading';
 
-export const revalidate = 0;
-
 export const metadata: Metadata = {
   title: 'Military Cadre Page',
 };
