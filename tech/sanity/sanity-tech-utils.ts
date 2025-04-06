@@ -1,5 +1,5 @@
 import { createClient, groq, PortableTextBlock } from 'next-sanity';
-import { techConfig } from './config/client-config';
+import techConfig from './config/client-config';
 
 export type SanityHotspot = {
   width?: number;
@@ -22,7 +22,11 @@ export type SiteSettingsQuery = {
 };
 
 export async function getSiteSettings(): Promise<SiteSettingsQuery> {
-  return createClient(techConfig).fetch(siteSettingsQuery);
+  return createClient(techConfig).fetch(
+    siteSettingsQuery,
+    {},
+    { next: { tags: ['siteSettings'] } }
+  );
 }
 
 const landingPageQuery = groq`*[_type == "techLandingPage"][0]{
@@ -48,7 +52,11 @@ export type LandingPageQuery = {
 };
 
 export async function getLandingPage(): Promise<LandingPageQuery> {
-  return createClient(techConfig).fetch(landingPageQuery);
+  return createClient(techConfig).fetch(
+    landingPageQuery,
+    {},
+    { next: { tags: ['techLandingPage'] } }
+  );
 }
 
 const aboutPageQuery = groq`*[_type == "techAboutPage"][0]{
@@ -68,7 +76,11 @@ export type AboutPageQuery = {
 };
 
 export async function getAboutPage(): Promise<AboutPageQuery> {
-  return createClient(techConfig).fetch(aboutPageQuery);
+  return createClient(techConfig).fetch(
+    aboutPageQuery,
+    {},
+    { next: { tags: ['techAboutPage'] } }
+  );
 }
 
 const getProductQuery = groq`*[_type == "product" && slug.current == $slug][0]{
@@ -141,7 +153,11 @@ export type ProductList = {
 };
 
 export async function getProduct(slug: string): Promise<GetProductQuery> {
-  return createClient(techConfig).fetch(getProductQuery, { slug });
+  return createClient(techConfig).fetch(
+    getProductQuery,
+    { slug },
+    { next: { tags: ['product'] } }
+  );
 }
 
 export const getProductsQuery = groq`*[_type == "product"] | order(order asc){
@@ -161,7 +177,11 @@ export type Product = {
 };
 
 export async function getProducts(): Promise<Product[]> {
-  return createClient(techConfig).fetch(getProductsQuery);
+  return createClient(techConfig).fetch(
+    getProductsQuery,
+    {},
+    { next: { tags: ['product'] } }
+  );
 }
 
 const getParnersPageQuery = groq`*[_type == "techPartnerPage"][0]{
@@ -191,7 +211,11 @@ export type PartnerPageQuery = {
 };
 
 export async function getPartnersPage(): Promise<PartnerPageQuery> {
-  return createClient(techConfig).fetch(getParnersPageQuery);
+  return createClient(techConfig).fetch(
+    getParnersPageQuery,
+    {},
+    { next: { tags: ['techPartnerPage'] } }
+  );
 }
 
 const getPartnersQuery = groq`*[_type == "partner"] | order(order asc){
@@ -209,7 +233,11 @@ export type Partner = {
 };
 
 export async function getPartners(): Promise<Partner[]> {
-  return createClient(techConfig).fetch(getPartnersQuery);
+  return createClient(techConfig).fetch(
+    getPartnersQuery,
+    {},
+    { next: { tags: ['partner'] } }
+  );
 }
 
 const getContactPageQuery = groq`*[_type == "techContactPage"][0]{
@@ -259,5 +287,9 @@ export type ContactPageQuery = {
 };
 
 export async function getContactPage(): Promise<ContactPageQuery> {
-  return createClient(techConfig).fetch(getContactPageQuery);
+  return createClient(techConfig).fetch(
+    getContactPageQuery,
+    {},
+    { next: { tags: ['techContactPage'] } }
+  );
 }
