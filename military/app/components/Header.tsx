@@ -2,15 +2,14 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ChevronDown from './Icons/ChevronDown';
 import links from '../data/militaryLinks';
 import baseLinks from '../data/baseLinks';
 import { usePathname } from 'next/navigation';
-import { getSiteSettings } from '@/sanity/sanity-military-utils';
 
-const Header = () => {
-  const [logo, setLogo] = useState('');
+const Header = ({ initialLogo }: { initialLogo: string }) => {
+  const [logo] = useState(initialLogo);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -26,19 +25,6 @@ const Header = () => {
       setMobileMenuOpen(false);
     }
   };
-
-  useEffect(() => {
-    let isMounted = true;
-    getSiteSettings()
-      .then((settings) => {
-        if (isMounted) setLogo(settings.militaryLogo);
-      })
-      .catch((error) => console.error('Error fetching military logo:', error));
-
-    return () => {
-      isMounted = false;
-    };
-  }, []);
 
   return (
     <header className="bg-black text-zinc-400 shadow-md">

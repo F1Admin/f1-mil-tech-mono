@@ -2,15 +2,14 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ChevronDown from './Icons/ChevronDown';
 import links from '@/app/data/techLinks';
 import baseLinks from '../data/baseLinks';
 import { usePathname } from 'next/navigation';
-import { getSiteSettings } from '@/sanity/sanity-tech-utils';
 
-const Header = () => {
-  const [logo, setLogo] = useState('');
+const Header = ({ initialLogo }: { initialLogo: string }) => {
+  const [logo] = useState(initialLogo);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -27,25 +26,11 @@ const Header = () => {
     }
   };
 
-  useEffect(() => {
-    let isMounted = true;
-
-    getSiteSettings()
-      .then((settings) => {
-        if (isMounted) setLogo(settings.techLogo);
-      })
-      .catch((error) => console.error('Error fetching tech logo:', error));
-
-    return () => {
-      isMounted = false;
-    };
-  }, []);
-
   return (
     <header className="bg-black text-zinc-400 shadow-md">
       <div className="mx-auto flex items-center justify-between px-4 py-6 md:px-10">
         <Link href="/">
-          {logo && (
+          {logo ? (
             <Image
               src={logo}
               alt="Flight 1 Logo"
@@ -54,6 +39,8 @@ const Header = () => {
               style={{ objectFit: 'contain' }}
               priority
             />
+          ) : (
+            <div className="h-[34.5px] w-[110px] bg-neutral-800"></div>
           )}
         </Link>
         <nav className="hidden space-x-8 lg:flex">

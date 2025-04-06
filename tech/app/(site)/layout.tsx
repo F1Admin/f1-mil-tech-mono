@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import React from 'react';
-import Header from '../components/Header';
+import HeaderWrapper from '../components/HeaderWrapper';
 import FooterTech from '../components/FooterTech';
 
 export const metadata: Metadata = {
@@ -15,7 +15,7 @@ export default function TechLayout({
 }) {
   return (
     <>
-      <Header />
+      <HeaderWrapper />
       {children}
       <FooterTech />
     </>

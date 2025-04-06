@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import React from 'react';
-import Header from '@/app/components/Header';
+import HeaderWrapper from '@/app/components/HeaderWrapper';
 import FooterMilitary from '@/app/components/FooterMilitary';
 
 export const metadata: Metadata = {
@@ -15,7 +15,7 @@ export default function MilitaryLayout({
 }) {
   return (
     <>
-      <Header />
+      <HeaderWrapper />
       {children}
       <FooterMilitary />
     </>
