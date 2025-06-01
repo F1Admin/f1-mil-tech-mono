@@ -94,7 +94,7 @@ const getProductQuery = groq`*[_type == "product" && slug.current == $slug][0]{
   productQuoteToggle,
   productDescription,
   videoToggle,
-  video,
+  muxVideo,
   preOrderToggle,
   preOrderTitle,
   preOrderButtonText,
@@ -116,6 +116,11 @@ export type Video = {
   youtubeVideoId: string;
 };
 
+export type MuxVideo = {
+  playbackId: string;
+  title?: string;
+};
+
 export type GetProductQuery = {
   _id: string;
   order: number;
@@ -131,7 +136,7 @@ export type GetProductQuery = {
   preOrderLink: string;
   productDescription: PortableTextBlock[];
   videoToggle: boolean;
-  video: Video;
+  muxVideo: MuxVideo;
   features: PortableTextBlock[];
   featuresToggle: boolean;
   productCarousel: ProductCarousel[];

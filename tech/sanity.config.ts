@@ -3,6 +3,7 @@ import { structureTool } from 'sanity/structure';
 import { visionTool } from '@sanity/vision';
 import { schemaTypes as techSchemaTypes } from './sanity/techSchemas';
 import { structure as techStructure } from './sanity/sanity-tech-structure';
+import { muxInput } from 'sanity-plugin-mux-input';
 
 export const techConfig = defineConfig({
   name: 'cms-tech',
@@ -13,5 +14,9 @@ export const techConfig = defineConfig({
   schema: {
     types: techSchemaTypes,
   },
-  plugins: [structureTool({ structure: techStructure }), visionTool()],
+  plugins: [
+    structureTool({ structure: techStructure }),
+    visionTool(),
+    muxInput(),
+  ],
 });

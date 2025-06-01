@@ -24,5 +24,11 @@ export default {
       description:
         'The ID of the YouTube video (e.g., "dQw4w9WgXcQ" from https://www.youtube.com/watch?v=dQw4w9WgXcQ)',
     },
+    {
+      name: 'muxVideo',
+      title: 'Mux Video',
+      type: 'mux.video',
+      description: 'Mux stored video',
+    },
   ],
 };

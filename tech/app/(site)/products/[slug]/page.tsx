@@ -9,6 +9,7 @@ import ProductHero from '@/app/components/ProductHero';
 import ProductDescription from '@/app/components/ProductDescription';
 import Link from 'next/link';
 import YouTubeVideo from '@/app/components/YouTubeVideo';
+import MuxVideo from '@/app/components/MuxVideo';
 
 type Params = Promise<{
   slug: string;
@@ -67,7 +68,12 @@ export default async function ProductPage({ params }: { params: Params }) {
         {product.productDescription && (
           <ProductDescription productDescription={product.productDescription} />
         )}
-        {product.videoToggle && <YouTubeVideo video={product.video} />}
+        {product.videoToggle && (
+          <MuxVideo
+            playbackId={product.muxVideo.playbackId}
+            title={product.muxVideo.title}
+          />
+        )}
         {product.featuresToggle && (
           <div className="mb-10 flex flex-col gap-5 text-zinc-400">
             <hr className="mx-4 my-10 border-zinc-700 px-4 md:mx-10" />
