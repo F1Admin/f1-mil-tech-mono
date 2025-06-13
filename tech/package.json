@@ -4,7 +4,6 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -33,20 +32,20 @@
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
-    "@types/node": "^22.9.0",
-    "@types/nodemailer": "^6.4.16",
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
+    "@tailwindcss/postcss": "^4.1.10",
+    "@types/node": "^24.0.1",
+    "@types/nodemailer": "^6.4.17",
+    "@types/react": "^19.1.6",
+    "@types/react-dom": "^19.1.5",
     "@types/react-slick": "^0.23.13",
     "eslint": "^9.14.0",
     "eslint-config-next": "15.0.1",
     "fs": "0.0.1-security",
-    "postcss": "^8.4.47",
-    "prettier": "^3.3.3",
-    "prettier-plugin-tailwindcss": "^0.6.8",
-    "tailwindcss": "^3.4.14",
+    "postcss": "^8.5.5",
+    "prettier": "^3.5.3",
+    "prettier-plugin-tailwindcss": "^0.6.12",
+    "tailwindcss": "^4.1.10",
     "ts-node": "^10.9.2",
-    "typescript": "^5.6.3"
-  },
-  "packageManager": "pnpm@10.6.3+sha512.bb45e34d50a9a76e858a95837301bfb6bd6d35aea2c5d52094fa497a467c43f5c440103ce2511e9e0a2f89c3d6071baac3358fc68ac6fb75e2ceb3d2736065e6"
+    "typescript": "^5.8.3"
+  }
 }
