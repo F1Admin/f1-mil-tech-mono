@@ -76,11 +76,32 @@ export default defineType({
       type: 'url',
     }),
     defineField({
+      name: 'preOrderSubtitle',
+      title: 'Pre-Order Subtitle',
+      type: 'string',
+    }),
+    defineField({
+      name: 'preOrderSubtitleLink',
+      title: 'Pre-Order Subtitle Link',
+      type: 'url',
+    }),
+    defineField({
       name: 'productDescription',
       title: 'Product Description',
       type: 'array',
       of: [{ type: 'block' }],
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'videoToggle',
+      title: 'Video Visibility',
+      type: 'boolean',
+      initialValue: false,
+    }),
+    defineField({
+      name: 'video',
+      title: 'Video',
+      type: 'youtubeVideo',
     }),
     defineField({
       name: 'featuresToggle',
@@ -95,15 +116,20 @@ export default defineType({
       of: [{ type: 'block' }],
     }),
     defineField({
-      name: 'videoToggle',
-      title: 'Video Visibility',
+      name: 'comparisonChartToggle',
+      title: 'Comparison Chart Visibility',
       type: 'boolean',
       initialValue: false,
     }),
     defineField({
-      name: 'video',
-      title: 'Video',
-      type: 'youtubeVideo',
+      name: 'comparisonChartTitle',
+      title: 'Comparison Chart Title',
+      type: 'string',
+    }),
+    defineField({
+      name: 'comparisonChart',
+      title: 'Comparison Chart',
+      type: 'image',
     }),
     defineField({
       name: 'productCarousel',
