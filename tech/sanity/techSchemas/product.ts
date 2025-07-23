@@ -86,6 +86,11 @@ export default defineType({
       type: 'url',
     }),
     defineField({
+      name: 'preOrderSubtitleButtonText',
+      title: 'Pre-Order Subtitle Button Text',
+      type: 'string',
+    }),
+    defineField({
       name: 'productDescription',
       title: 'Product Description',
       type: 'array',

@@ -101,6 +101,7 @@ const getProductQuery = groq`*[_type == "product" && slug.current == $slug][0]{
   preOrderLink,
   preOrderSubtitle,
   preOrderSubtitleLink,
+  preOrderSubtitleButtonText,
   features,
   featuresToggle,
   "productCarousel": productCarousel[] {
@@ -136,6 +137,7 @@ export type GetProductQuery = {
   preOrderLink: string;
   preOrderSubtitle: string;
   preOrderSubtitleLink: string;
+  preOrderSubtitleButtonText: string;
   productDescription: PortableTextBlock[];
   videoToggle: boolean;
   video: Video;
