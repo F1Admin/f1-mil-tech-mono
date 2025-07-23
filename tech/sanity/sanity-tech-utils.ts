@@ -99,12 +99,18 @@ const getProductQuery = groq`*[_type == "product" && slug.current == $slug][0]{
   preOrderTitle,
   preOrderButtonText,
   preOrderLink,
+  preOrderSubtitle,
+  preOrderSubtitleLink,
+  preOrderSubtitleButtonText,
   features,
   featuresToggle,
   "productCarousel": productCarousel[] {
     "image": image.asset->url,
     "image_hotspot": image.hotspot,
   },
+  comparisonChartToggle,
+  comparisonChartTitle,
+  "comparisonChart": comparisonChart.asset->url,
   "footerImage": footerImage.asset->url,
   "footerImage_hotspot": footerImage.hotspot,
   footerText,
@@ -129,11 +135,17 @@ export type GetProductQuery = {
   preOrderTitle: string;
   preOrderButtonText: string;
   preOrderLink: string;
+  preOrderSubtitle: string;
+  preOrderSubtitleLink: string;
+  preOrderSubtitleButtonText: string;
   productDescription: PortableTextBlock[];
   videoToggle: boolean;
   video: Video;
   features: PortableTextBlock[];
   featuresToggle: boolean;
+  comparisonChartToggle: boolean;
+  comparisonChartTitle: string;
+  comparisonChart: string;
   productCarousel: ProductCarousel[];
   footerImage: string;
   footerImage_hotspot: SanityHotspot;

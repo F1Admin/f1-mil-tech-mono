@@ -43,13 +43,14 @@ $mobileBreakpoint: 480px;
           max-width: none;
           height: 400px; 
           max-height: 500px;
+          margin-right: 0px;
+          cursor: pointer;
+          object-fit: cover;
+          
           @media screen and (max-width: $mobileBreakpoint) {
             height: 300px;
             max-height: 300px;
           }
-          margin-right: 0px;
-          cursor: pointer;
-          object-fit: cover;
         }
       }
     }
