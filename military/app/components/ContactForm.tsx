@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 type FormInputs = {
@@ -7,6 +7,7 @@ type FormInputs = {
   email: string;
   subject: string;
   message: string;
+  website?: string; // Honeypot field
 };
 
 export default function ContactForm({ email }: { email: string }) {
@@ -14,6 +15,7 @@ export default function ContactForm({ email }: { email: string }) {
   const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(
     null
   );
+  const formStartTime = useRef<number>(Date.now());
 
   const {
     register,
@@ -22,7 +24,31 @@ export default function ContactForm({ email }: { email: string }) {
     formState: { errors },
   } = useForm<FormInputs>();
 
+  useEffect(() => {
+    formStartTime.current = Date.now();
+  }, []);
+
   const onSubmit: SubmitHandler<FormInputs> = async (data) => {
+    // Honeypot check - if this field is filled, it's a bot
+    // Check the actual DOM element value since react-hook-form might not track
+    // values set programmatically via DevTools
+    const websiteInput = document.getElementById('website') as HTMLInputElement;
+    const websiteValue = websiteInput?.value?.trim() || data.website?.trim();
+
+    if (websiteValue) {
+      console.warn('Spam detected: honeypot field filled', { websiteValue });
+      setSubmitStatus('error');
+      return;
+    }
+
+    // Minimum form fill time check (at least 3 seconds)
+    const formFillTime = Date.now() - formStartTime.current;
+    if (formFillTime < 3000) {
+      console.warn('Spam detected: form filled too quickly');
+      setSubmitStatus('error');
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus(null);
 
@@ -35,15 +61,23 @@ export default function ContactForm({ email }: { email: string }) {
         body: JSON.stringify({
           ...data,
           to: email,
+          website: websiteValue || '', // Use the same value we checked above
         }),
       });
 
       if (!response.ok) {
-        throw new Error('Failed to send email');
+        const errorData = await response.json().catch(() => ({}));
+        if (response.status === 429) {
+          throw new Error(
+            'Too many requests. Please wait a few minutes before trying again.'
+          );
+        }
+        throw new Error(errorData.message || 'Failed to send email');
       }
 
       setSubmitStatus('success');
       reset();
+      formStartTime.current = Date.now(); // Reset timer after successful submission
     } catch (error) {
       console.error('Form submission error:', error);
       setSubmitStatus('error');
@@ -87,6 +121,25 @@ export default function ContactForm({ email }: { email: string }) {
         error={errors.message}
         textarea
       />
+
+      {/* Honeypot field - hidden from users but visible to bots */}
+      <div
+        style={{
+          position: 'absolute',
+          left: '-9999px',
+          opacity: 0,
+          pointerEvents: 'none',
+        }}
+      >
+        <label htmlFor="website">Website (leave blank)</label>
+        <input
+          type="text"
+          id="website"
+          {...register('website')}
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
 
       <div className="mt-6 flex justify-end">
         <button
