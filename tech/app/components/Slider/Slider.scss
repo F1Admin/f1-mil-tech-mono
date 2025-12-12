@@ -41,15 +41,15 @@ $mobileBreakpoint: 480px;
         & img {
           width: auto;
           max-width: none;
-          height: 400px; 
+          height: 400px;
           max-height: 500px;
+          margin-right: 0px;
+          cursor: pointer;
+          object-fit: cover;
           @media screen and (max-width: $mobileBreakpoint) {
             height: 300px;
             max-height: 300px;
           }
-          margin-right: 0px;
-          cursor: pointer;
-          object-fit: cover;
         }
       }
     }
