@@ -1,6 +1,7 @@
 import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { visionTool } from '@sanity/vision';
+import { muxInput } from 'sanity-plugin-mux-input';
 import { schemaTypes as militarySchemaTypes } from './sanity/militarySchemas';
 import { structure as militaryStructure } from './sanity/sanity-military-structure';
 
@@ -13,5 +14,9 @@ export const militaryConfig = defineConfig({
   schema: {
     types: militarySchemaTypes,
   },
-  plugins: [structureTool({ structure: militaryStructure }), visionTool()],
+  plugins: [
+    structureTool({ structure: militaryStructure }),
+    visionTool(),
+    muxInput(),
+  ],
 });

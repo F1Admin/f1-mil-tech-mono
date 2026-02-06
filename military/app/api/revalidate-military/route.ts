@@ -18,6 +18,13 @@ export async function POST(req: NextRequest) {
     }
 
     revalidateTag(body._type, { expire: 0 });
+
+    // When a Mux video asset updates (processing complete, thumbnail generated, etc.),
+    // also revalidate pages that reference videos
+    if (body._type === 'mux.videoAsset') {
+      revalidateTag('militaryLandingPage', { expire: 0 });
+    }
+
     return NextResponse.json({
       status: 200,
       revalidated: true,

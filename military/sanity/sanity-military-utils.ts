@@ -32,29 +32,67 @@ export async function getSiteSettings(): Promise<SiteSettingsQuery> {
 const landingPageQuery = groq`*[_type == "militaryLandingPage"][0]{
   _id,
   _createdAt,
-  "image1": image1.asset->url,
-  "image1_hotspot": image1.hotspot,
-  image1_title,
-  "image2": image2.asset->url,
-  "image2_hotspot": image2.hotspot,
-  image2_title,
-  image2_subTitle,
-  "image3": image3.asset->url,
-  "image3_hotspot": image3.hotspot,
+  heroes[] {
+    _type,
+    _key,
+    _type == "heroTitle" => {
+      "image": image.asset->url,
+      "hotspot": image.hotspot,
+      title,
+      titleColor
+    },
+    _type == "heroTitleSubtitle" => {
+      "image": image.asset->url,
+      "hotspot": image.hotspot,
+      title,
+      subTitle,
+      titleColor
+    },
+    _type == "videoHero" => {
+      "thumbnail": thumbnail.asset->url,
+      "hotspot": thumbnail.hotspot,
+      "muxPlaybackId": video.asset->playbackId,
+      title,
+      autoPlay
+    }
+  }
 }`;
+
+export type HeroTitleBlock = {
+  _type: 'heroTitle';
+  _key: string;
+  image: string;
+  hotspot: SanityHotspot | null;
+  title: string;
+  titleColor?: 'white' | 'black';
+};
+
+export type HeroTitleSubtitleBlock = {
+  _type: 'heroTitleSubtitle';
+  _key: string;
+  image: string;
+  hotspot: SanityHotspot | null;
+  title: string;
+  subTitle: string;
+  titleColor?: 'white' | 'black';
+};
+
+export type VideoHeroBlock = {
+  _type: 'videoHero';
+  _key: string;
+  thumbnail: string;
+  hotspot: SanityHotspot | null;
+  muxPlaybackId?: string;
+  title?: string;
+  autoPlay?: boolean;
+};
+
+export type HeroBlock = HeroTitleBlock | HeroTitleSubtitleBlock | VideoHeroBlock;
 
 export type LandingPageQuery = {
   _id: string;
   _createdAt: Date;
-  image1: string;
-  image1_hotspot: SanityHotspot;
-  image1_title: string;
-  image2: string;
-  image2_hotspot: SanityHotspot;
-  image2_title: string;
-  image2_subTitle: string;
-  image3: string;
-  image3_hotspot: SanityHotspot;
+  heroes: HeroBlock[];
 };
 
 export async function getLandingPage(): Promise<LandingPageQuery> {

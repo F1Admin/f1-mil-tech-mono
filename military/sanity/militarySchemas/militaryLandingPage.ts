@@ -6,43 +6,54 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
+      name: 'heroes',
+      title: 'Hero Sections',
+      type: 'array',
+      of: [
+        { type: 'heroTitle' },
+        { type: 'heroTitleSubtitle' },
+        { type: 'videoHero' },
+      ],
+    }),
+    // Legacy fields - kept for migration, can be removed after data is migrated
+    defineField({
       name: 'image1',
-      title: 'Image 1',
+      title: '[Legacy] Image 1',
       type: 'image',
-      options: {
-        hotspot: true,
-      },
+      options: { hotspot: true },
+      hidden: true,
     }),
     defineField({
       name: 'image1_title',
-      title: 'Image 1 Title',
+      title: '[Legacy] Image 1 Title',
       type: 'string',
+      hidden: true,
     }),
     defineField({
       name: 'image2',
-      title: 'Image 2',
+      title: '[Legacy] Image 2',
       type: 'image',
-      options: {
-        hotspot: true,
-      },
+      options: { hotspot: true },
+      hidden: true,
     }),
     defineField({
       name: 'image2_title',
-      title: 'Image 2 Title',
+      title: '[Legacy] Image 2 Title',
       type: 'string',
+      hidden: true,
     }),
     defineField({
       name: 'image2_subTitle',
-      title: 'Image 2 Subtitle',
+      title: '[Legacy] Image 2 Subtitle',
       type: 'string',
+      hidden: true,
     }),
     defineField({
       name: 'image3',
-      title: 'Image 3',
+      title: '[Legacy] Image 3',
       type: 'image',
-      options: {
-        hotspot: true,
-      },
+      options: { hotspot: true },
+      hidden: true,
     }),
   ],
 });
