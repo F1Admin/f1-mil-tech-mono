@@ -1,8 +1,15 @@
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 import Loading from '@/app/loading';
-import { getLandingPage } from '@/sanity/sanity-military-utils';
-import Hero from '@/app/components/Hero';
+import {
+  getLandingPage,
+  HeroBlock,
+} from '@/sanity/sanity-military-utils';
+import {
+  HeroTitle,
+  HeroTitleSubtitle,
+  VideoHero,
+} from '@/app/components/heroes';
 
 export async function generateMetadata() {
   return {
@@ -10,31 +17,53 @@ export async function generateMetadata() {
   };
 }
 
+function renderHero(hero: HeroBlock) {
+  switch (hero._type) {
+    case 'heroTitle':
+      return (
+        <HeroTitle
+          key={hero._key}
+          image={hero.image}
+          hotspot={hero.hotspot}
+          title={hero.title}
+          titleColor={hero.titleColor}
+        />
+      );
+    case 'heroTitleSubtitle':
+      return (
+        <HeroTitleSubtitle
+          key={hero._key}
+          image={hero.image}
+          hotspot={hero.hotspot}
+          title={hero.title}
+          subTitle={hero.subTitle}
+          titleColor={hero.titleColor}
+        />
+      );
+    case 'videoHero':
+      return (
+        <VideoHero
+          key={hero._key}
+          thumbnail={hero.thumbnail}
+          thumbnailHotspot={hero.hotspot}
+          muxPlaybackId={hero.muxPlaybackId}
+          title={hero.title}
+          autoPlay={hero.autoPlay}
+        />
+      );
+    default:
+      return null;
+  }
+}
+
 export default async function MilitaryLandingPage() {
   try {
-    const {
-      image1,
-      image1_hotspot,
-      image1_title,
-      image2,
-      image2_hotspot,
-      image2_title,
-      image2_subTitle,
-      image3,
-      image3_hotspot,
-    } = await getLandingPage();
+    const { heroes } = await getLandingPage();
 
     return (
       <Suspense fallback={<Loading />}>
         <section>
-          <Hero image={image1} hotspot={image1_hotspot} title={image1_title} />
-          <Hero
-            image={image2}
-            hotspot={image2_hotspot}
-            title={image2_title}
-            subTitle={image2_subTitle}
-          />
-          <Hero image={image3} hotspot={image3_hotspot} />
+          {heroes?.map((hero) => renderHero(hero))}
         </section>
       </Suspense>
     );
