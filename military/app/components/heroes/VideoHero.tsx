@@ -7,6 +7,7 @@ import { useState } from 'react';
 
 interface VideoHeroProps {
   thumbnail: string;
+  
   thumbnailHotspot?: SanityHotspot | null;
   muxPlaybackId?: string;
   alt?: string;
@@ -35,21 +36,24 @@ export default function VideoHero({
   };
 
   return (
-    <div
-      className={`relative aspect-video w-full overflow-hidden ${className}`}
-    >
-      {!isPlaying && (
+    <div className={`bg-black ${className}`}>
+      <div className="relative mx-auto aspect-video w-full overflow-hidden lg:max-h-[60vh] lg:max-w-[106.67vh]">
+
+      {/* Thumbnail backdrop — always visible when autoPlay to prevent black flash */}
+      {(!isPlaying || autoPlay) && (
+        <div className="absolute inset-0 z-0">
+          <Image
+            src={thumbnail}
+            alt={alt}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw"
+            priority
+            style={{ objectFit: 'cover', objectPosition: backgroundPosition }}
+          />
+        </div>
+      )}
+      {!isPlaying && !autoPlay && (
         <>
-          <div className="absolute inset-0 z-0">
-            <Image
-              src={thumbnail}
-              alt={alt}
-              fill
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw"
-              priority
-              style={{ objectFit: 'cover', objectPosition: backgroundPosition }}
-            />
-          </div>
           {muxPlaybackId && (
             <button
               onClick={handlePlay}
@@ -71,12 +75,13 @@ export default function VideoHero({
       {isPlaying && muxPlaybackId && (
         <MuxPlayer
           playbackId={muxPlaybackId}
-          poster={thumbnail}
           autoPlay
           muted={autoPlay}
-          className="aspect-video w-full"
+          className="relative z-10 aspect-video w-full"
+          thumbnailTime={0}
         />
       )}
+      </div>
     </div>
   );
 }
