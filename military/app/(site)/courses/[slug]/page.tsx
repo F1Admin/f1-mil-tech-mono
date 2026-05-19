@@ -51,15 +51,17 @@ export default async function MilitaryCourse({ params }: { params: Params }) {
     author: course.courseFooterAuthor,
   };
 
+  const showCourseImage = course.showCourseImage !== false;
+
   return (
     <Suspense fallback={<Loading />}>
       <main>
         <Hero {...heroProps} />
 
-        {course.muxPlaybackId && (
+        {course.muxPlaybackId && course.videoThumbnail && (
           <div className="pt-10">
             <VideoHero
-              thumbnail={course.videoThumbnail ?? ''}
+              thumbnail={course.videoThumbnail}
               thumbnailHotspot={course.videoThumbnail_hotspot}
               muxPlaybackId={course.muxPlaybackId}
             />
@@ -68,12 +70,10 @@ export default async function MilitaryCourse({ params }: { params: Params }) {
 
         <div
           className={`flex flex-col items-center gap-5 p-10 sm:p-20 ${
-            course.showCourseImage !== false
-              ? 'lg:grid lg:grid-cols-2'
-              : 'mx-auto max-w-4xl'
+            showCourseImage ? 'lg:grid lg:grid-cols-2' : 'mx-auto max-w-4xl'
           }`}
         >
-          {course.showCourseImage !== false && (
+          {showCourseImage && course.courseSeriesImage && (
             <CourseSeriesImage
               courseNumber={course.courseNumber}
               courseTitle={course.courseTitle}

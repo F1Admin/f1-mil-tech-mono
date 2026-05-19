@@ -267,7 +267,7 @@ export type GetCourseQuery = {
   videoThumbnail_hotspot?: SanityHotspot;
   muxPlaybackId?: string;
   showCourseImage?: boolean;
-  courseSeriesImage: string;
+  courseSeriesImage?: string;
   courseDescription: PortableTextBlock[];
   courseRequirements: string[];
   courseFooterImage: string;
