@@ -44,10 +44,35 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'videoThumbnail',
+      title: 'Video Thumbnail',
+      type: 'image',
+      description:
+        'Poster image shown before the video plays. If video is left blank, the video section will not display on the course page.',
+      options: {
+        hotspot: true,
+      },
+    }),
+    defineField({
+      name: 'video',
+      title: 'Video (Mux)',
+      type: 'mux.video',
+      description:
+        'Optional course video. If left blank, the video section will not display on the course page.',
+    }),
+    defineField({
+      name: 'showCourseImage',
+      title: 'Show Course Image',
+      type: 'boolean',
+      description:
+        'Toggle the course image on or off. If off, the description and requirements will be centered on the page.',
+      initialValue: true,
+    }),
+    defineField({
       name: 'courseSeriesImage',
       title: 'Course Image',
       type: 'image',
-      validation: (Rule) => Rule.required(),
+      hidden: ({ parent }) => !parent?.showCourseImage,
     }),
     defineField({
       name: 'courseDescription',

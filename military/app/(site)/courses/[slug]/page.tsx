@@ -8,6 +8,7 @@ import Loading from '@/app/loading';
 import { RiArrowDropRightLine } from 'react-icons/ri';
 import { PortableText } from 'next-sanity';
 import CourseSeriesImage from '@/app/components/CourseSeriesImage';
+import VideoHero from '@/app/components/heroes/VideoHero';
 
 type Params = Promise<{
   slug: string;
@@ -55,12 +56,30 @@ export default async function MilitaryCourse({ params }: { params: Params }) {
       <main>
         <Hero {...heroProps} />
 
-        <div className="flex flex-col items-center gap-5 p-10 sm:p-20 lg:grid lg:grid-cols-2">
-          <CourseSeriesImage
-            courseNumber={course.courseNumber}
-            courseTitle={course.courseTitle}
-            image={course.courseSeriesImage}
-          />
+        {course.muxPlaybackId && (
+          <div className="pt-10">
+            <VideoHero
+              thumbnail={course.videoThumbnail ?? ''}
+              thumbnailHotspot={course.videoThumbnail_hotspot}
+              muxPlaybackId={course.muxPlaybackId}
+            />
+          </div>
+        )}
+
+        <div
+          className={`flex flex-col items-center gap-5 p-10 sm:p-20 ${
+            course.showCourseImage !== false
+              ? 'lg:grid lg:grid-cols-2'
+              : 'mx-auto max-w-4xl'
+          }`}
+        >
+          {course.showCourseImage !== false && (
+            <CourseSeriesImage
+              courseNumber={course.courseNumber}
+              courseTitle={course.courseTitle}
+              image={course.courseSeriesImage}
+            />
+          )}
           <div className="flex flex-col gap-10 text-lg text-zinc-100">
             <div className="flex flex-col gap-5">
               <PortableText value={course.courseDescription} />

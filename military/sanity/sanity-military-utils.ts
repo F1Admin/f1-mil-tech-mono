@@ -239,6 +239,10 @@ const getCourseQuery = groq`*[_type == "course" && slug.current == $slug][0]{
   courseNumber,
   courseTitle,
   "slug": slug.current,
+  "videoThumbnail": videoThumbnail.asset->url,
+  "videoThumbnail_hotspot": videoThumbnail.hotspot,
+  "muxPlaybackId": video.asset->playbackId,
+  showCourseImage,
   "courseSeriesImage": courseSeriesImage.asset->url,
   courseDescription,
   courseRequirements,
@@ -259,6 +263,10 @@ export type GetCourseQuery = {
   courseNumber: string;
   courseTitle: string;
   slug: string;
+  videoThumbnail?: string;
+  videoThumbnail_hotspot?: SanityHotspot;
+  muxPlaybackId?: string;
+  showCourseImage?: boolean;
   courseSeriesImage: string;
   courseDescription: PortableTextBlock[];
   courseRequirements: string[];
