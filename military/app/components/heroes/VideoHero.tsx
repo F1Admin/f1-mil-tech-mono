@@ -36,7 +36,19 @@ export default function VideoHero({
   };
 
   return (
-    <div className={`bg-black ${className}`}>
+    <div className={`relative overflow-hidden bg-black ${className}`}>
+      {/* Blurred thumbnail fills the pillarbox area on wide screens where the
+          16:9 video doesn't reach the page edges */}
+      <div className="absolute inset-0 hidden lg:block" aria-hidden>
+        <Image
+          src={thumbnail}
+          alt=""
+          fill
+          sizes="100vw"
+          className="scale-110 object-cover blur-2xl brightness-[0.35]"
+          style={{ objectPosition: backgroundPosition }}
+        />
+      </div>
       <div className="relative mx-auto aspect-video w-full overflow-hidden lg:max-h-[60vh] lg:max-w-[106.67vh]">
 
       {/* Thumbnail backdrop — always visible when autoPlay to prevent black flash */}
