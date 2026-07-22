@@ -51,6 +51,34 @@ const heroBlocksProjection = `
       "muxPlaybackId": video.asset->playbackId,
       title,
       autoPlay
+    },
+    _type == "aboutSection" => {
+      "image": image.asset->url,
+      "hotspot": image.hotspot,
+      title,
+      subTitle
+    },
+    _type == "heroQuote" => {
+      "image": image.asset->url,
+      "hotspot": image.hotspot,
+      title,
+      subTitle,
+      titleColor,
+      quote,
+      quoteAuthor,
+      quoteColor
+    },
+    _type == "footerHero" => {
+      "image": image.asset->url,
+      "hotspot": image.hotspot,
+      quote,
+      quoteAuthor
+    },
+    _type == "courseGridBlock" => {
+      light
+    },
+    _type == "courseListBlock" => {
+      showDivider
     }
 `;
 
@@ -89,7 +117,58 @@ export type VideoHeroBlock = {
   autoPlay?: boolean;
 };
 
-export type HeroBlock = HeroTitleBlock | HeroTitleSubtitleBlock | VideoHeroBlock;
+export type AboutSectionBlock = {
+  _type: 'aboutSection';
+  _key: string;
+  image?: string;
+  hotspot?: SanityHotspot | null;
+  title?: string;
+  subTitle?: PortableTextBlock[];
+};
+
+export type HeroQuoteBlock = {
+  _type: 'heroQuote';
+  _key: string;
+  image: string;
+  hotspot: SanityHotspot | null;
+  title?: string;
+  subTitle?: string;
+  titleColor?: 'white' | 'black';
+  quote?: string;
+  quoteAuthor?: string;
+  quoteColor?: 'white' | 'black';
+};
+
+export type FooterHeroBlock = {
+  _type: 'footerHero';
+  _key: string;
+  image: string;
+  hotspot: SanityHotspot | null;
+  quote?: string;
+  quoteAuthor?: string;
+};
+
+export type CourseGridBlock = {
+  _type: 'courseGridBlock';
+  _key: string;
+  light?: boolean;
+};
+
+export type CourseListBlock = {
+  _type: 'courseListBlock';
+  _key: string;
+  showDivider?: boolean;
+};
+
+export type HeroBlock =
+  | HeroTitleBlock
+  | HeroTitleSubtitleBlock
+  | VideoHeroBlock
+  | AboutSectionBlock
+  | HeroQuoteBlock
+  | FooterHeroBlock
+  | CourseGridBlock
+  | CourseListBlock;
 
 export type LandingPageQuery = {
   _id: string;
@@ -108,42 +187,13 @@ export async function getLandingPage(): Promise<LandingPageQuery> {
 const aboutPageQuery = groq`*[_type == "militaryAboutPage"][0]{
   _id,
   _createdAt,
-  "image1": image1.asset->url,
-  "image1_hotspot": image1.hotspot,
-  image1_title,
-  image1_subTitle,
   sections[] {${heroBlocksProjection}},
-  "image2_hotspot": image2.hotspot,
-  "image3": image3.asset->url,
-  "image3_hotspot": image3.hotspot,
-  image3_title,
-  image3_subTitle,
-  facilities_title,
-  facilities_text,
-  selection_title,
-  selection_text,
 }`;
 
 export type AboutPageQuery = {
   _id: string;
   _createdAt: Date;
-  image1: string;
-  image1_hotspot: SanityHotspot;
-  image1_title: string;
-  image1_subTitle: string;
   sections?: HeroBlock[];
-  image2: string;
-  image2_hotspot: SanityHotspot;
-  image2_title: string;
-  image2_subTitle: PortableTextBlock[];
-  image3: string;
-  image3_hotspot: SanityHotspot;
-  image3_title: string;
-  image3_subTitle: PortableTextBlock[];
-  facilities_title: string;
-  facilities_text: PortableTextBlock[];
-  selection_title: string;
-  selection_text: PortableTextBlock[];
 };
 
 export async function getAboutPage(): Promise<AboutPageQuery> {
@@ -157,33 +207,13 @@ export async function getAboutPage(): Promise<AboutPageQuery> {
 const militaryCoursesPageQuery = groq`*[_type == "militaryCoursesPage"][0]{
   _id,
   _createdAt,
-  "heroImage": heroImage.asset->url,
-  "heroImage_hotspot": heroImage.hotspot,
-  title,
-  subtitle,
-  titleColor,
-  heroImageQuote,
-  heroImageQuoteAuthor,
-  quoteColor,
   sections[] {${heroBlocksProjection}},
-  "footerImage": footerImage.asset->url,
-  "footerImage_hotspot": footerImage.hotspot,
 }`;
 
 export type MilitaryCoursesPageQuery = {
   _id: string;
   _createdAt: Date;
-  heroImage: string;
-  heroImage_hotspot: SanityHotspot;
-  title: string;
-  subtitle: string;
-  titleColor: string;
-  heroImageQuote: string;
-  heroImageQuoteAuthor: string;
-  quoteColor: string;
   sections?: HeroBlock[];
-  footerImage: string;
-  footerImage_hotspot: SanityHotspot;
 };
 
 export async function getMilitaryCoursesPage(): Promise<MilitaryCoursesPageQuery> {

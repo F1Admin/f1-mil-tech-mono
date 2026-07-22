@@ -1,4 +1,5 @@
 import { defineType, defineField } from 'sanity';
+import { pageSectionBlocks } from './heroes';
 
 export default defineType({
   name: 'militaryCoursesPage',
@@ -6,69 +7,18 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
-      name: 'heroImage',
-      title: 'Hero Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-    }),
-    defineField({
-      name: 'title',
-      title: 'Page Title',
-      type: 'string',
-    }),
-    defineField({
-      name: 'subtitle',
-      title: 'Page Subtitle',
-      type: 'text',
-      rows: 2,
-    }),
-    defineField({
-      name: 'titleColor',
-      title: 'Title Color',
-      type: 'string',
-      options: {
-        list: ['white', 'black'],
-      },
-    }),
-    defineField({
-      name: 'heroImageQuote',
-      title: 'Hero Image Quote',
-      type: 'string',
-    }),
-    defineField({
-      name: 'heroImageQuoteAuthor',
-      title: 'Hero Image Quote Author',
-      type: 'string',
-    }),
-    defineField({
-      name: 'quoteColor',
-      title: 'Quote Color',
-      type: 'string',
-      options: {
-        list: ['white', 'black'],
-      },
-    }),
-    defineField({
       name: 'sections',
-      title: 'Video / Hero Sections',
+      title: 'Page Sections',
       type: 'array',
-      description:
-        'Optional blocks (videos or heroes) shown between the hero and the course lists',
-      of: [
-        { type: 'heroTitle' },
-        { type: 'heroTitleSubtitle' },
-        { type: 'videoHero' },
-      ],
-    }),
-    defineField({
-      name: 'footerImage',
-      title: 'Page Footer Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
+      description: 'Blocks making up the page',
+      of: pageSectionBlocks,
     }),
   ],
+  preview: {
+    prepare() {
+      return {
+        title: 'Courses Page',
+      };
+    },
+  },
 });

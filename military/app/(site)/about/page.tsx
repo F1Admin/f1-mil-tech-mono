@@ -1,6 +1,8 @@
-import { getAboutPage } from '@/sanity/sanity-military-utils';
-import Hero from '@/app/components/Hero';
-import AboutSection from '@/app/components/AboutSection';
+import {
+  getAboutPage,
+  getCourses,
+  getSupportingCourses,
+} from '@/sanity/sanity-military-utils';
 import BlockRenderer from '@/app/components/BlockRenderer';
 import { Suspense } from 'react';
 import Loading from '@/app/loading';
@@ -12,53 +14,18 @@ export async function generateMetadata() {
 }
 
 export default async function MilitaryAboutPage() {
-  const {
-    image1,
-    image1_hotspot,
-    image1_title,
-    image1_subTitle,
-    sections,
-    image3,
-    image3_hotspot,
-    image3_title,
-    image3_subTitle,
-    facilities_title,
-    facilities_text,
-    selection_title,
-    selection_text,
-  } = await getAboutPage();
-
-  const heroProps = {
-    image: image1,
-    hotspot: image1_hotspot,
-    title: image1_title,
-    subTitle: image1_subTitle,
-  };
-  const aboutSection2Props = {
-    image: image3,
-    hotspot: image3_hotspot,
-    title: image3_title,
-    subTitle: image3_subTitle,
-  };
-  const aboutSection3Props = {
-    title: facilities_title,
-    subTitle: facilities_text,
-  };
-  const aboutSection4Props = {
-    title: selection_title,
-    subTitle: selection_text,
-  };
+  const { sections } = await getAboutPage();
+  const courses = await getCourses();
+  const supportingCourses = await getSupportingCourses();
 
   return (
     <Suspense fallback={<Loading />}>
       <main>
-        <Hero {...heroProps} />
-        <BlockRenderer blocks={sections} />
-        <AboutSection {...aboutSection2Props} />
-        <div className="flex flex-col">
-          <AboutSection {...aboutSection3Props} />
-          <AboutSection {...aboutSection4Props} />
-        </div>
+        <BlockRenderer
+          blocks={sections}
+          courses={courses}
+          supportingCourses={supportingCourses}
+        />
       </main>
     </Suspense>
   );
