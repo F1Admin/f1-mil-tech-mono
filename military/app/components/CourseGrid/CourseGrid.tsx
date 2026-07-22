@@ -32,27 +32,34 @@ const CourseGrid = ({
         ? [
             [
               ['101M', '100 SERIES', '101'],
-              ['101/201M', '200 SERIES', '101-201'],
-              ['202M', '200 SERIES', '202'],
-              ['301M', '300 SERIES', '301'],
+              ['201M', '200 SERIES', '201'],
               ['302M', '300 SERIES', '302'],
+              ['MFF', 'SUPPORT', 'mff']
+            ],
+            [
+              null,
+              ['102M', '100 SERIES', '102'],
+              ['202M', '200 SERIES', '202'],
+              null,
+              ['T&B', 'SUPPORT', 'tandem-bundle'],
             ],
             [
               null,
               null,
-              ['MFF', 'SUPPORT', 'mff'],
-              ['T&B', 'SUPPORT', 'tandem-bundle'],
+              ['203M', '200 SERIES', '203'],
+              null,
               ['CUSTOM', 'SUPPORT', 'custom-courses'],
-            ],
+            ]
           ]
         : [
             [
               ['101M', '100 SERIES', '101'],
-              ['101/201M', '200 SERIES', '101-201'],
-              ['202M', '200 SERIES', '202'],
+              ['102M', '100 SERIES', '102'],
+              ['201M', '200 SERIES', '201'],
             ],
             [
-              ['301M', '300 SERIES', '301'],
+              ['202M', '200 SERIES', '202'],
+              ['203M', '200 SERIES', '203'],
               ['302M', '300 SERIES', '302'],
             ],
             [
@@ -81,20 +88,13 @@ const CourseGrid = ({
     return { grid, items };
   }, [screenSize]);
 
-  // Check if the item is completed
-  const isCompleted = (
-    item: { name: string; type: string; slug: string } | null
-  ): boolean => {
-    return item ? completed.includes(item.name) : false;
-  };
-
   return (
     <div className={`main py-16 ${light ? 'light' : ''}`}>
       <div className="container">
         {items.map((item, index) => (
           <div
             key={index}
-            className={`item ${!item ? 'invisible' : ''} ${isCompleted(item) ? 'isCompleted' : ''} ${
+            className={`item ${!item ? 'invisible' : ''} ${
               light ? 'lightColor' : 'darkColor'
             }`}
           >

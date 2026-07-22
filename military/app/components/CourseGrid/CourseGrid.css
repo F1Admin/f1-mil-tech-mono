@@ -9,7 +9,7 @@
 }
 
 .container {
-  width: calc((var(--s) + (var(--m) * 2)) * 6);
+  width: calc((var(--s) + (var(--m) * 2)) * 5.2);
   padding-bottom: calc(var(--s) * 0.2885);
   font-size: 0;
 }
