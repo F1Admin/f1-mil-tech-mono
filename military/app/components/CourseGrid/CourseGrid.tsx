@@ -46,7 +46,6 @@ const CourseGrid = ({
             [
               null,
               null,
-              null,
               ['203M', '200 SERIES', '203'],
               null,
               ['CUSTOM', 'SUPPORT', 'custom-courses'],
