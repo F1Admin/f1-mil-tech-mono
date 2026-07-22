@@ -29,10 +29,7 @@ export async function getSiteSettings(): Promise<SiteSettingsQuery> {
   );
 }
 
-const landingPageQuery = groq`*[_type == "militaryLandingPage"][0]{
-  _id,
-  _createdAt,
-  heroes[] {
+const heroBlocksProjection = `
     _type,
     _key,
     _type == "heroTitle" => {
@@ -55,7 +52,12 @@ const landingPageQuery = groq`*[_type == "militaryLandingPage"][0]{
       title,
       autoPlay
     }
-  }
+`;
+
+const landingPageQuery = groq`*[_type == "militaryLandingPage"][0]{
+  _id,
+  _createdAt,
+  heroes[] {${heroBlocksProjection}}
 }`;
 
 export type HeroTitleBlock = {
@@ -110,6 +112,7 @@ const aboutPageQuery = groq`*[_type == "militaryAboutPage"][0]{
   "image1_hotspot": image1.hotspot,
   image1_title,
   image1_subTitle,
+  sections[] {${heroBlocksProjection}},
   "image2_hotspot": image2.hotspot,
   "image3": image3.asset->url,
   "image3_hotspot": image3.hotspot,
@@ -128,6 +131,7 @@ export type AboutPageQuery = {
   image1_hotspot: SanityHotspot;
   image1_title: string;
   image1_subTitle: string;
+  sections?: HeroBlock[];
   image2: string;
   image2_hotspot: SanityHotspot;
   image2_title: string;
@@ -161,6 +165,7 @@ const militaryCoursesPageQuery = groq`*[_type == "militaryCoursesPage"][0]{
   heroImageQuote,
   heroImageQuoteAuthor,
   quoteColor,
+  sections[] {${heroBlocksProjection}},
   "footerImage": footerImage.asset->url,
   "footerImage_hotspot": footerImage.hotspot,
 }`;
@@ -176,6 +181,7 @@ export type MilitaryCoursesPageQuery = {
   heroImageQuote: string;
   heroImageQuoteAuthor: string;
   quoteColor: string;
+  sections?: HeroBlock[];
   footerImage: string;
   footerImage_hotspot: SanityHotspot;
 };

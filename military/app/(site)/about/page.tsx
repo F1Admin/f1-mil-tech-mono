@@ -1,6 +1,7 @@
 import { getAboutPage } from '@/sanity/sanity-military-utils';
 import Hero from '@/app/components/Hero';
 import AboutSection from '@/app/components/AboutSection';
+import BlockRenderer from '@/app/components/BlockRenderer';
 import { Suspense } from 'react';
 import Loading from '@/app/loading';
 
@@ -16,6 +17,7 @@ export default async function MilitaryAboutPage() {
     image1_hotspot,
     image1_title,
     image1_subTitle,
+    sections,
     image3,
     image3_hotspot,
     image3_title,
@@ -51,6 +53,7 @@ export default async function MilitaryAboutPage() {
     <Suspense fallback={<Loading />}>
       <main>
         <Hero {...heroProps} />
+        <BlockRenderer blocks={sections} />
         <AboutSection {...aboutSection2Props} />
         <div className="flex flex-col">
           <AboutSection {...aboutSection3Props} />

@@ -10,6 +10,7 @@ import Loading from '@/app/loading';
 import Hero from '@/app/components/Hero';
 import FooterHero from '@/app/components/FooterHero';
 import CourseGrid from '@/app/components/CourseGrid/CourseGrid';
+import BlockRenderer from '@/app/components/BlockRenderer';
 import { RiArrowDropRightLine } from 'react-icons/ri';
 
 export const metadata: Metadata = {
@@ -26,6 +27,7 @@ export default async function MilitaryCoursesPage() {
     heroImageQuote,
     heroImageQuoteAuthor,
     quoteColor,
+    sections,
     footerImage,
     footerImage_hotspot,
   } = await getMilitaryCoursesPage();
@@ -52,6 +54,7 @@ export default async function MilitaryCoursesPage() {
     <Suspense fallback={<Loading />}>
       <main>
         <Hero {...heroProps} />
+        <BlockRenderer blocks={sections} />
         <div className="grid-col-1 grid gap-10 px-4 py-16 text-zinc-400 md:grid-cols-2 md:px-10 lg:pl-64 xl:pl-96">
           <div className="flex flex-col gap-7 md:gap-3">
             <h3 className="text-2xl">FLIGHT-1 TRAINING SYSTEM</h3>

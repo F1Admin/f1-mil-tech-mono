@@ -25,6 +25,18 @@ export default defineType({
       rows: 3,
     }),
     defineField({
+      name: 'sections',
+      title: 'Video / Hero Sections',
+      type: 'array',
+      description:
+        'Optional blocks (videos or heroes) shown below the main hero, above the Origins section',
+      of: [
+        { type: 'heroTitle' },
+        { type: 'heroTitleSubtitle' },
+        { type: 'videoHero' },
+      ],
+    }),
+    defineField({
       name: 'image3',
       title: 'Origins Image',
       type: 'image',

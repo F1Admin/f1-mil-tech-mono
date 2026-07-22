@@ -51,6 +51,18 @@ export default defineType({
       },
     }),
     defineField({
+      name: 'sections',
+      title: 'Video / Hero Sections',
+      type: 'array',
+      description:
+        'Optional blocks (videos or heroes) shown between the hero and the course lists',
+      of: [
+        { type: 'heroTitle' },
+        { type: 'heroTitleSubtitle' },
+        { type: 'videoHero' },
+      ],
+    }),
+    defineField({
       name: 'footerImage',
       title: 'Page Footer Image',
       type: 'image',
