@@ -33,21 +33,21 @@ const CourseGrid = ({
             [
               ['101M', '100 SERIES', '101'],
               ['201M', '200 SERIES', '201'],
-              ['302M', '300 SERIES', '302'],
+              ['301M', '300 SERIES', '301'],
               ['MFF', 'SUPPORT', 'mff']
             ],
             [
               null,
               ['102M', '100 SERIES', '102'],
               ['202M', '200 SERIES', '202'],
-              null,
+              ['302M', '300 SERIES', '302'],
               ['T&B', 'SUPPORT', 'tandem-bundle'],
             ],
             [
               null,
               null,
               ['203M', '200 SERIES', '203'],
-              null,
+              ['303M', '300 SERIES', '303'],
               ['CUSTOM', 'SUPPORT', 'custom-courses'],
             ]
           ]
@@ -55,12 +55,16 @@ const CourseGrid = ({
             [
               ['101M', '100 SERIES', '101'],
               ['102M', '100 SERIES', '102'],
-              ['201M', '200 SERIES', '201'],
             ],
             [
+              ['201M', '200 SERIES', '201'],
               ['202M', '200 SERIES', '202'],
               ['203M', '200 SERIES', '203'],
+            ],
+            [
+              ['301M', '300 SERIES', '301'],
               ['302M', '300 SERIES', '302'],
+              ['303M', '300 SERIES', '303'],
             ],
             [
               ['MFF', 'SUPPORT', 'mff'],
